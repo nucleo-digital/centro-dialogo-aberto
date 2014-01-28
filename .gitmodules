@@ -1,0 +1,3 @@
+[submodule "public/cda-frontend"]
+	path = public/cda-frontend
+	url = git@bitbucket.org:pmsp-smdu/centro-dialogo-aberto-frontend.git
