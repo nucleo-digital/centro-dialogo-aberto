@@ -32,6 +32,7 @@ require_once("Tax-meta-class/Tax-meta-class.php");
                 $categories[$k]->tipo_projeto_label  = 'Projeto Piloto';
             }
             $categories[$k]->imagem_representativa = get_tax_meta($val->term_id,'cda_image_field_id');
+            $categories[$k]->imagem_representativa['src'] = wp_get_attachment_url( $categories[$k]->imagem_representativa['id'] );
             $categories[$k]->cor_representativa    = get_tax_meta($val->term_id,'cda_color_field_id');
         }
         $data['categories'] = $categories;

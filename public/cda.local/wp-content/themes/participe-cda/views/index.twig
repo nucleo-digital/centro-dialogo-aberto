@@ -1,12 +1,12 @@
 {% extends "base.twig" %}
 
 {% block content %}
-
+{{category.imagem_representativa.src | print_r}}
 <div class="home_grid">
     {% for category in categories %}
     {% if category.tipo_projeto == 'conceito' %}
     <div class="projeto {{category.tipo_projeto}} span_2" style="background-image: url('{{category.imagem_representativa.src}}'); background-color: {{category.cor_representativa}};">
-        <a href="/projetos/{{category.slug}}" class="wrapper">
+        <a href="projetos/{{category.slug}}" class="wrapper">
             <h2>{{category.name}}</h2>
             <h3>{{category.tipo_projeto_label}}</h3>
         </a>
@@ -15,15 +15,16 @@
     {% endfor %}
     <div class="span_right full_height">
         <div class="wrapper">
-            <h2>Para a revitalização do Centro de São Paulo</h2>
-            <p>Scelerisque lobortis, quam vulputate morbi vestibulum, non suspendisse elit amet in curabitur quam, risus fermentum dictum et purus accumsan morbi, urna duis. Eu morbi laoreet, rutrum iaculis donec odio bibendum, duis aliquam at volutpat fermentum, orci a justo feugiat tortor, sed placerat. Eget saepe, gravida congue et quisque lorem nam, wisi sed elit posuere vestibulum vitae nulla.</p>
-            
+            <h2>Apresentação</h2>
+            <p>Criado com o propósito de valorizar o centro de São Paulo e a sua arquitetura urbana, o projeto Diálogo Aberto visa ressignificar espaços de permanência e de ocupação.</p>
+<p>O intuito é repensar a área central da cidade e a relação das pessoas com esse espaço público. </p>
+<p>Participe dessa etapa inicial: escolha dos projetos e avaliação. E acompanhe por aqui os próximos passos, que visam conhecer os projetos e cada uma das suas camadas, além de promover uma votação. Já na terceira fase do projeto será possível entrar num mapa e sugerir que tipo de atividade terá em cada local. Essa interação também pode ser divulgada nas redes sociais. </p>        
         </div>
     </div>
     {% for category in categories %}
     {% if category.tipo_projeto == 'piloto' %}
     <div class="projeto {{category.tipo_projeto}} span_1" style="background-image: url('{{category.imagem_representativa.src}}'); background-color: {{category.cor_representativa}};">
-        <a href="/projetos/{{category.slug}}" class="wrapper">
+        <a href="projetos/{{category.slug}}" class="wrapper">
             <h2>{{category.name}}</h2>
             <h3>{{category.tipo_projeto_label}}</h3>
         </a>

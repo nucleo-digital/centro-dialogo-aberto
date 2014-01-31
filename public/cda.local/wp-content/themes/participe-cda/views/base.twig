@@ -9,7 +9,7 @@
                     <div class="container">
                         <h1 id="logo"> <a href="http://gestaourbana.prefeitura.sp.gov.br/" title="Voltar ao início" class="pull-left inline">gestão urbana sp</a> </h1>
                         <div class="left-arrow"> <a href="http://gestaourbana.prefeitura.sp.gov.br/centro-dialogo-aberto/" title="Voltar ao início">&#171;</a> </div>
-                        <h2> <a href="{{bloginfo('home')}}" title="Nome do Produto" class="pull-left inline">Participe</a> </h2>
+                        <h2> <a href="{{bloginfo('home')}}" title="Participe" class="pull-left inline">Participe</a> </h2>
                         <div class="social-buttons pull-right inline">
                             <iframe width="180" scrolling="no" height="25" frameborder="0" name="social-bar-home" src="http://gestaourbana.prefeitura.sp.gov.br/wp-content/themes/gestaourbana-1.2/social-bar-home.php"></iframe>
                         </div>
@@ -23,9 +23,9 @@
                             <div class="dropdown pull-right inline">
                                 <a data-toggle="dropdown" href="#">{{current_user.display_name}}</a>
                                 <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
-                                    <li role="presentation" class="my_profile"><a href="/meu-cadastro/" tabindex="-1" role="menuitem">Meu cadastro</a></li>
-                                    <li role="presentation" class="my_rates"><a href="/minhas-avaliacoes/" tabindex="-1" role="menuitem">Minhas avaliações</a></li>
-                                    <li role="presentation" class="logout"><a href="/entrar/?off" tabindex="-1" role="menuitem">Sair</a></li>
+                                    <li role="presentation" class="my_profile"><a href="{{bloginfo('home')}}/meu-cadastro/" tabindex="-1" role="menuitem">Meu cadastro</a></li>
+                                    <li role="presentation" class="my_rates"><a href="{{bloginfo('home')}}/minhas-avaliacoes/" tabindex="-1" role="menuitem">Minhas avaliações</a></li>
+                                    <li role="presentation" class="logout"><a href="{{bloginfo('home')}}/entrar/?off" tabindex="-1" role="menuitem">Sair</a></li>
                                     <!--li role="presentation" class="my_maps"><a href="javascript://" tabindex="-1" role="menuitem">Meus mapas</a></li-->
                                   </ul>
                             </div>
@@ -33,7 +33,7 @@
                         {% else %}
                         <div class="container">
                             <h3><a href="javascript://" class="pull-left inline">Bem vindo ao Participe. Entre com seu cadastro e colabore!</a></h3>
-                            <div class="pull-right inline"><a href="/entrar/">entrar / registrar-se</a></div>
+                            <div class="pull-right inline"><a href="{{bloginfo('home')}}/entrar/">entrar / registrar-se</a></div>
                         </div>
                         {% endif %}
                     </div>
@@ -44,7 +44,7 @@
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">Lista Projetos</a>
                                 <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
                                     {% for category in categories %}
-                                    <li role="presentation" class=""><a href="/projetos/{{category.slug}}" tabindex="-1" role="menuitem">{{category.name}}</a></li>
+                                    <li role="presentation" class=""><a href="{{bloginfo('home')}}/projetos/{{category.slug}}" tabindex="-1" role="menuitem">{{category.name}}</a></li>
                                     {% endfor %}
                                   </ul>
                             </div>
@@ -57,9 +57,9 @@
                             <div class="dropdown pull-right inline">
                                 <a data-toggle="dropdown" href="#">{{current_user.display_name}}</a>
                                 <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
-                                    <li role="presentation" class="my_profile"><a href="/meu-cadastro/" tabindex="-1" role="menuitem">Meu cadastro</a></li>
-                                    <li role="presentation" class="my_rates"><a href="/minhas-avaliacoes/" tabindex="-1" role="menuitem">Minhas avaliações</a></li>
-                                    <li role="presentation" class="logout"><a href="/entrar/?off" tabindex="-1" role="menuitem">Sair</a></li>
+                                    <li role="presentation" class="my_profile"><a href="{{bloginfo('home')}}/meu-cadastro/" tabindex="-1" role="menuitem">Meu cadastro</a></li>
+                                    <li role="presentation" class="my_rates"><a href="{{bloginfo('home')}}/minhas-avaliacoes/" tabindex="-1" role="menuitem">Minhas avaliações</a></li>
+                                    <li role="presentation" class="logout"><a href="{{bloginfo('home')}}/entrar/?off" tabindex="-1" role="menuitem">Sair</a></li>
                                     <!--li role="presentation" class="my_maps"><a href="javascript://" tabindex="-1" role="menuitem">Meus mapas</a></li-->
                                   </ul>
                             </div>
