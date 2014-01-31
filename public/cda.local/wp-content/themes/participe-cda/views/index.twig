@@ -6,10 +6,10 @@
     {% for category in categories %}
     {% if category.tipo_projeto == 'conceito' %}
     <div class="projeto {{category.tipo_projeto}} span_2" style="background-image: url('{{category.imagem_representativa.src}}'); background-color: {{category.cor_representativa}};">
-        <div class="wrapper">
-            <h2><a href="/projetos/{{category.slug}}">{{category.name}}</a></h2>
-            <h3><a href="/projetos/{{category.slug}}">{{category.tipo_projeto_label}}</a></h3>
-        </div>
+        <a href="/projetos/{{category.slug}}" class="wrapper">
+            <h2>{{category.name}}</h2>
+            <h3>{{category.tipo_projeto_label}}</h3>
+        </a>
     </div>
     {% endif %}
     {% endfor %}
@@ -23,10 +23,10 @@
     {% for category in categories %}
     {% if category.tipo_projeto == 'piloto' %}
     <div class="projeto {{category.tipo_projeto}} span_1" style="background-image: url('{{category.imagem_representativa.src}}'); background-color: {{category.cor_representativa}};">
-        <div class="wrapper">
-            <h2><a href="/projetos/{{category.slug}}">{{category.name}}</a></h2>
-            <h3><a href="/projetos/{{category.slug}}">{{category.tipo_projeto_label}}</a></h3>
-        </div>
+        <a href="/projetos/{{category.slug}}" class="wrapper">
+            <h2>{{category.name}}</h2>
+            <h3>{{category.tipo_projeto_label}}</h3>
+        </a>
     </div>
     {% endif %}
     {% endfor %}
