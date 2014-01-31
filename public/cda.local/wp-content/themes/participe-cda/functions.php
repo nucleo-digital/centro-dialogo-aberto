@@ -1,5 +1,7 @@
 <?php
 
+require_once("vendor/Tax-meta-class/Tax-meta-class/Tax-meta-class.php");
+
 /*
  * List of pages available:
  *
@@ -44,3 +46,86 @@
 		wp_enqueue_script( 'site-main', get_template_directory_uri() . '/scripts/main.js', null, '0.1', true );
 
 	}
+
+
+// Register Custom Post Type
+function avaliacoes_post_type() {
+
+	$labels = array(
+		'name'                => _x( 'Avaliações', 'Post Type General Name', 'text_domain' ),
+		'singular_name'       => _x( 'Avaliação', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'           => __( 'Avaliação', 'text_domain' ),
+		'parent_item_colon'   => __( 'Avaliação Pai', 'text_domain' ),
+		'all_items'           => __( 'Todas Avaliações', 'text_domain' ),
+		'view_item'           => __( 'Ver Avaliação', 'text_domain' ),
+		'add_new_item'        => __( 'Adicionar Nova Avaliação', 'text_domain' ),
+		'add_new'             => __( 'Novas Avaliação', 'text_domain' ),
+		'edit_item'           => __( 'Editar Avaliação', 'text_domain' ),
+		'update_item'         => __( 'Atualizar Avaliação', 'text_domain' ),
+		'search_items'        => __( 'Procurar Avaliações', 'text_domain' ),
+		'not_found'           => __( 'Nenhuma avaliação encontrada', 'text_domain' ),
+		'not_found_in_trash'  => __( 'Nenhuma avaliação encontrada na lixeira', 'text_domain' ),
+	);
+	$args = array(
+		'label'               => __( 'avaliacao', 'text_domain' ),
+		'description'         => __( 'Perguntas para usuário descrever o projeto', 'text_domain' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'editor', 'comments', ),
+		'taxonomies'          => array( 'category' ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_nav_menus'   => true,
+		'show_in_admin_bar'   => true,
+		'menu_position'       => 5,
+		'menu_icon'           => '',
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'page',
+	);
+	register_post_type( 'avaliacao', $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'avaliacoes_post_type', 0 );
+
+
+if (is_admin()){
+
+	/*
+	* prefix of meta keys, optional
+	*/
+	$prefix = 'cda_';
+
+	/* 
+	* configure your meta box
+	*/
+	$config = array(
+	'id' => 'cda_meta_box',          // meta box id, unique per meta box
+	'title' => '',          // meta box title
+	'pages' => array('category'),        // taxonomy name, accept categories, post_tag and custom taxonomies
+	'context' => 'normal',            // where the meta box appear: normal (default), advanced, side; optional
+	'fields' => array(),            // list of meta fields (can be added by field arrays)
+	'local_images' => false,          // Use local or hosted images (meta box images for add/remove)
+	'use_with_theme' => false          //change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
+	);
+
+	/*
+	* Initiate your meta box
+	*/
+	$my_meta =  new Tax_Meta_Class($config);
+
+
+	//radio field
+	$my_meta->addRadio($prefix.'radio_field_id',array('piloto'=>'Projeto Piloto','conceito'=>'Projeto Conceito'),array('name'=> __('Tipo do Projeto','tax-meta'), 'std'=> array('conceito')));
+	//Image field
+	$my_meta->addImage($prefix.'image_field_id',array('name'=> __('Imagem representativa ','tax-meta')));
+	  
+
+	//Finish Meta Box Decleration
+	$my_meta->Finish();
+}
