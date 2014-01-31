@@ -1,0 +1,31 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="steps results content-row">
+    <input type="hidden" class="voting_result" value="-1,1,0,x,0,x,0,-1,-1,0,1,1">
+    <div class="content-cell">
+        <div class="steps_wrapper">
+            <h2>Qual a sua opnião sobre o {{nome_projeto}} hoje?</h2>
+            <h2>RESULTADO</h2>
+            <h3>Minha avaliação sobre o {{nome_projeto}}</h3>
+
+            <!--div class="category">#PROTEÇÃO</div-->
+
+            {% set i = 1 %}
+            {% for post in posts %}
+            <div class="vote step{{i}}">
+                <p>{{post.title}}</p>
+                {% set i = i + 1 %}
+            </div>
+            {% endfor %}
+
+            <div class="category">&nbsp;</div>
+
+            <a href="javascript://">
+                <img src="{{theme.uri}}/images/fb_result.png">
+            </a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

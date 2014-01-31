@@ -1,41 +1,35 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <table class="proj_grid">
-        <tr>
-            <td class="colspan_2" colspan="2">
-                {% for category in categories %}
-                <div class="projeto {{category.tipo_projeto}}" style="background: 50% 50% url('{{category.imagem_representativa.src|resize(500)}}') {{category.cor_representativa}} no-repeat;">
-                    <h2><a href="/projetos/{{category.slug}}">{{category.name}}</a></h2>
-                    <h3><a href="/projetos/{{category.slug}}">{{category.tipo_projeto_label}}</a></h3>
-                </div>
-                {% endfor %}
-            </td>
-            <td rowspan="3" class="rowspan_3">
-                    <h2>Para a revitalização do Centro de São Paulo</h2>
-                    <p>Scelerisque lobortis, quam vulputate morbi vestibulum, non suspendisse elit amet in curabitur quam, risus fermentum dictum et purus accumsan morbi, urna duis. Eu morbi laoreet, rutrum iaculis donec odio bibendum, duis aliquam at volutpat fermentum, orci a justo feugiat tortor, sed placerat. Eget saepe, gravida congue et quisque lorem nam, wisi sed elit posuere vestibulum vitae nulla.</p>
-            </td>
-        </tr>
-        <tr>
-            <td class="loc_saojoao">
-                <h2>Av. São João, Largo Paissandú <br>&amp; Av. Rio Branco</h2>
-                <h3>Projeto Piloto</h3>
-            </td>
-            <td class="loc_pateo">
 
-                <h2>Pateo do Colégio &amp;<br> Rua Roberto Simonsen</h2>
-                <h3>Projeto Piloto</h3>
-            </td>
-        </tr>
-        <tr>
-            <td class="loc_25marco">
-                <h2>Rua 25 de Março <br>&amp; Praça Cantareira</h2>
-                <h3>Projeto Piloto</h3>
-            </td>
-            <td class="loc_largosf">
-                <h2>Largo São Francisco &amp;<br> Praça Ouvidor Pacheco e Silva</h2>
-                <h3>Projeto Piloto</h3>
-            </td>
-        </tr>
-    </table>
+<div class="home_grid">
+    {% for category in categories %}
+    {% if category.tipo_projeto == 'conceito' %}
+    <div class="projeto {{category.tipo_projeto}} span_2" style="background-image: url('{{category.imagem_representativa.src}}'); background-color: {{category.cor_representativa}};">
+        <div class="wrapper">
+            <h2><a href="/projetos/{{category.slug}}">{{category.name}}</a></h2>
+            <h3><a href="/projetos/{{category.slug}}">{{category.tipo_projeto_label}}</a></h3>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <div class="span_right full_height">
+        <div class="wrapper">
+            <h2>Para a revitalização do Centro de São Paulo</h2>
+            <p>Scelerisque lobortis, quam vulputate morbi vestibulum, non suspendisse elit amet in curabitur quam, risus fermentum dictum et purus accumsan morbi, urna duis. Eu morbi laoreet, rutrum iaculis donec odio bibendum, duis aliquam at volutpat fermentum, orci a justo feugiat tortor, sed placerat. Eget saepe, gravida congue et quisque lorem nam, wisi sed elit posuere vestibulum vitae nulla.</p>
+            
+        </div>
+    </div>
+    {% for category in categories %}
+    {% if category.tipo_projeto == 'piloto' %}
+    <div class="projeto {{category.tipo_projeto}} span_1" style="background-image: url('{{category.imagem_representativa.src}}'); background-color: {{category.cor_representativa}};">
+        <div class="wrapper">
+            <h2><a href="/projetos/{{category.slug}}">{{category.name}}</a></h2>
+            <h3><a href="/projetos/{{category.slug}}">{{category.tipo_projeto_label}}</a></h3>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+</div>
 {% endblock %}

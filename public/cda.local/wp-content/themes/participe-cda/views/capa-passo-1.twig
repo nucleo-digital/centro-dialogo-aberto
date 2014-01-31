@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="steps explanation content-row">
+    <div class="content-cell">
+        <div class="steps_wrapper">
+            <h2>Qual sua opnião sobre o {{nome_projeto}} hoje?</h2>
+            <h3>Nas próximas páginas serão mostrados <br> 12 critérios de satisfação</h3>
+            <div class="emot emot_white">
+                <div>
+                    <a href="#" class="happy"></a>
+                    <a href="#" class="neutral"></a>
+                    <a href="#" class="unhappy"></a>
+                </div>
+            </div>
+            <h3>Faça sua avaliação clicando nos botões <br> correspondentes à sua satisfação.</h3>
+            <p>Não é necessária a avaliação de todos os critérios</p>
+            <div class="footer">
+                <a class="next start" href="{{button_comecar}}">Começar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
