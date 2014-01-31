@@ -4,60 +4,53 @@
 </head>
     <body class="{{body_class}}" data-source="base.twig">
         <header class="header" >
-            <!--div class="wrapper">
-
-                <h1 class="hdr-logo" role="banner">
-                    <a class="hdr-logo-link" href="/" title="Timber" rel="home">{{bloginfo('name')}}</a>
-                </h1>
-                <nav id="access" class="main-navigation" role="navigation">
-                    <ul>
-                    {% for item in menu.items %}
-                        <li id="menu-item-{{item.ID}}" class="menu-item menu-item-type-{{item.type}} menu-item-object-{{item.object}} menu-item-{{item.ID}}">
-                            <a href="{{item.link}}">{{item.title}}</a>
-                        </li>
-                    {% endfor %}
-                    </ul>
-                </nav><!-- #access --
-
-            </div-->
             <div class="navbar navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <div class="container">
-                        <h1 id="logo"> <a href="javascript://" title="Voltar ao início" class="pull-left inline">gestão urbana sp</a> </h1>
-                        <div class="left-arrow"> <a href="javascript://" title="Voltar ao início">&#171;</a> </div>
-                        <h2> <a href="javascript://" title="Nome do Produto" class="pull-left inline">Nome do Produto</a> </h2>
+                        <h1 id="logo"> <a href="http://gestaourbana.prefeitura.sp.gov.br/" title="Voltar ao início" class="pull-left inline">gestão urbana sp</a> </h1>
+                        <div class="left-arrow"> <a href="http://gestaourbana.prefeitura.sp.gov.br/centro-dialogo-aberto/" title="Voltar ao início">&#171;</a> </div>
+                        <h2> <a href="{{bloginfo('home')}}" title="Nome do Produto" class="pull-left inline">Participe</a> </h2>
                         <div class="social-buttons pull-right inline">
                             <iframe width="180" scrolling="no" height="25" frameborder="0" name="social-bar-home" src="http://gestaourbana.prefeitura.sp.gov.br/wp-content/themes/gestaourbana-1.2/social-bar-home.php"></iframe>
                         </div>
                    </div>
                </div>
                {% block header %}
-               <div class="navbar-bottom">
-                   <div class="container">
-                        <div class="dropdown locs pull-left inline">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Vale do Anhangabaú</a>
-                            <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
-                                <li role="presentation" class=""><a href="javascript://" tabindex="-1" role="menuitem">Av. São João, Largo Paissandú <br>&amp; Av. Rio Branco</a></li>
-                                <li role="presentation" class=""><a href="javascript://" tabindex="-1" role="menuitem">Minhas avaliações</a></li>
-                                <li role="presentation" class=""><a href="javascript://" tabindex="-1" role="menuitem">Meus mapas</a></li>
-                              </ul>
-                        </div>
-                        <ul class="steps_header">
-                            <li class=" step_selected step_first"><a hreff="javascript"><em>1</em> Avaliação</a></li>
-                            <li class=" "><a hreff="javascript"><em>2</em> Proposta</a></li>
-                            <li class=" step_last"><a hreff="javascript"><em>3</em> Sugestão</a></li>
-                        </ul>
-
-                        <div class="dropdown pull-right inline">
-                            <a data-toggle="dropdown" href="#">Nome do Usuário</a>
-                            <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
-                                <li role="presentation" class="my_profile"><a href="javascript://" tabindex="-1" role="menuitem">Meu cadastro</a></li>
-                                <li role="presentation" class="my_rates"><a href="javascript://" tabindex="-1" role="menuitem">Minhas avaliações</a></li>
-                                <li role="presentation" class="my_maps"><a href="javascript://" tabindex="-1" role="menuitem">Meus mapas</a></li>
-                              </ul>
+               {% if function('is_home') %}
+                    <div class="navbar-bottom">
+                       <div class="container">
+                            <h3><a href="javascript://" class="pull-left inline">Bem vindo ao Participe. Entre com seu cadastro e colabore!</a></h3>
+                            <div class="pull-right inline"><a href="/entrar/">entrar / registrar-se</a></div>
                         </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="navbar-bottom">
+                        <div class="container">
+                            <div class="dropdown locs pull-left inline">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Vale do Anhangabaú</a>
+                                <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
+                                    <li role="presentation" class=""><a href="javascript://" tabindex="-1" role="menuitem">Av. São João, Largo Paissandú <br>&amp; Av. Rio Branco</a></li>
+                                    <li role="presentation" class=""><a href="javascript://" tabindex="-1" role="menuitem">Minhas avaliações</a></li>
+                                    <li role="presentation" class=""><a href="javascript://" tabindex="-1" role="menuitem">Meus mapas</a></li>
+                                  </ul>
+                            </div>
+                            <ul class="steps_header">
+                                <li class=" step_selected step_first"><a hreff="javascript"><em>1</em> Avaliação</a></li>
+                                <!--li class=" "><a hreff="javascript"><em>2</em> Proposta</a></li>
+                                <li class=" step_last"><a hreff="javascript"><em>3</em> Sugestão</a></li-->
+                            </ul>
+
+                            <div class="dropdown pull-right inline">
+                                <a data-toggle="dropdown" href="#">Nome do Usuário</a>
+                                <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
+                                    <li role="presentation" class="my_profile"><a href="/meu-cadastro/" tabindex="-1" role="menuitem">Meu cadastro</a></li>
+                                    <li role="presentation" class="my_rates"><a href="/minhas-avaliacoes/" tabindex="-1" role="menuitem">Minhas avaliações</a></li>
+                                    <!--li role="presentation" class="my_maps"><a href="javascript://" tabindex="-1" role="menuitem">Meus mapas</a></li-->
+                                  </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
                 {% endblock %}
             </div>
         </header>
@@ -65,9 +58,9 @@
 
         <section id="content" role="main" class="content-wrapper">
             {% if title %}<h1>{{title}}</h1>{% endif %}
-            <div class="wrapper {{sidebar_class}}">
+            <div class="container wrapper {{sidebar_class}}">
                 {% block content %}
-                    Sorry, no content
+                    Desculpe, não encontramos o que está procurando.
                 {% endblock %}
             </div>
             {% if sidebar %}

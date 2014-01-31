@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="content-row">
+    <div class="content-cell">
+        <div class="form_wrapper one_col my_profile">
+            <div class="header">
+                <h2>Meu cadastro</h2>
+            </div>
+            <div class="form_wrapper_col">
+                <form role="form">
+                    <div class="form-group edit">
+                        <input type="text" placeholder="nome completo" disabled="disabled" class="form-control" value="Fulano de Tal">
+                        <button type="button" class="btn">editar</button>
+                    </div>
+                    <div class="form-group edit">
+                        <input type="text" placeholder="email" disabled="disabled" class="form-control" value="fulano@gmail.com">
+                        <button type="button" class="btn">editar</button>
+                    </div>
+                    <div class="form-group edit">
+                        <input type="password" class="form-control" disabled="disabled" placeholder="alterar senha">
+                        <button type="button" class="btn">editar</button>
+                    </div>
+                    <div class="form-group edit">
+                        <input type="password" class="form-control" disabled="disabled" placeholder="repetir senha">
+                        <button type="button" class="btn">editar</button>
+                    </div>
+                    <div class="form-group checkbox edit">
+                        <label for="keep_connected_register">
+                            <input type="checkbox" id="keep_connected_register">
+                            <p>quero receber novidades do faz via email</p>
+                            <em><!-- --></em>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-default pull-right">SALVAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

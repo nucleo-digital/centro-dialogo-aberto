@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * List of pages available:
+ *
+ * entrar
+ * meu-perfil
+ * minhas-avaliacoes
+ *
+**/
+
 	add_theme_support('post-formats');
 	add_theme_support('post-thumbnails');
 	add_theme_support('menus');

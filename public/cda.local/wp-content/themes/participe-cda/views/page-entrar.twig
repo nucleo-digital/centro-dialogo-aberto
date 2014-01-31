@@ -1,0 +1,67 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="content-row">
+        <div class="content-cell">
+            <div class="form_wrapper two_col">
+                <div class="header">
+                    <h2>Você precisa ser um usuário cadastrado para participar</h2>
+                </div>
+                <div class="fb">
+                    <p>
+                        <button class="btn btn-default btn-fb">entrar com o facebook</button>
+                        &nbsp; Ou
+                    </p>
+                </div>
+                <div class="form_wrapper_col">
+                    <h3>Já sou cadastrado</h3>
+                    <p>Já tenho conta no Gestão</p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" placeholder="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="senha">
+                        </div>
+                        <div class="form-group checkbox">
+                            <label for="keep_connected_login">
+                                <input type="checkbox" id="keep_connected_login">
+                                <p>Continuar conectado</p>
+                                <em><!-- --></em>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-default pull-right">Entrar</button>
+                    </form>
+
+                </div>
+                <div class="form_wrapper_col form_wrapper_col_right pull_right">
+                    <h3>Quero me cadastrar</h3>
+                    <p>Ainda não tenho uma conta no Gestão</p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" placeholder="nome completo" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="senha - mínimo 6 caracteres">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="repetir senha">
+                        </div>
+                        <div class="form-group checkbox">
+                            <label for="keep_connected_register">
+                                <input type="checkbox" id="keep_connected_register">
+                                <p>Continuar conectado</p>
+                                <em><!-- --></em>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-default pull-right">Me cadastrar</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
