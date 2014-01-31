@@ -3,9 +3,13 @@
 {% block content %}
     <table class="proj_grid">
         <tr>
-            <td class="colspan_2 loc_anhamgabau" colspan="2">
-                <h2>Vale do Anhangabaú</h2>
-                <h3>Projeto Conceito</h3>
+            <td class="colspan_2" colspan="2">
+                {% for category in categories %}
+                <div class="projeto {{category.tipo_projeto}}" style="background: 50% 50% url('{{category.imagem_representativa.src|resize(500)}}') {{category.cor_representativa}} no-repeat;">
+                    <h2><a href="/projetos/{{category.slug}}">{{category.name}}</a></h2>
+                    <h3><a href="/projetos/{{category.slug}}">{{category.tipo_projeto_label}}</a></h3>
+                </div>
+                {% endfor %}
             </td>
             <td rowspan="3" class="rowspan_3">
                     <h2>Para a revitalização do Centro de São Paulo</h2>

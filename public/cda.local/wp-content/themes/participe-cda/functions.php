@@ -124,6 +124,9 @@ if (is_admin()){
 	$my_meta->addRadio($prefix.'radio_field_id',array('piloto'=>'Projeto Piloto','conceito'=>'Projeto Conceito'),array('name'=> __('Tipo do Projeto','tax-meta'), 'std'=> array('conceito')));
 	//Image field
 	$my_meta->addImage($prefix.'image_field_id',array('name'=> __('Imagem representativa ','tax-meta')));
+	//Color field
+ 	$my_meta->addColor($prefix.'color_field_id',array('name'=> __('Cor representativa ','tax-meta')));
+ 
 	  
 
 	//Finish Meta Box Decleration

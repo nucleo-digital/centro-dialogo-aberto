@@ -18,7 +18,22 @@
 	}
 	$context = Timber::get_context();
 	$context['posts'] = Timber::get_posts();
-	$context['foo'] = 'bar';
+	
+	$categories = get_categories();
+	foreach ($categories as $k => $val) {
+		$categories[$k]->tipo_projeto          = get_tax_meta($val->term_id,'cda_radio_field_id');
+		if (get_tax_meta($val->term_id,'cda_radio_field_id') == 'conceito') {
+			$categories[$k]->tipo_projeto_label  = 'Projeto Conceito';
+		} else {
+			$categories[$k]->tipo_projeto_label  = 'Projeto Piloto';
+		}
+		$categories[$k]->imagem_representativa = get_tax_meta($val->term_id,'cda_image_field_id');
+		$categories[$k]->cor_representativa    = get_tax_meta($val->term_id,'cda_color_field_id');
+	}
+	
+	//var_dump($categories);
+
+	$context['categories'] = $categories;
 	$templates = array('index.twig');
 	if (is_home()){
 		array_unshift($templates, 'home.twig');
