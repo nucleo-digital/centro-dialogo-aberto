@@ -23,7 +23,22 @@ require_once("Tax-meta-class/Tax-meta-class.php");
 	define('THEME_URL', get_template_directory_uri());
 	function add_to_context($data){
 		/* this is where you can add your own data to Timber's context object */
-		$data['qux'] = 'I am a value set in your functions.php file';
+		$categories = get_categories();
+		foreach ($categories as $k => $val) {
+			$categories[$k]->tipo_projeto          = get_tax_meta($val->term_id,'cda_radio_field_id');
+			if (get_tax_meta($val->term_id,'cda_radio_field_id') == 'conceito') {
+				$categories[$k]->tipo_projeto_label  = 'Projeto Conceito';
+			} else {
+				$categories[$k]->tipo_projeto_label  = 'Projeto Piloto';
+			}
+			$categories[$k]->imagem_representativa = get_tax_meta($val->term_id,'cda_image_field_id');
+			$categories[$k]->cor_representativa    = get_tax_meta($val->term_id,'cda_color_field_id');
+		}
+		$data['categories'] = $categories;
+
+		$data['is_user_logged_in'] = is_user_logged_in();
+		$data['current_user'] = wp_get_current_user();
+
 		$data['menu'] = new TimberMenu();
 		return $data;
 	}
