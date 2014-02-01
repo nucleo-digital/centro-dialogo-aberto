@@ -40,7 +40,7 @@ switch($_GET['action']) {
             $auth = wp_authenticate($username, $password);
 
             if (is_wp_error($auth)) {
-                $context['mensagem'] = $result->get_error_message();
+                $context['mensagem'] = $auth->get_error_message();
             }else {
                 $user = get_userdatabylogin( $username );
                 $user_id = $user->ID;
