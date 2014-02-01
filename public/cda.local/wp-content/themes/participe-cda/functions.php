@@ -150,6 +150,10 @@ if (is_admin()){
 }
 
 Timber::add_route('projetos/:name', function($params){
+    if (!is_user_logged_in()) {
+        wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'] ); exit;
+    }
+
     $query = 'category_name='.$params['name'];
     Timber::load_template('capa-passo-1.php', $query);
 });

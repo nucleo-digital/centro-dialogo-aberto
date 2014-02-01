@@ -6,30 +6,35 @@
             <div class="form_wrapper two_col">
                 <div class="header">
                     <h2>Você precisa ser um usuário cadastrado para participar</h2>
+                    {% if mensagem %}
+                        <div class="mensagem">{{mensagem}}</div>
+                    {% endif %}
                 </div>
-                <div class="fb">
+                <!--div class="fb">
                     <p>
                         <button class="btn btn-default btn-fb">entrar com o facebook</button>
                         &nbsp; Ou
                     </p>
-                </div>
+                </div-->
                 <div class="form_wrapper_col">
                     <h3>Já sou cadastrado</h3>
                     <p>Já tenho conta no Gestão</p>
-                    <form role="form">
+                    <form role="form" method="POST" action="{{form_action}}?action=login">
+                        <input type="hidden" name="redirect_to" value="{{redirect_to}}"/>
                         <div class="form-group">
-                            <input type="text" placeholder="email" class="form-control">
+                            <input type="text" name="user_name" id="user_name" placeholder="nome de usuário" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="senha">
+                            <input type="password" name="user_password" id="user_password" class="form-control" placeholder="senha">
                         </div>
                         <div class="form-group checkbox">
                             <label for="keep_connected_login">
-                                <input type="checkbox" id="keep_connected_login">
+                                <input type="checkbox" id="keep_connected_login" name="keep_connected_login">
                                 <p>Continuar conectado</p>
                                 <em><!-- --></em>
                             </label>
                         </div>
+                        <a href="{{wp_lostpassword_url}}">Esqueceu sua senha?</a>
                         <button type="submit" class="btn btn-default pull-right">Entrar</button>
                     </form>
 
