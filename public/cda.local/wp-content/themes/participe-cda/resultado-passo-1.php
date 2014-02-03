@@ -28,7 +28,7 @@ $answers = explode(',', $_GET['voting']);
 
 $i=0;
 
-$has_comment = get_comments(array('user_id' => $current_user->ID,));
+$has_comment = get_comments(array('user_id' => $current_user->ID, 'meta_key' => 'projeto', 'meta_value'=> $category_slug));
 
 if (count($has_comment) == 0) {
     foreach ($context['posts'] as $post) {
