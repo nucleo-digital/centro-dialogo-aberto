@@ -1,7 +1,7 @@
 <?php
 
 require_once("Tax-meta-class/Tax-meta-class.php");
-
+show_admin_bar( false );
 /*
  * List of pages available:
  *
