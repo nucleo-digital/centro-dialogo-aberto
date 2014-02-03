@@ -5,10 +5,10 @@
         <div class="content-cell">
             <div class="form_wrapper two_col">
                 <div class="header">
-                    <h2>Você precisa ser um usuário cadastrado para participar</h2>
                     {% if mensagem %}
-                        <div class="mensagem">{{mensagem}}</div>
+                        <div class="alert alert-danger">{{mensagem}}</div>
                     {% endif %}
+                    <h2>Você precisa ser um usuário cadastrado para participar</h2>
                 </div>
                 <!--div class="fb">
                     <p>
@@ -19,7 +19,7 @@
                 <div class="form_wrapper_col">
                     <h3>Já sou cadastrado</h3>
                     <p>Já tenho conta no Gestão</p>
-                    <form role="form" method="POST" action="{{form_action}}?action=login">
+                    <form role="form" method="POST" action="{{form_action}}?action=login" name="login_form">
                         <input type="hidden" name="redirect_to" value="{{redirect_to}}"/>
                         <div class="form-group">
                             <input type="text" name="user_name" id="user_name" placeholder="nome de usuário" class="form-control">
@@ -42,26 +42,26 @@
                 <div class="form_wrapper_col form_wrapper_col_right pull_right">
                     <h3>Quero me cadastrar</h3>
                     <p>Ainda não tenho uma conta no Gestão</p>
-                    <form role="form">
+                    <form role="form" method="POST" action="{{form_action}}?action=register" name="register_form">
                         <div class="form-group">
-                            <input type="text" placeholder="nome completo" class="form-control">
+                            <input type="text" placeholder="apelido" class="form-control" name="user_name">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="email" class="form-control">
+                            <input type="text" placeholder="email" class="form-control" name="user_email">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="senha - mínimo 6 caracteres">
+                            <input type="password" class="form-control" placeholder="senha - mínimo 6 caracteres" name="user_password">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="repetir senha">
+                            <input type="password" class="form-control" placeholder="repetir senha" name="user_password_repeat">
                         </div>
-                        <div class="form-group checkbox">
+                        <!--div class="form-group checkbox">
                             <label for="keep_connected_register">
                                 <input type="checkbox" id="keep_connected_register">
                                 <p>Continuar conectado</p>
-                                <em><!-- --></em>
+                                <em></em>
                             </label>
-                        </div>
+                        </div-->
                         <button type="submit" class="btn btn-default pull-right">Me cadastrar</button>
                     </form>
 

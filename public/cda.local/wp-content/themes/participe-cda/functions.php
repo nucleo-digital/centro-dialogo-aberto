@@ -161,7 +161,11 @@ Timber::add_route('projetos/:name', function($params){
 
     if ( count($has_comment) > 0 ) {
         //redirecionar para pagina de resultado
-        header('Location: '.get_bloginfo('url').'/projetos/'.$params['name'].'/resultados?voting=0,0,0,0,0,0,0,0,0,0,0,0');
+        $voting = '';
+        foreach ($has_comment as $comment) {
+            $voting .= $comment->comment_content.',';
+        }
+        header('Location: '.get_bloginfo('url').'/projetos/'.$params['name'].'/resultados?answered=1&voting='.$voting);
         exit;
     }
 

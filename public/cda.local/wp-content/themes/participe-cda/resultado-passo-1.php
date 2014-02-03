@@ -16,6 +16,10 @@ $obj_category = get_category_by_slug( $category_slug );
 
 $context['nome_projeto'] = $obj_category->name;
 
+if ($_GET['answered']==1) {
+    $context['mensagem'] = 'Você já deu sua opnião sobre esse projeto. Nevegue pelos outros para contribuir mais.';
+}
+
 global $current_user;
 get_currentuserinfo();
 
