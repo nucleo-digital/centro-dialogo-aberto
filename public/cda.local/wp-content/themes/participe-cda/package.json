@@ -1,0 +1,25 @@
+{
+  "name": "participe-cda-frontend",
+  "author": "Danilo Prates <daniloprates@gmail.com>",
+  "author": "Lucas Pirola <lucaspirola@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:pmsp-smdu/centro-dialogo-aberto.git"
+  },
+  "licenses": [{
+    "type": "MIT",
+    "url": "http://opensource.org/licenses/MIT"
+  }],
+  "dependencies": {
+    "load-grunt-tasks": "~0.3.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-compass": "~0.7.1",
+    "grunt-contrib-imagemin": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-rsync": "~0.2.1"
+  }
+}

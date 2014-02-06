@@ -1,0 +1,12 @@
+{
+  "name": "cda-yo",
+  "private": true,
+  "dependencies": {
+    "sass-bootstrap": "~3.0.0",
+    "jquery": "~1.10.2",
+    "jquery-placeholder": "~2.0.7"
+  },
+  "devDependencies": {
+    "scut": "~0.9.0"
+  }
+}

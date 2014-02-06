@@ -35,4 +35,7 @@ wp-content/plugins/*
 # specify (see the commented-out example for a hint on how to do this.)
 wp-content/themes/*
 !wp-content/themes/participe-cda/
+wp-content/themes/participe-cda/.sass-cache/
+wp-content/themes/participe-cda/node_modules/
+wp-content/themes/participe-cda/assets/js/vendor/
 # !wp-content/themes/my-theme/
