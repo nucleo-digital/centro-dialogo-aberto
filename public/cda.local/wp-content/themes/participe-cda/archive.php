@@ -18,6 +18,12 @@
 
 		$data = Timber::get_context();
 
+		$category_slug = get_query_var('cat_name');
+		$obj_category = get_category_by_slug( $category_slug );
+
+		$data['nome_projeto'] = $obj_category->name;
+		$data['id_projeto'] = $obj_category->term_id;
+
 		$data['title'] = 'Archive';
 		if (is_day()){
 			$data['title'] = 'Archive: '.get_the_date( 'D M Y' );

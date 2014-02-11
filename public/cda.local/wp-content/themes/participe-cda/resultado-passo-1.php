@@ -15,6 +15,7 @@ $category_slug = get_query_var('category_name');
 $obj_category = get_category_by_slug( $category_slug );
 
 $context['nome_projeto'] = $obj_category->name;
+$context['id_projeto'] = $obj_category->term_id;
 
 if ($_GET['answered']==1) {
     $context['mensagem'] = 'Você já deu sua opnião sobre esse projeto. Nevegue pelos outros para contribuir mais.';

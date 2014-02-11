@@ -14,5 +14,6 @@ $category_slug = get_query_var('category_name');
 $obj_category = get_category_by_slug( $category_slug );
 
 $context['nome_projeto'] = $obj_category->name;
+$context['id_projeto'] = $obj_category->term_id;
 $context['button_comecar'] = get_bloginfo('home') . '/projetos/' . $category_slug . '/votar';
 Timber::render('capa-passo-1.twig', $context);

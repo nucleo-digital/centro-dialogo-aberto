@@ -1,6 +1,9 @@
 {% extends "base.twig" %}
 
 {% block content %}
+
+{% include '_bg-mosaic.twig' %}
+
 <div class="steps results content-row">
     <input type="hidden" class="voting_result" value="-1,1,0,x,0,x,0,-1,-1,0,1,1">
     <div class="content-cell">
@@ -8,9 +11,9 @@
             {% if mensagem %}
             <div class="alert alert-warning">{{mensagem}}</div>
             {% endif %}
-            <h2>Qual a sua opnião sobre o {{nome_projeto}} hoje?</h2>
+            <h2>Qual a sua opnião sobre {{nome_projeto}} hoje?</h2>
             <h2>RESULTADO</h2>
-            <h3>Minha avaliação sobre o {{nome_projeto}}</h3>
+            <h3>Minha avaliação sobre {{nome_projeto}}</h3>
 
             <!--div class="category">#PROTEÇÃO</div-->
 
