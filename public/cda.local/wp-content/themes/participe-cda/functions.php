@@ -169,4 +169,67 @@ if (is_admin()){
 }
 
 
+/**
+ * Redirect users on any wp-admin pages
+ */
+function wp_admin_no_show_admin_redirect() {
+    // Whitelist multisite super admin
+    if(function_exists('is_multisite')) {
+        if( is_multisite() && is_super_admin() ) {
+            return;
+        }
+    }
+
+    if ($_GET['redirect_to']) {
+        $redirect = $_GET['redirect_to'];
+    }
+
+
+    if ( 'none' == get_option( 'wp_admin_no_show_redirect_type' ) ) {
+        return;
+    }
+
+    global $wp_admin_no_show_wp_user_role;
+    $disable = false;
+
+    $blacklist_roles = get_option( 'wp_admin_no_show_blacklist_roles', array('subscriber', 'filiado') );
+    if ( false === $disable && !empty( $blacklist_roles ) ) {
+        if ( !is_array( $blacklist_roles ) ) {
+            $blacklist_roles = array( $blacklist_roles );
+        }
+        foreach ( $blacklist_roles as $role ) {
+            if (preg_match("/administrator/i", $role )) {
+                // whitelist administrator for redirect
+                continue;
+            } else if ( current_user_can( $role ) ) {
+                $disable = true;
+            }
+        }
+    }
+
+
+    if ( false !== $disable ) {
+        if ( 'page' == get_option( 'wp_admin_no_show_redirect_type' ) ) {
+            $page_id = get_option( 'wp_admin_no_show_redirect_page' );
+            $redirect = get_permalink( $page_id );
+        } else {
+            //$redirect = get_bloginfo( 'url' );
+            if (empty($redirect)) {
+                $redirect = 'http://'.$_SERVER['SERVER_NAME'];
+            }
+        }
+
+        if( is_admin() ) {
+            if ( headers_sent() ) {
+                echo '<meta http-equiv="refresh" content="0;url=' . $redirect . '">';
+                echo '<script type="text/javascript">document.location.href="' . $redirect . '"</script>';
+            } else {
+                wp_redirect($redirect);
+                exit();
+            }
+        }
+    }
+}
+add_action( 'admin_head', 'wp_admin_no_show_admin_redirect', 0 );
+
 require_once("routes.php");
