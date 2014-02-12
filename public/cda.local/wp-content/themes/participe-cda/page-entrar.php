@@ -64,7 +64,6 @@ switch($_GET['action']) {
 
                 if ( !preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $user_name) ) {
                     $context['mensagem'] = "Apelido inválido.";
-                }else {
                     $invalid_form = true;
                 }
 
