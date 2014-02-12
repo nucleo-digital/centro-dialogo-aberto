@@ -25,15 +25,15 @@ show_admin_bar( false );
         /* this is where you can add your own data to Timber's context object */
         $categories = get_categories();
         foreach ($categories as $k => $val) {
-            $categories[$k]->tipo_projeto          = get_tax_meta($val->term_id,'cda_radio_field_id');
+            $categories[$val->term_id]->tipo_projeto          = get_tax_meta($val->term_id,'cda_radio_field_id');
             if (get_tax_meta($val->term_id,'cda_radio_field_id') == 'conceito') {
-                $categories[$k]->tipo_projeto_label  = 'Projeto Conceito';
+                $categories[$val->term_id]->tipo_projeto_label  = 'Projeto Conceito';
             } else {
-                $categories[$k]->tipo_projeto_label  = 'Projeto Piloto';
+                $categories[$val->term_id]->tipo_projeto_label  = 'Projeto Piloto';
             }
-            $categories[$k]->imagem_representativa = get_tax_meta($val->term_id,'cda_image_field_id');
-            $categories[$k]->imagem_representativa['src'] = wp_get_attachment_url( $categories[$k]->imagem_representativa['id'] );
-            $categories[$k]->cor_representativa    = get_tax_meta($val->term_id,'cda_color_field_id');
+            $categories[$val->term_id]->imagem_representativa = get_tax_meta($val->term_id,'cda_image_field_id');
+            $categories[$val->term_id]->imagem_representativa['src'] = wp_get_attachment_url( $categories[$val->term_id]->imagem_representativa['id'] );
+            $categories[$val->term_id]->cor_representativa    = get_tax_meta($val->term_id,'cda_color_field_id');
         }
         $data['categories'] = $categories;
 
