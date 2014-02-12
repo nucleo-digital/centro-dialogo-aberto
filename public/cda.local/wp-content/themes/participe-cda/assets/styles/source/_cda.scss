@@ -225,7 +225,7 @@ h1 a, h2 a, h3 a {
                     color: $blue_bg;
                 }
             }
-            li.my_profile {
+            li.my_profile,li.logout {
                 a em {background-image: url(assets/images/icon_clip_white.png); }
                 a:hover em, a.active em {background-image: url(assets/images/icon_clip_inv.png); }
             }
@@ -257,10 +257,10 @@ h1 a, h2 a, h3 a {
         width: auto;
         a.dropdown-toggle {
             background-image: url("assets/images/icon_arrow_down.png");
-            background-position: right center;
-            border-width: 0 10px 0 0;
+            background-position: 95% 50%;
+            border-width: 0;
             border-style: solid;
-            padding: 15px 20px 16px 10px;
+            padding: 15px 40px 15px 15px;
         }
 
     }
@@ -275,7 +275,7 @@ h1 a, h2 a, h3 a {
             }
         }
         a.dropdown-toggle {
-            border-right: 10px solid #fff;
+            border-right: 0px solid #fff;
         }
     }
     .steps_header {
@@ -314,8 +314,8 @@ h1 a, h2 a, h3 a {
             a {
                 background-color: white;
                 color: $blue_bg;
-                margin-right: 11px;
-                padding: 15px;
+                //margin-right: 11px;
+                padding: 16px;
                 em {
                     background-color: $blue_bg;
                     color: #fff;
