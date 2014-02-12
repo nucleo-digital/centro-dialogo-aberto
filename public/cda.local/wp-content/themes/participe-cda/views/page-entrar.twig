@@ -6,7 +6,7 @@
             <div class="form_wrapper two_col">
                 <div class="header">
                     {% if mensagem %}
-                        <div class="alert alert-danger">{{mensagem}}</div>
+                        <div class="alert alert-danger">{{mensagem|print_r}}</div>
                     {% endif %}
                     <h2>Você precisa ser um usuário cadastrado para participar</h2>
                 </div>
@@ -44,16 +44,16 @@
                     <p>Ainda não tenho uma conta no Gestão</p>
                     <form role="form" method="POST" action="{{form_action}}?action=register" name="register_form">
                         <div class="form-group">
-                            <input type="text" placeholder="apelido" class="form-control" name="user_name">
+                            <input type="text" placeholder="apelido" value="{{_POST['use_name']}}" class="form-control" name="user_name">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="email" class="form-control" name="user_email">
+                            <input type="text" placeholder="email" value="{{_POST['user_email']}}" class="form-control" name="user_email">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="senha - mínimo 6 caracteres" name="user_password">
+                            <input type="password" class="form-control" value="" placeholder="senha - mínimo 6 caracteres" name="user_password">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="repetir senha" name="user_password_repeat">
+                            <input type="password" class="form-control" value="" placeholder="repetir senha" name="user_password_repeat">
                         </div>
                         <!--div class="form-group checkbox">
                             <label for="keep_connected_register">

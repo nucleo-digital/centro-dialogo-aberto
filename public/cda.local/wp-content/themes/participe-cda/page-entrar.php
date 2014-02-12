@@ -27,7 +27,7 @@ $context['post'] = $post;
 $context['form_action'] = get_bloginfo('home').'/entrar/';
 $context['redirect_to'] = $_GET['redirect_to'];
 $context['wp_lostpassword_url'] = wp_lostpassword_url();
-
+$context['mensagem'] = '';
 
 
 
@@ -58,7 +58,14 @@ switch($_GET['action']) {
         }
         break;
     case 'register':
+    if (isset($_POST) && count($_POST)>0) {
         $user_name     = $_POST['user_name'];
+
+        if ( !preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $user_name) ) {
+            $invalid_form = false;
+            $context['mensagem'] = "Apelido inválido.";
+        }
+
         $user_email    = $_POST['user_email'];
         $user_password = $_POST['user_password'];
         $user_password = $_POST['user_password_repeat'];
@@ -69,7 +76,7 @@ switch($_GET['action']) {
         }
 
         $user_id = username_exists( $user_name );
-        if ( !$user_id and email_exists($user_email) == false ) {
+        if ( !$user_id and email_exists($user_email) == false and $invalid_form) {
             $user_id = wp_create_user( $user_name, $user_password, $user_email );
 
             // log in automatically
@@ -88,8 +95,11 @@ switch($_GET['action']) {
                 }
             }
         } else {
-            $context['mensagem'] = __('Apelido já existente');
+            $context['mensagem'] = $mensagem;
         }
+        $context['_POST'] = $_POST;
+    }
+        //var_dump($context['mensagem']);
         break;
     case 'logout':
         wp_logout();
@@ -101,11 +111,5 @@ switch($_GET['action']) {
         # code...
         break;
 }
-
-
-
- 
-
-var_dump($_POST);
 
 Timber::render(array('page-' . $post->post_name . '.twig', 'page.twig'), $context);
