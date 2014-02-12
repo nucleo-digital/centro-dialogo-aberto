@@ -15,6 +15,7 @@ $obj_category = get_category_by_slug( $category_slug );
 
 $context['nome_projeto'] = $obj_category->name;
 $context['id_projeto'] = $obj_category->term_id;
+$context['cor_projeto'] = $data['categories'][$obj_category->term_id]->cor_representativa;
 
 $images_id_field  = get_tax_meta($context['id_projeto'],'cda_text_field_id');
 $images_id = explode(',', $images_id_field);

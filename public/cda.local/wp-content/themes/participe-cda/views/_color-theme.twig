@@ -9,15 +9,13 @@
 .form_wrapper .btn-default.active,
 .fb .btn-fb, .fb .btn-fb:hover,
 .navbar-bottom .dropdown.open a em,
-.steps .footer .start
+.steps .start
  {
-    /*background-color: <?php echo $color_bg ?>;*/
-    background-color: #E5A63F;
+    background-color: {{cor_projeto}};
 }
 
 .navbar-bottom .dropdown.locs a.dropdown-toggle {
-    /*background-color: <?php echo $color_bg ?>;*/
-    border-color: #E5A63F;
+    background-color: {{cor_projeto}};
 }
 
 .navbar-header h2 a,
@@ -44,13 +42,16 @@
 .navbar-bottom .dropdown .dropdown-menu li a:focus,
 .steps .content-cell.white_bg .steps_wrapper
 {
-    /*background-color: <?php echo $color_bg ?>;*/
-    color: #E5A63F;
+    color: {{cor_projeto}};
 }
-
+.explanation .step-wrapper {
+	color: {{cor_projeto}};
+}
+.explanation .step-wrapper .start {
+	background-color: {{cor_projeto}};
+}
 .steps .steps_wrapper {
-    /*background-color: <?php echo $color_rgb_alpha_0.8 ?>;*/
-    background-color: rgba(230, 168, 64, 0.8);
+	background-color: rgba{{cor_projeto | hex2rgb}};
 }
 </style>
 

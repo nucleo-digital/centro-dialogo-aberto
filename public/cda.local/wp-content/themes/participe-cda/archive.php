@@ -23,7 +23,8 @@
 
 		$data['nome_projeto'] = $obj_category->name;
 		$data['id_projeto'] = $obj_category->term_id;
-
+		$data['cor_projeto'] = $data['categories'][$obj_category->term_id]->cor_representativa;
+		
 		$data['title'] = 'Archive';
 		if (is_day()){
 			$data['title'] = 'Archive: '.get_the_date( 'D M Y' );

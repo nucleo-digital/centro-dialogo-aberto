@@ -16,6 +16,7 @@ $obj_category = get_category_by_slug( $category_slug );
 
 $context['nome_projeto'] = $obj_category->name;
 $context['id_projeto'] = $obj_category->term_id;
+$context['cor_projeto'] = $data['categories'][$obj_category->term_id]->cor_representativa;
 
 if ($_GET['answered']==1) {
     $context['mensagem'] = 'Você já deu sua opnião sobre esse projeto. Nevegue pelos outros para contribuir mais.';
