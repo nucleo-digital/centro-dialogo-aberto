@@ -114,5 +114,5 @@ switch($_GET['action']) {
         # code...
         break;
 }
-var_dump($context['mensagem']);
+
 Timber::render(array('page-' . $post->post_name . '.twig', 'page.twig'), $context);
