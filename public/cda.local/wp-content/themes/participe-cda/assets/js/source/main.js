@@ -102,7 +102,7 @@ jQuery(function() {
 
 			finish : function() {
 
-				window.location.href = '01_passo1_3.html?voting=' + s.votes.join(',');
+				window.location.href = '../resultados?voting=' + s.votes.join(',');
 
 			}
 
@@ -133,6 +133,8 @@ jQuery(function() {
 
 	}
 
-	
+	jQuery(document).ready(function() {
+		jQuery('.carousel').carousel({interval:1500});
+	});
 	
 });

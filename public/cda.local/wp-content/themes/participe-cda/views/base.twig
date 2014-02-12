@@ -6,7 +6,7 @@
         <header>
             <div class="navbar navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                    <div class="container">
+                    <div class="container-fluid">
                         <h1 id="logo"> <a href="http://gestaourbana.prefeitura.sp.gov.br/" title="Voltar ao início" class="pull-left inline">gestão urbana sp</a> </h1>
                         <div class="left-arrow"> <a href="http://gestaourbana.prefeitura.sp.gov.br/centro-dialogo-aberto/" title="Voltar ao início">&#171;</a> </div>
                         <h2> <a href="{{bloginfo('home')}}" title="Participe" class="pull-left inline">Participe</a> </h2>
@@ -19,7 +19,7 @@
                {% if function('is_home') or function('is_page') %}
                     <div class="navbar-bottom">
                         {% if is_user_logged_in %}
-                        <div class="container">
+                        <div class="container-fluid">
                             <div class="dropdown pull-right inline">
                                 <a data-toggle="dropdown" href="#">{{current_user.display_name}}</a>
                                 <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         {% else %}
-                        <div class="container">
+                        <div class="container-fluid">
                             <h3><a href="javascript://" class="pull-left inline">Bem vindo ao Participe. Entre com seu cadastro e colabore!</a></h3>
                             <div class="pull-right inline"><a href="{{bloginfo('home')}}/entrar/">entrar / registrar-se</a></div>
                         </div>
@@ -39,7 +39,7 @@
                     </div>
                 {% else %}
                     <div class="navbar-bottom">
-                        <div class="container">
+                        <div class="container-fluid">
                             <div class="dropdown locs pull-left inline">
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">Listar Projetos</a>
                                 <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
@@ -73,7 +73,7 @@
 
         <section id="content" role="main" class="content-wrapper">
             <!--{% if title %}<h1>{{title}}</h1>{% endif %}-->
-            <div class="container wrapper {{sidebar_class}}">
+            <div class="container-fluid wrapper {{sidebar_class}}">
                 {% block content %}
                     Desculpe, não encontramos o que está procurando.
                 {% endblock %}

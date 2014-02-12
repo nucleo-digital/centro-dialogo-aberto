@@ -2,26 +2,63 @@
 
 {% block content %}
 
-{% include '_bg-mosaic.twig' %}
+<!--{% include "_color-theme.twig" %}-->
 
-<div class="steps explanation content-row">
-    <div class="content-cell">
-        <div class="steps_wrapper">
-            <h2>Qual sua opinião sobre {{nome_projeto}} hoje?</h2>
-            <h3>Nas próximas páginas serão mostrados <br> 12 critérios de satisfação</h3>
-            <div class="emot emot_white">
-                <div>
-                    <a href="#" class="happy"></a>
-                    <a href="#" class="neutral"></a>
-                    <a href="#" class="unhappy"></a>
+<div class="explanation">
+    <div class="steps row">
+        <div class="step-wrapper col-md-offset-2 col-md-8">
+            <h2>Como você avalia o(a) {{nome_projeto}} hoje?</h2>
+            <h3>Selecionamos 12 critérios para avaliar a qualidade dos espaços públicos do Centro. Agrupamos esses critérios em três grupos: Proteção, Conforto e Prazer.</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div id="carousel-1" class="carousel fadeIn" data-ride="carousel">
+                        <div class="carousel-inner">
+                        {% for imagem in galeria_imagem.galeria_imagens_1  %}
+                            <div class="item {% if loop.first %}active{% endif %}">
+                                <img class="img-responsive" src="{{imagem.get_src|resize(200, 200)}}" alt="{{imagem.caption}}" />
+                                <div class="carousel-caption">{{imagem.get_thumbnail.caption}}</div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div id="carousel-2" class="carousel fadeIn" data-ride="carousel">
+                        <div class="carousel-inner">
+                        {% for imagem in galeria_imagem.galeria_imagens_2  %}
+                            <div class="item {% if loop.first %}active{% endif %}">
+                                <img class="img-responsive" src="{{imagem.get_src|resize(200, 200)}}" alt="{{imagem.caption}}" />
+                                <div class="carousel-caption">{{imagem.get_thumbnail.caption}}</div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div id="carousel-3" class="carousel fadeIn" data-ride="carousel">
+                        <div class="carousel-inner">
+                        {% for imagem in galeria_imagem.galeria_imagens_3  %}
+                            <div class="item {% if loop.first %}active{% endif %}">
+                                <img class="img-responsive" src="{{imagem.get_src|resize(200, 200)}}" alt="{{imagem.caption}}" />
+                                <div class="carousel-caption">{{imagem.get_thumbnail.caption}}</div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <h3>Faça sua avaliação clicando nos botões <br> correspondentes à sua satisfação.</h3>
-            <p>Não é necessária a avaliação de todos os critérios</p>
-            <div class="footer">
-                <a class="next start" href="{{button_comecar}}">Começar</a>
+
+            <div class="row">
+                
+                <div class="col-md-12 center-block">
+                    <p>Faça sua avaliação clicando nos botões correspondentes à sua satisfação.<br/>Não é necessária a avaliação de todos os critérios</p>
+                    <a class="next start" href="{{button_comecar}}">Começar</a>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
+
 {% endblock %}
