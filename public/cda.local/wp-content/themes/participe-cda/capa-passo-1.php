@@ -17,6 +17,9 @@ $context['nome_projeto'] = $obj_category->name;
 $context['id_projeto'] = $obj_category->term_id;
 $context['cor_projeto'] = get_tax_meta($obj_category->term_id,'cda_color_field_id');
 
+$img_compartilhar = get_tax_meta($obj_category->term_id,'cda_image_field_id');
+$context['compartilhar_imagem'] = new TimberImage($img_compartilhar['id']);
+
 $images_id_field  = get_tax_meta($context['id_projeto'],'cda_text_field_id');
 $images_id = explode(',', $images_id_field);
 $galeria_imagens = array();

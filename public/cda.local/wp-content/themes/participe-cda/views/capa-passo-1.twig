@@ -1,5 +1,12 @@
 {% extends "base.twig" %}
 
+{% block head %}
+    <meta property="og:title" content="Projeto"/>
+    <meta property="og:image" content="{{compartilhar_imagem|resize(200,200)}}"/>
+    <meta property="og:site_name" content="Centro Diálogo Aberto"/>
+    <meta property="og:description" content="Como você avalia o(a) {{nome_projeto}} hoje? - Selecionamos 12 critérios para avaliar a qualidade dos espaços públicos do Centro. Agrupamos esses critérios em três grupos: Proteção, Conforto e Prazer."/>
+{% endblock %}
+
 {% block content %}
 
 {% include "_color-theme.twig" %}
