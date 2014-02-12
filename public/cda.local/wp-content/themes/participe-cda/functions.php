@@ -23,7 +23,7 @@ show_admin_bar( false );
     define('THEME_URL', get_template_directory_uri());
     function add_to_context($data){
         /* this is where you can add your own data to Timber's context object */
-        $categories = get_categories();
+        $categories = get_categories(array('orderby'=>'id'));
         foreach ($categories as $k => $val) {
             $categories[$k]->tipo_projeto          = get_tax_meta($val->term_id,'cda_radio_field_id');
             if (get_tax_meta($val->term_id,'cda_radio_field_id') == 'conceito') {

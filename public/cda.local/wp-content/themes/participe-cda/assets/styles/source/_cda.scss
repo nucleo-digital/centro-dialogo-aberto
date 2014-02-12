@@ -680,10 +680,12 @@ h1 a, h2 a, h3 a {
         }
         > div {
             ul {
+                display: inline-block;
                 li {
                     font-size: 16px;
                     font-weight: normal;
                     font-family: "museo300",Arial,sans-serif;
+                    display: inline-block;
                 }
             }
             font-size: 16px;
