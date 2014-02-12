@@ -22,11 +22,13 @@ $context['username'] = get_query_var('username');
 if (get_query_var('username')){
     $current_user = get_user_by('login', get_query_var('username'));
 
+    $context['profile'] = $current_user;
     $context['compartilhar_imagem'] = get_stylesheet_directory_uri() . '/assets/images/avaliacao_share_facebook_geral.jpg';
 } else {
     global $current_user;
     get_currentuserinfo();
 
+    $context['profile'] = $current_user;
     $context['compartilhar_link'] = get_bloginfo('home') . '/projetos/' . $category_slug . '/'. $current_user->user_login;
 }
 

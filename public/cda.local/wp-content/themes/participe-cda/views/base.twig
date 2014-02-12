@@ -58,7 +58,7 @@
                                 <!--li class=" "><a hreff="javascript"><em>2</em> Proposta</a></li>
                                 <li class=" step_last"><a hreff="javascript"><em>3</em> Sugestão</a></li-->
                             </ul>
-
+                            {% if is_user_logged_in %}
                             <div class="dropdown pull-right inline">
                                 <a data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;{{current_user.display_name}}</a>
                                 <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
@@ -68,6 +68,12 @@
                                     <!--li role="presentation" class="my_maps"><a href="javascript://" tabindex="-1" role="menuitem">Meus mapas</a></li-->
                                   </ul>
                             </div>
+
+                            {% else %}
+                            <div class="container-fluid">
+                                <div class="pull-right inline"><a href="{{bloginfo('home')}}/entrar/">&raquo;&nbsp;entrar / registrar-se</a></div>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 {% endif %}
