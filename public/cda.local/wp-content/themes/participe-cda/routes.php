@@ -33,3 +33,8 @@ Timber::add_route('projetos/:name/resultados', function($params){
     $query = 'category_name='.$params['name'] . '&posts_per_page=12&post_type=avaliacao';
     Timber::load_template('resultado-passo-1.php', $query);
 });
+
+Timber::add_route('projetos/:name/:user', function($params){
+    $query = 'category_name='.$params['name'] . '&posts_per_page=12&post_type=avaliacao&username='.$params['user'];
+    Timber::load_template('resultado-passo-1.php', $query);
+});

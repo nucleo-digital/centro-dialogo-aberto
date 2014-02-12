@@ -1,6 +1,11 @@
 {% include 'html-header.twig' %}
 {% block head %}
+    <meta property="og:title" content="Participe"/>
+    <!--meta property="og:image" content="http://davidwalsh.name/wp-content/themes/klass/img/facebooklogo.png"/-->
+    <meta property="og:site_name" content="Centro Diálogo Aberto"/>
+    <meta property="og:description" content="Gostaríamos de ampliar o diálogo abrindo um canal para avaliação e comentários sobre as propostas feitas para o Anhangabaú e mais 4 projetos piloto no Centro de São Paulo. Sua participação é fundamental para traçarmos uma boa estratégia de intervenção nestes espaços públicos."/>
 {% endblock %}
+
 </head>
     <body class="{{body_class}}" data-source="base.twig">
         <header>
@@ -33,7 +38,7 @@
                         {% else %}
                         <div class="container-fluid">
                             <h3><a href="javascript://" class="pull-left inline">Faça login ou cadastre-se para participar.</a></h3>
-                            <div class="pull-right inline"><a href="{{bloginfo('home')}}/entrar/"><i class="glyphicon glyphicon-off"></i>&nbsp;entrar / registrar-se</a></div>
+                            <div class="pull-right inline"><a href="{{bloginfo('home')}}/entrar/">&raquo;&nbsp;entrar / registrar-se</a></div>
                         </div>
                         {% endif %}
                     </div>

@@ -18,6 +18,8 @@ $context['nome_projeto'] = $obj_category->name;
 $context['id_projeto'] = $obj_category->term_id;
 $context['cor_projeto'] = get_tax_meta($obj_category->term_id,'cda_color_field_id');
 
+$context['compartilhar_imagem'] = get_stylesheet_directory_uri() . '/assets/images/avaliacao_share_facebook_geral.jpg';
+$context['compartilhar_link'] = get_bloginfo('home') . '/projetos/' . $category_slug . '/'. $context['current_user']->user_login;
 
 if ($_GET['answered']==1) {
     $context['mensagem'] = 'Você já deu sua opnião sobre esse projeto. Nevegue pelos outros para contribuir mais.';
@@ -25,14 +27,21 @@ if ($_GET['answered']==1) {
 
 global $current_user;
 get_currentuserinfo();
-
 $time = current_time('mysql');
-$answers = explode(',', $_GET['voting']);
-
-$i=0;
 
 $has_comment = get_comments(array('order'=>'desc', 'user_id' => $current_user->ID, 'meta_key' => 'projeto', 'meta_value'=> $category_slug));
 
+
+if (isset($_GET['voting'])) {
+    $answers = explode(',', $_GET['voting']);
+    foreach ($context['posts'] as $k => $p) {
+        $context['voting'][] = array('comment_post_ID'=>$p->ID,'comment_content'=>$answers[$k]);
+    }
+} else {
+    $context['voting'] = $has_comment;
+}
+
+$i=0;
 if (count($has_comment) == 0) {
     foreach ($context['posts'] as $post) {
 

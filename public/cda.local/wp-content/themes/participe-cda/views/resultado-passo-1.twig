@@ -1,5 +1,12 @@
 {% extends "base.twig" %}
 
+{% block head %}
+    <meta property="og:title" content="Resultado"/>
+    <meta property="og:image" content="{{compartilhar_imagem}}"/>
+    <meta property="og:site_name" content="Centro Diálogo Aberto"/>
+    <meta property="og:description" content="{{current_user.display_name}} participou da primeira fase do projeto Centro Diálogo Aberto, avaliando os espaços públicos do centro de São Paulo. Veja o resultado dessa avaliação e participe tambem."/>
+{% endblock %}
+
 {% block content %}
 
 {% include '_bg-mosaic.twig' %}
@@ -19,7 +26,13 @@
 
             {% set i = 1 %}
             {% for post in posts %}
-            <div class="vote step{{i}}">
+                {% set vote_answer = "x" %}
+                {% for vote in voting %}
+                    {% if vote.comment_post_ID == post.ID %}
+                        {% set vote_answer = vote.comment_content %}
+                    {% endif %}
+                {% endfor %}
+            <div class="vote step{{i}} vote{{vote_answer}}">
                 <p>{{post.title}}</p>
                 {% set i = i + 1 %}
             </div>

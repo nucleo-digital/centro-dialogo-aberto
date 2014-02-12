@@ -115,16 +115,16 @@ jQuery(function() {
 
 	}
 
-	if ($('.steps.results').length) {
+	// if ($('.steps.results').length) {
 
-		var voting = window.location.href.split('voting=')[1].split(','); // MELHORAR ISSO!
+	// 	var voting = window.location.href.split('voting=')[1].split(','); // MELHORAR ISSO!
 
-		$(voting).each(function(i,o){
-			$('.vote.step' + (i+1)).addClass('vote'+o);
-		});
+	// 	$(voting).each(function(i,o){
+	// 		$('.vote.step' + (i+1)).addClass('vote'+o);
+	// 	});
 
 
-	}
+	// }
 
 	if ($('.home_grid').length) {
 
