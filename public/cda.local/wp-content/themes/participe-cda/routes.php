@@ -1,6 +1,11 @@
 <?php
 
 Timber::add_route('projetos/:name', function($params){
+    $query = 'category_name='.$params['name'];
+    Timber::load_template('capa-passo-1.php', $query);
+});
+
+Timber::add_route('projetos/:name/votar', function($params){
     if (!is_user_logged_in()) {
         wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'] ); exit;
     }
@@ -19,12 +24,7 @@ Timber::add_route('projetos/:name', function($params){
         header('Location: '.get_bloginfo('url').'/projetos/'.$params['name'].'/resultados?answered=1&voting='.$voting);
         exit;
     }
-
-    $query = 'category_name='.$params['name'];
-    Timber::load_template('capa-passo-1.php', $query);
-});
-
-Timber::add_route('projetos/:name/votar', function($params){
+    
     $query = 'posts_per_page=12&post_type=avaliacao&cat_name=' . $params['name'];
     Timber::load_template('archive.php', $query);
 });
