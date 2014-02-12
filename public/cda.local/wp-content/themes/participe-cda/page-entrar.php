@@ -28,7 +28,7 @@ $context['form_action'] = get_bloginfo('home').'/entrar/';
 $context['redirect_to'] = $_GET['redirect_to'];
 $context['wp_lostpassword_url'] = wp_lostpassword_url();
 $context['mensagem'] = '';
-
+$context['mensagem-status'] = 'danger';
 
 
 switch($_GET['action']) {
@@ -109,6 +109,7 @@ switch($_GET['action']) {
                             // wp_set_current_user( $user_id, $username );
                             // wp_set_auth_cookie( $user_id );
                             //wp_redirect($redirect_to);
+                            $context['mensagem-status'] = 'success';
                             $context['mensagem'] = "Registro efetuado com sucesso. Faça login, com o usuário e senha que acabou de cadastrar.";
                             //exit;
                         }

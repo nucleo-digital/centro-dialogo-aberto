@@ -6,7 +6,7 @@
             <div class="form_wrapper two_col">
                 <div class="header">
                     {% if mensagem %}
-                        <div class="alert alert-danger">{{mensagem}}</div>
+                        <div class="alert alert-{{mensagem-status}}">{{mensagem}}</div>
                     {% endif %}
                     <h2>Você precisa ser um usuário cadastrado para participar</h2>
                 </div>
