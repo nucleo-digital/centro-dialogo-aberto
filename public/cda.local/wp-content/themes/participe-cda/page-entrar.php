@@ -58,48 +58,51 @@ switch($_GET['action']) {
         }
         break;
     case 'register':
-    if (isset($_POST) && count($_POST)>0) {
-        $user_name     = $_POST['user_name'];
-
-        if ( !preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $user_name) ) {
             $invalid_form = false;
-            $context['mensagem'] = "Apelido inválido.";
-        }
+            if (isset($_POST) && count($_POST)>0) {
+                $user_name     = $_POST['user_name'];
 
-        $user_email    = $_POST['user_email'];
-        $user_password = $_POST['user_password'];
-        $user_password = $_POST['user_password_repeat'];
-        if (empty($_POST['redirect_to'])) {
-            $redirect_to = get_bloginfo('home');
-        } else {
-            $redirect_to = $_POST['redirect_to'];
-        }
-
-        $user_id = username_exists( $user_name );
-        if ( !$user_id and email_exists($user_email) == false and $invalid_form) {
-            $user_id = wp_create_user( $user_name, $user_password, $user_email );
-
-            // log in automatically
-            if ( !is_user_logged_in() ) {
-                $auth = wp_authenticate($user_name, $user_password);
-
-                if (is_wp_error($auth)) {
-                    $context['mensagem'] = $auth->get_error_message();
+                if ( !preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $user_name) ) {
+                    $context['mensagem'] = "Apelido inválido.";
                 }else {
-                    $user = get_userdatabylogin( $username );
-                    $user_id = $user->ID;
-                    wp_set_current_user( $user_id, $username );
-                    wp_set_auth_cookie( $user_id );
-                    wp_redirect($redirect_to);
-                    exit;
+                    $invalid_form = true;
                 }
+
+                $user_email    = $_POST['user_email'];
+                $user_password = $_POST['user_password'];
+                $user_password = $_POST['user_password_repeat'];
+                if (empty($_POST['redirect_to'])) {
+                    $redirect_to = get_bloginfo('home');
+                } else {
+                    $redirect_to = $_POST['redirect_to'];
+                }
+
+                $user_id = username_exists( $user_name );
+                if ( !$user_id and email_exists($user_email) == false) {
+                    $user_id = wp_create_user( $user_name, $user_password, $user_email );
+
+                    // log in automatically
+                    if ( !is_user_logged_in() ) {
+                        $auth = wp_authenticate($user_name, $user_password);
+
+                        if (is_wp_error($auth)) {
+                            $context['mensagem'] = $auth->get_error_message();
+                        }else {
+                            $user = get_userdatabylogin( $username );
+                            $user_id = $user->ID;
+                            wp_set_current_user( $user_id, $username );
+                            wp_set_auth_cookie( $user_id );
+                            wp_redirect($redirect_to);
+                            exit;
+                        }
+                    }
+                } else if ($invalid_form) {
+                    $context['mensagem'] = 'Algum campo está inválido.';
+                } else {
+                    $context['mensagem'] = 'Apelido já existente.';
+                }
+                $context['_POST'] = $_POST;
             }
-        } else {
-            $context['mensagem'] = $mensagem;
-        }
-        $context['_POST'] = $_POST;
-    }
-        //var_dump($context['mensagem']);
         break;
     case 'logout':
         wp_logout();
@@ -111,5 +114,5 @@ switch($_GET['action']) {
         # code...
         break;
 }
-
+var_dump($context['mensagem']);
 Timber::render(array('page-' . $post->post_name . '.twig', 'page.twig'), $context);
