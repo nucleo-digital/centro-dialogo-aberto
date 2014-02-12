@@ -76,8 +76,25 @@ switch($_GET['action']) {
                     $redirect_to = $_POST['redirect_to'];
                 }
 
+
+
+                // if ($invalid_form) {
+                //     $context['mensagem'] = 'Algum campo está inválido.';
+                // } 
+
+                if (email_exists($user_email)) {
+                    $context['mensagem'] = "E-mail já existente.";
+                    $invalid_form = true;
+                }
+
+
+                if (username_exists( $user_name )) {
+                    $context['mensagem'] = "Apelido já existente.";
+                    $invalid_form = true;
+                }
+
                 $user_id = username_exists( $user_name );
-                if ( !$user_id and email_exists($user_email) == false) {
+                if ( !$user_id and email_exists($user_email) == false and !$invalid_form) {
                     $user_id = wp_create_user( $user_name, $user_password, $user_email );
 
                     // log in automatically
@@ -95,10 +112,6 @@ switch($_GET['action']) {
                             exit;
                         }
                     }
-                } else if ($invalid_form) {
-                    $context['mensagem'] = 'Algum campo está inválido.';
-                } else {
-                    $context['mensagem'] = 'Apelido já existente.';
                 }
                 $context['_POST'] = $_POST;
             }
