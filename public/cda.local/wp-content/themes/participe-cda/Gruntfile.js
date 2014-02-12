@@ -18,7 +18,7 @@ module.exports = function(grunt) {
             },
             images: {
                 files: ['assets/images/**/*.{png,jpg,gif}'],
-                tasks: ['imagemin']
+                //tasks: ['imagemin']
             },
             livereload: {
                 options: { livereload: true },

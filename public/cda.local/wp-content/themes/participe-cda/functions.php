@@ -87,7 +87,7 @@ function avaliacoes_post_type() {
         'description'         => __( 'Perguntas para usuário descrever o projeto', 'text_domain' ),
         'labels'              => $labels,
         'supports'            => array( 'title', 'editor', 'comments', ),
-        'taxonomies'          => array( 'category' ),
+        'taxonomies'          => array( 'category', 'post_tag' ),
         'hierarchical'        => false,
         'public'              => true,
         'show_ui'             => true,

@@ -5,35 +5,63 @@ $input_bg: #ecedee;
 $width: 960px;
 
 @font-face {
-    font-family: 'museoSlab';
-    src: url('assets/fonts/museo_slab_500-webfont.eot');
-    src: url('assets/fonts/museo_slab_500-webfont.eot?#iefix') format('embedded-opentype'),
-    url('assets/fonts/museo_slab_500-webfont.woff') format('woff'),
-    url('assets/fonts/museo_slab_500-webfont.ttf') format('truetype'),
-    url('assets/fonts/museo_slab_500-webfont.svg#museo_slab500') format('svg');
+    font-family: 'museo300';
+    src: url('assets/fonts/museo_300/Museo300-Regular-webfont.eot');
+    src: url('assets/fonts/museo_300/Museo300-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/museo_300/Museo300-Regular-webfont.woff') format('woff'),
+         url('assets/fonts/museo_300/Museo300-Regular-webfont.ttf') format('truetype'),
+         url('assets/fonts/museo_300/Museo300-Regular-webfont.svg#Museo300Regular') format('svg');
     font-weight: normal;
     font-style: normal;
-}
 
-@font-face {
-    font-family: 'museoSans';
-    src: url('assets/fonts/museosans-300-webfont.eot');
-    src: url('assets/fonts/museosans-300-webfont.eot?#iefix') format('embedded-opentype'),
-    url('assets/fonts/museosans-300-webfont.woff') format('woff'),
-    url('assets/fonts/museosans-300-webfont.ttf') format('truetype'),
-    url('assets/fonts/museosans-300-webfont.svg#museo_sans300') format('svg');
-    font-weight: normal;
-    font-style: normal;
 }
 
 @font-face {
     font-family: 'museo';
-    src: url('assets/fonts/museosans-700-webfont.eot');
-    src: url('assets/fonts/museosans-700-webfont.eot?#iefix') format('embedded-opentype'),
-    url('assets/fonts/museosans-700-webfont.woff') format('woff'),
-    url('assets/fonts/museosans-700-webfont.ttf') format('truetype');
+    src: url('assets/fonts/museo_500/Museo500-Regular-webfont.eot');
+    src: url('assets/fonts/museo_500/Museo500-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/museo_500/Museo500-Regular-webfont.woff') format('woff'),
+         url('assets/fonts/museo_500/Museo500-Regular-webfont.ttf') format('truetype'),
+         url('assets/fonts/museo_500/Museo500-Regular-webfont.svg#Museo500Regular') format('svg');
     font-weight: normal;
     font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'museo700';
+    src: url('assets/fonts/museo_700/Museo700-Regular-webfont.eot');
+    src: url('assets/fonts/museo_700/Museo700-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/museo_700/Museo700-Regular-webfont.woff') format('woff'),
+         url('assets/fonts/museo_700/Museo700-Regular-webfont.ttf') format('truetype'),
+         url('assets/fonts/museo_700/Museo700-Regular-webfont.svg#Museo700Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'museoSans';
+    src: url('assets/fonts/museosans_500/MuseoSans_500-webfont.eot');
+    src: url('assets/fonts/museosans_500/MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/museosans_500/MuseoSans_500-webfont.woff') format('woff'),
+         url('assets/fonts/museosans_500/MuseoSans_500-webfont.ttf') format('truetype'),
+         url('assets/fonts/museosans_500/MuseoSans_500-webfont.svg#museo_sans500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'museoSlab';
+    src: url('assets/fonts/museoslab_500/Museo_Slab_500_2-webfont.eot');
+    src: url('assets/fonts/museoslab_500/Museo_Slab_500_2-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/museoslab_500/Museo_Slab_500_2-webfont.woff') format('woff'),
+         url('assets/fonts/museoslab_500/Museo_Slab_500_2-webfont.ttf') format('truetype'),
+         url('assets/fonts/museoslab_500/Museo_Slab_500_2-webfont.svg#museo_slab500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
 /*
@@ -637,19 +665,25 @@ h1 a, h2 a, h3 a {
     .step_content {
         h2 {
             font-size: 24px;
-            font-weight: bold;
-            font-family: "museoSans",Arial,sans-serif;
-
+            font-family: "museo700",Arial,sans-serif;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
         }
         h3 {
             font-size: 24px;
             font-weight: normal;
-            font-family: "museoSans",Arial,sans-serif;
+            font-family: "museo300",Arial,sans-serif;
+
+            &.tags {
+                text-transform: uppercase;
+            }
         }
         > div {
             ul {
                 li {
-                    
+                    font-size: 16px;
+                    font-weight: normal;
+                    font-family: "museo300",Arial,sans-serif;
                 }
             }
             font-size: 16px;
@@ -659,7 +693,7 @@ h1 a, h2 a, h3 a {
     .emot {
         left: 52px;
         position: absolute;
-        top: 142px;
+        top: 185px;
         a {
             background-repeat: no-repeat;
             background-position: center center;
@@ -765,11 +799,11 @@ h1 a, h2 a, h3 a {
 }
 .explanation {
 //    @include scut-center-absolutely(n 470px);
-    //position: relative;
+    position: relative;
 
-        //@include scut-center-absolutely(n 470px);
+        
         .step-wrapper {
-            //@include scut-center-transform;
+            
             text-align: center;
             
             background: none;
@@ -809,8 +843,9 @@ h1 a, h2 a, h3 a {
             /* Carousel base class */
             .carousel {
               overflow: hidden;
-              margin: 15px 0 10px 0;
+              margin: 25px auto 20px auto;
               min-height: 200px;
+              width: 200px;
             }
             /* Since positioning the image, we need to help out the caption */
             .carousel-caption {
@@ -835,7 +870,25 @@ h1 a, h2 a, h3 a {
 }
 .steps.results {
 
+
+    h2 {
+        font-size: 24px;
+        font-family: "museo",Arial,sans-serif;
+        margin: 0 0 20px 0;
+        text-transform: uppercase;
+    }
+    h3 {
+        font-size: 24px;
+        font-weight: normal;
+        font-family: "museo300",Arial,sans-serif;
+
+        &.tags {
+            text-transform: uppercase;
+        }
+    }
+
     .vote {
+
         width: 185px;
         height: 185px;
         float: left;
@@ -844,6 +897,8 @@ h1 a, h2 a, h3 a {
         background-position: center 15px;
         p {
             margin-top: 140px;
+            font-family: 'museoSans';
+            font-size: 16px;
         }
         ul {
             padding: 0;
