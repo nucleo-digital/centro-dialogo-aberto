@@ -33,9 +33,9 @@ jQuery(function() {
 			current : 1,
 			votes : new Array(this.total),
 			pts : {
-				'happy' : 1,
-				'neutral' : 0,
-				'unhappy' : -1,
+				'happy' : 3,
+				'neutral' : 2,
+				'unhappy' : 1,
 				'next' : 'x'
 			},
 

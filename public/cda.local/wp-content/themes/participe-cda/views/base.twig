@@ -21,18 +21,18 @@
                         {% if is_user_logged_in %}
                         <div class="container-fluid">
                             <div class="dropdown pull-right inline">
-                                <a data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i>{{current_user.display_name}}</a>
+                                <a data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;{{current_user.display_name}}</a>
                                 <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
                                     <!--li role="presentation" class="my_profile"><a href="{{bloginfo('home')}}/meu-cadastro/" tabindex="-1" role="menuitem">Meu cadastro</a></li>
                                     <li role="presentation" class="my_rates"><a href="{{bloginfo('home')}}/minhas-avaliacoes/" tabindex="-1" role="menuitem">Minhas avaliações</a></li-->
-                                    <li role="presentation" class="logout"><a href="{{bloginfo('home')}}/entrar/?action=logout" tabindex="-1" role="menuitem"><i class="glyphicon glyphicon-off"></i>Sair</a></li>
+                                    <li role="presentation" class="logout"><a href="{{bloginfo('home')}}/entrar/?action=logout" tabindex="-1" role="menuitem"><i class="glyphicon glyphicon-off"></i>&nbsp;Sair</a></li>
                                     <!--li role="presentation" class="my_maps"><a href="javascript://" tabindex="-1" role="menuitem">Meus mapas</a></li-->
                                   </ul>
                             </div>
                         </div>
                         {% else %}
                         <div class="container-fluid">
-                            <h3><a href="javascript://" class="pull-left inline">Bem vindo ao Participe. Entre com seu cadastro e colabore!</a></h3>
+                            <h3><a href="javascript://" class="pull-left inline">Bem-vindo! Faça login ou cadastre-se para participar.</a></h3>
                             <div class="pull-right inline"><a href="{{bloginfo('home')}}/entrar/">entrar / registrar-se</a></div>
                         </div>
                         {% endif %}
@@ -55,11 +55,11 @@
                             </ul>
 
                             <div class="dropdown pull-right inline">
-                                <a data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i>{{current_user.display_name}}</a>
+                                <a data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;{{current_user.display_name}}</a>
                                 <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
                                     <!--li role="presentation" class="my_profile"><a href="{{bloginfo('home')}}/meu-cadastro/" tabindex="-1" role="menuitem">Meu cadastro</a></li>
                                     <li role="presentation" class="my_rates"><a href="{{bloginfo('home')}}/minhas-avaliacoes/" tabindex="-1" role="menuitem">Minhas avaliações</a></li-->
-                                    <li role="presentation" class="logout"><a href="{{bloginfo('home')}}/entrar/?action=logout" tabindex="-1" role="menuitem"><i class="glyphicon glyphicon-off"></i>Sair</a></li>
+                                    <li role="presentation" class="logout"><a href="{{bloginfo('home')}}/entrar/?action=logout" tabindex="-1" role="menuitem"><i class="glyphicon glyphicon-off"></i>&nbsp;Sair</a></li>
                                     <!--li role="presentation" class="my_maps"><a href="javascript://" tabindex="-1" role="menuitem">Meus mapas</a></li-->
                                   </ul>
                             </div>

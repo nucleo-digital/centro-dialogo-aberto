@@ -1,7 +1,7 @@
 {% extends "base.twig" %}
 
 {% block content %}
-{{category.imagem_representativa.src | print_r}}
+
 <div class="home_grid">
     {% for category in categories %}
     {% if category.tipo_projeto == 'conceito' %}
@@ -16,7 +16,14 @@
     <div class="span_right full_height">
         <div class="wrapper">
             <h2>Queremos ouvir você</h2>
-            <p>Gostaríamos de ampliar o diálogo abrindo um canal para avaliação e comentários sobre as propostas feitas para o Anhangabaú e os 4 projetos piloto. Sua participação é fundamental para traçarmos uma boa estratégia de intervenção nos espaços públicos do Centro. Avaliar os espaços públicos como são hoje é uma boa maneira de planejar e pensar mudanças.Participe dessa etapa inicial: escolha dos projetos e avaliação. E acompanhe por aqui os próximos passos, que visam conhecer os projetos e cada uma das suas camadas, além de promover uma votação.Já na terceira fase do projeto será possível entrar num mapa e sugerir que tipo de atividade terá em cada local. Essa interação também pode ser divulgada nas redes sociais.</p>        
+            <p>Bem-vindo, faça seu cadastro acima e colabore!</p>
+            <p>Gostaríamos de ampliar o diálogo abrindo um canal para avaliação e comentários sobre as propostas feitas para o Anhangabaú e mais 4 projetos piloto no Centro de São Paulo. Sua participação é fundamental para traçarmos uma boa estratégia de intervenção nestes espaços públicos.</p>
+
+            <p>Avaliar os espaços como são hoje é uma boa maneira de planejar e pensar mudanças. Participe dessa etapa inicial: escolha um dos projetos e faça sua avaliação.</p>
+
+            <p>Próximas etapas</p>
+
+            <p>Acompanhe por aqui os próximos passos, que visam conhecer os projetos e cada uma das suas camadas. Em breve será possível participar de votações e também entrar em mapas sugerindo que tipo de atividade terá em cada local.</p>
         </div>
     </div>
     {% for category in categories %}
