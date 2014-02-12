@@ -104,12 +104,13 @@ switch($_GET['action']) {
                         if (is_wp_error($auth)) {
                             $context['mensagem'] = $auth->get_error_message();
                         }else {
-                            $user = get_userdatabylogin( $username );
-                            $user_id = $user->ID;
-                            wp_set_current_user( $user_id, $username );
-                            wp_set_auth_cookie( $user_id );
-                            wp_redirect($redirect_to);
-                            exit;
+                            // $user = get_userdatabylogin( $username );
+                            // $user_id = $user->ID;
+                            // wp_set_current_user( $user_id, $username );
+                            // wp_set_auth_cookie( $user_id );
+                            //wp_redirect($redirect_to);
+                            $context['mensagem'] = "Registro efetuado com sucesso. Faça login, com o usuário e senha que acabou de cadastrar.";
+                            //exit;
                         }
                     }
                 }
