@@ -25,25 +25,68 @@
                 <h3>Esta é a avaliação feita por: {{username}}</h3>
             {% else %}
                 <h2>RESULTADO</h2>
-                <h3>Minha avaliação sobre {{nome_projeto}}</h3>
+                <p>Minha avaliação sobre {{nome_projeto}}</p>
             {% endif %}
-            <!--div class="category">#PROTEÇÃO</div-->
+            
 
+
+            <p class="category">#PROTEÇÃO</p>
             {% set i = 1 %}
+
             {% for post in posts %}
-                {% set vote_answer = "x" %}
-                {% for vote in voting %}
-                    {% if vote.comment_post_ID == post.ID %}
-                        {% set vote_answer = vote.comment_content %}
-                    {% endif %}
-                {% endfor %}
-            <div class="vote step{{i}} vote{{vote_answer}}">
-                <p>{{post.title}}</p>
-                {% set i = i + 1 %}
-            </div>
+                {% if post.terms('tags')[0].slug == 'protecao' %}
+                    {% set vote_answer = "x" %}
+                    {% for vote in voting %}
+                        {% if vote.comment_post_ID == post.ID %}
+                            {% set vote_answer = vote.comment_content %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="vote step{{i}} vote{{vote_answer}}">
+                        <p>{{post.title}}</p>
+                        {% set i = i + 1 %}
+                    </div>
+                {% endif %}
             {% endfor %}
 
-            <div class="category">&nbsp;</div>
+
+            <p class="category">#CONFORTO</p>
+            {% set i = 1 %}
+
+            {% for post in posts %}
+                {% if post.terms('tags')[0].slug == 'conforto' %}
+                    {% set vote_answer = "x" %}
+                    {% for vote in voting %}
+                        {% if vote.comment_post_ID == post.ID %}
+                            {% set vote_answer = vote.comment_content %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="vote step{{i}} vote{{vote_answer}}">
+                        <p>{{post.title}}</p>
+                        {% set i = i + 1 %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+
+            <p class="category">#LAZER</p>
+            {% set i = 1 %}
+
+            {% for post in posts %}
+                {% if post.terms('tags')[0].slug == 'lazer' %}
+                    {% set vote_answer = "x" %}
+                    {% for vote in voting %}
+                        {% if vote.comment_post_ID == post.ID %}
+                            {% set vote_answer = vote.comment_content %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="vote step{{i}} vote{{vote_answer}}">
+                        <p>{{post.title}}</p>
+                        {% set i = i + 1 %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <p class="category">&nbsp;</p>
             {% if username %}
                 <!--a href="" class="next start">Venha participar você também!</a-->
             {% else %}

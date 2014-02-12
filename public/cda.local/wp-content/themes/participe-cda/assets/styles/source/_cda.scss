@@ -879,7 +879,7 @@ h1 a, h2 a, h3 a {
         margin: 0 0 20px 0;
         text-transform: uppercase;
     }
-    h3 {
+    h3,p {
         font-size: 24px;
         font-weight: normal;
         font-family: "museo300",Arial,sans-serif;
@@ -887,6 +887,9 @@ h1 a, h2 a, h3 a {
         &.tags {
             text-transform: uppercase;
         }
+    }
+    p {
+        font-size: 16px;
     }
 
     .vote {
@@ -940,10 +943,12 @@ h1 a, h2 a, h3 a {
 
 
     .category {
-        width: 100%;
+        margin: 15px 0;
+        display: block;
         font-family: "museoSans",Arial,sans-serif;
         font-size: 21px;
         font-weight: bold;
+        line-height: 21px;
     }
 
 }
