@@ -17,16 +17,23 @@ $obj_category = get_category_by_slug( $category_slug );
 $context['nome_projeto'] = $obj_category->name;
 $context['id_projeto'] = $obj_category->term_id;
 $context['cor_projeto'] = get_tax_meta($obj_category->term_id,'cda_color_field_id');
+$context['username'] = get_query_var('username');
 
-$context['compartilhar_imagem'] = get_stylesheet_directory_uri() . '/assets/images/avaliacao_share_facebook_geral.jpg';
-$context['compartilhar_link'] = get_bloginfo('home') . '/projetos/' . $category_slug . '/'. $context['current_user']->user_login;
+if (get_query_var('username')){
+    $current_user = get_user_by('login', get_query_var('username'));
+
+    $context['compartilhar_imagem'] = get_stylesheet_directory_uri() . '/assets/images/avaliacao_share_facebook_geral.jpg';
+} else {
+    global $current_user;
+    get_currentuserinfo();
+
+    $context['compartilhar_link'] = get_bloginfo('home') . '/projetos/' . $category_slug . '/'. $current_user->user_login;
+}
 
 if ($_GET['answered']==1) {
     $context['mensagem'] = 'Você já deu sua opnião sobre esse projeto. Nevegue pelos outros para contribuir mais.';
 }
 
-global $current_user;
-get_currentuserinfo();
 $time = current_time('mysql');
 
 $has_comment = get_comments(array('order'=>'desc', 'user_id' => $current_user->ID, 'meta_key' => 'projeto', 'meta_value'=> $category_slug));

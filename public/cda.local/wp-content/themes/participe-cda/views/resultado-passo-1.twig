@@ -18,10 +18,15 @@
             {% if mensagem %}
             <div class="alert alert-warning">{{mensagem}}</div>
             {% endif %}
-            <h2>Qual a sua opinião sobre {{nome_projeto}} hoje?</h2>
-            <h2>RESULTADO</h2>
-            <h3>Minha avaliação sobre {{nome_projeto}}</h3>
 
+            <h2>Qual a sua opinião sobre {{nome_projeto}} hoje?</h2>
+            
+            {% if username %}
+                <h3>Esta é a avaliação feita por: {{username}}</h3>
+            {% else %}
+                <h2>RESULTADO</h2>
+                <h3>Minha avaliação sobre {{nome_projeto}}</h3>
+            {% endif %}
             <!--div class="category">#PROTEÇÃO</div-->
 
             {% set i = 1 %}
@@ -39,9 +44,13 @@
             {% endfor %}
 
             <div class="category">&nbsp;</div>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{compartilhar_link}}" target="_blank">
-                <img src="{{theme.uri}}/assets/images/fb_result.png">
-            </a>
+            {% if username %}
+                <a href="" class="next start">Venha participar você também!</a>
+            {% else %}
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{compartilhar_link}}" target="_blank">
+                    <img src="{{theme.uri}}/assets/images/fb_result.png">
+                </a>
+            {% endif %}
 
         </div>
     </div>
