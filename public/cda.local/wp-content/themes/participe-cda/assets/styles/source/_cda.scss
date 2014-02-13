@@ -394,7 +394,7 @@ h1 a, h2 a, h3 a {
         position: relative;
 
         .wrapper {
-            padding: 30px 40px 40px;
+            padding: 0 40px;
             @include scut-center-absolutely(n 500px);
         }
         h2 {
