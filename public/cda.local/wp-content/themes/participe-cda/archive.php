@@ -45,6 +45,7 @@
         $query = array(
             'orderby' => 'meta_value_num',
             'order' => 'asc',
+            'posts_per_page' => 12,
             'post_type' => 'avaliacao',
             'meta_query' => array(
                 array(
