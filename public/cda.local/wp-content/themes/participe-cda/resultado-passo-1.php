@@ -10,7 +10,18 @@
  */
 
 $context = Timber::get_context();
-$context['posts'] = Timber::get_posts();
+$query = array(
+    'orderby' => 'meta_value_num',
+    'order' => 'asc',
+    'post_type' => 'avaliacao',
+    'meta_query' => array(
+        array(
+            'key' => 'ordem',
+        )
+    )
+
+);
+$context['posts'] = Timber::get_posts($query);
 $category_slug = get_query_var('category_name');
 $obj_category = get_category_by_slug( $category_slug );
 

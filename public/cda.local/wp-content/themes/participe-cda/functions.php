@@ -104,7 +104,7 @@ function avaliacoes_post_type() {
         'label'               => __( 'avaliacao', 'text_domain' ),
         'description'         => __( 'Perguntas para usuário descrever o projeto', 'text_domain' ),
         'labels'              => $labels,
-        'supports'            => array( 'title', 'editor', 'comments', ),
+        'supports'            => array( 'title', 'editor', 'comments', 'custom-fields'),
         'taxonomies'          => array( 'category', 'post_tag' ),
         'hierarchical'        => false,
         'public'              => true,
