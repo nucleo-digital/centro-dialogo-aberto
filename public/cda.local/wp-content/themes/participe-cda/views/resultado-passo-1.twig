@@ -68,11 +68,11 @@
             {% endfor %}
 
 
-            <p class="category">#LAZER</p>
+            <p class="category">#PRAZER</p>
             {% set i = 1 %}
 
             {% for post in posts %}
-                {% if post.terms('tags')[0].slug == 'lazer' %}
+                {% if post.terms('tags')[0].slug == 'prazer' %}
                     {% set vote_answer = "x" %}
                     {% for vote in voting %}
                         {% if vote.comment_post_ID == post.ID %}
