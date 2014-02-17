@@ -893,11 +893,11 @@ h1 a, h2 a, h3 a {
     }
 
     .vote {
-
+        float: left;
         width: 185px;
-        height: 185px;
+        height: 205px;
         display:inline-block;
-        margin: 10px;
+        margin: 10px 10px 30px;
         background-repeat: no-repeat;
         background-position: center 15px;
         p {
@@ -943,7 +943,7 @@ h1 a, h2 a, h3 a {
 
 
     .category {
-        margin: 15px 0;
+        margin: 0;
         display: block;
         font-family: "museoSans",Arial,sans-serif;
         font-size: 21px;
