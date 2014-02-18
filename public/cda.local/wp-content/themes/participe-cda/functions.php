@@ -1,6 +1,8 @@
 <?php
 
 require_once("Tax-meta-class/Tax-meta-class.php");
+require_once("meta-box-class/my-meta-box-class.php");
+
 show_admin_bar( false );
 /*
  * List of pages available:
@@ -124,8 +126,51 @@ function avaliacoes_post_type() {
 
 }
 
+function propostas_post_type() {
+
+    $labels = array(
+        'name'                => _x( 'Propostas', 'Post Type General Name', 'text_domain' ),
+        'singular_name'       => _x( 'Proposta', 'Post Type Singular Name', 'text_domain' ),
+        'menu_name'           => __( 'Proposta', 'text_domain' ),
+        'parent_item_colon'   => __( 'Proposta Pai', 'text_domain' ),
+        'all_items'           => __( 'Todas Propostas', 'text_domain' ),
+        'view_item'           => __( 'Ver Proposta', 'text_domain' ),
+        'add_new_item'        => __( 'Adicionar Nova Proposta', 'text_domain' ),
+        'add_new'             => __( 'Nova Proposta', 'text_domain' ),
+        'edit_item'           => __( 'Editar Proposta', 'text_domain' ),
+        'update_item'         => __( 'Atualizar Proposta', 'text_domain' ),
+        'search_items'        => __( 'Procurar Propostas', 'text_domain' ),
+        'not_found'           => __( 'Nenhuma proposta encontrada', 'text_domain' ),
+        'not_found_in_trash'  => __( 'Nenhuma proposta encontrada na lixeira', 'text_domain' ),
+    );
+    $args = array(
+        'label'               => __( 'proposta', 'text_domain' ),
+        'description'         => __( 'Propostas a serem analisadas', 'text_domain' ),
+        'labels'              => $labels,
+        'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt'),
+        'taxonomies'          => array( 'category', 'post_tag' ),
+        'hierarchical'        => false,
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'show_in_nav_menus'   => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => 5,
+        'menu_icon'           => '',
+        'can_export'          => true,
+        'has_archive'         => true,
+        'exclude_from_search' => false,
+        'publicly_queryable'  => true,
+        'capability_type'     => 'page',
+    );
+    register_post_type( 'proposta', $args );
+
+}
+
+
 // Hook into the 'init' action
 add_action( 'init', 'avaliacoes_post_type', 0 );
+add_action( 'init', 'propostas_post_type', 0 );
 
 
 if (is_admin()){
@@ -138,8 +183,8 @@ if (is_admin()){
     /* 
     * configure your meta box
     */
-    $config = array(
-    'id' => 'cda_meta_box',          // meta box id, unique per meta box
+    $config_cat = array(
+    'id' => 'cda_meta_box_cat',          // meta box id, unique per meta box
     'title' => '',          // meta box title
     'pages' => array('category'),        // taxonomy name, accept categories, post_tag and custom taxonomies
     'context' => 'normal',            // where the meta box appear: normal (default), advanced, side; optional
@@ -148,24 +193,54 @@ if (is_admin()){
     'use_with_theme' => true          //change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
     );
 
+    $config_post = array(
+    'id'             => 'cda_meta_box_post',          // meta box id, unique per meta box
+    'title'          => ' ',          // meta box title
+    'pages'          => array('proposta'),      // post types, accept custom post types as well, default is array('post'); optional
+    'context'        => 'normal',            // where the meta box appear: normal (default), advanced, side; optional
+    'priority'       => 'high',            // order of meta box: high (default), low; optional
+    'fields'         => array(),            // list of meta fields (can be added by field arrays)
+    'local_images'   => false,          // Use local or hosted images (meta box images for add/remove)
+    'use_with_theme' => true          //change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
+    );
+
+
     /*
     * Initiate your meta box
     */
-    $my_meta =  new Tax_Meta_Class($config);
+    $my_meta_cat =  new Tax_Meta_Class($config_cat);
+    $my_meta_post=  new AT_Meta_Box($config_post);
 
 
     //radio field
-    $my_meta->addRadio($prefix.'radio_field_id',array('piloto'=>'Projeto Piloto','conceito'=>'Projeto Conceito'),array('name'=> __('Tipo do Projeto','tax-meta'), 'std'=> array('conceito')));
+    $my_meta_cat->addRadio($prefix.'radio_field_id',array('piloto'=>'Projeto Piloto','conceito'=>'Projeto Conceito'),array('name'=> __('Tipo do Projeto','tax-meta'), 'std'=> array('conceito')));
     //Image field
-    $my_meta->addImage($prefix.'image_field_id',array('name'=> __('Imagem representativa ','tax-meta')));
+    $my_meta_cat->addImage($prefix.'image_field_id',array('name'=> __('Imagem representativa ','tax-meta')));
     //Color field
-    $my_meta->addColor($prefix.'color_field_id',array('name'=> __('Cor representativa ','tax-meta')));
+    $my_meta_cat->addColor($prefix.'color_field_id',array('name'=> __('Cor representativa ','tax-meta')));
     //List of images to build background and slideshow image
-    $my_meta->addText($prefix.'text_field_id',array('name'=> __('Lista de ID para imagens a serem utilizadas no mosaico e slideshow ','tax-meta')));
-      
+    $my_meta_cat->addText($prefix.'text_field_id',array('name'=> __('Lista de ID para imagens a serem utilizadas no mosaico e slideshow ','tax-meta')));
+
+    //Color field
+    $my_meta_post->addColor($prefix.'color_field_id_post',array('name'=> 'Cor representativa '));
 
     //Finish Meta Box Decleration
-    $my_meta->Finish();
+    $my_meta_cat->Finish();
+    $my_meta_post->Finish();
+}
+
+// Renomeia EXERPT para SUBTITULO
+function lead_meta_box() {
+    add_meta_box( 'postexcerpt', 'Subtitulo', 'post_excerpt_meta_box', 'proposta', 'normal', 'core' );
+}
+add_action( 'admin_menu', 'lead_meta_box' );
+
+
+// Renomeia FEATURED IMAGE para ICONE
+add_action('do_meta_boxes', 'change_image_box');
+function change_image_box()
+{
+    add_meta_box('postimagediv', __('Ícone (16x16px)'), 'post_thumbnail_meta_box', 'proposta', 'normal', 'high');
 }
 
 

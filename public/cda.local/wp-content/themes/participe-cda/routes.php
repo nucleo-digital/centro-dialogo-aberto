@@ -38,3 +38,19 @@ Timber::add_route('projetos/:name/:user', function($params){
     $query = 'category_name='.$params['name'] . '&posts_per_page=12&post_type=avaliacao&username='.$params['user'];
     Timber::load_template('resultado-passo-1.php', $query);
 });
+
+
+Timber::add_route('projetos/:name/passo-2', function($params){
+
+    $category_name = $params['name'];
+    $args = array( 'numberposts' => 1, 'category_name' => $category_name, 'post_type' => 'proposta' );
+    $posts = get_posts( $args );
+
+    $query = 'category_name='. $category_name . '&post_name=' . $posts[0]->post_name . '&post_type=proposta&username='.$params['user'];
+    Timber::load_template('passo-2.php', $query);
+});
+
+Timber::add_route('projetos/:name/passo-2/:aba', function($params){
+    $query = 'category_name='.$params['name'] . '&post_name=' . $params['aba'] . '&post_type=proposta&username='.$params['user'];
+    Timber::load_template('passo-2.php', $query);
+});
