@@ -1,5 +1,5 @@
 'use strict';
-var s;
+var AA;
 function resize () {
 	var height = $(window).height() - $('.navbar').height();
 	$('.home_grid').height(height);
@@ -16,18 +16,9 @@ jQuery(function() {
 
 	});
 
-	$('a','.navbar-bottom .steps_header').bind('click',function(){
-
-		$('li','.steps_header').removeClass('step_selected step_before_selected');
-		$(this)
-			.parent().addClass('step_selected')
-			.prev().addClass('step_before_selected');
-
-	});
-
 	if ($('.steps.voting').length) {
 
-		s = { //steps
+		var s = { //steps
 
 			total : 12, // NUMERO DE PERGUNTAS
 			current : 1,
@@ -115,17 +106,6 @@ jQuery(function() {
 
 	}
 
-	// if ($('.steps.results').length) {
-
-	// 	var voting = window.location.href.split('voting=')[1].split(','); // MELHORAR ISSO!
-
-	// 	$(voting).each(function(i,o){
-	// 		$('.vote.step' + (i+1)).addClass('vote'+o);
-	// 	});
-
-
-	// }
-
 	if ($('.home_grid').length) {
 
 		$(window).resize(resize);
@@ -133,8 +113,45 @@ jQuery(function() {
 
 	}
 
+
+
 	jQuery(document).ready(function() {
 		jQuery('.carousel').carousel({interval:1500});
 	});
+
+	if ($('form#comment').length) {
+
+		$('form#comment').bind('submit',function(e,o){
+
+			var form = $(this),
+				url = form.attr('action'),
+				input = form.children('input:text');
+
+			$.ajax({
+				type: "POST",
+				url: url,
+				data: {
+					'comment' : input.val()
+				},
+				success : function (comment) {
+
+					$('#comment_list')
+						.prepend('<div style="display: none;" classo="comment user_comment"> <p class="title">' + comment.comment_content + '</p> <p class="author">' + comment.comment_author + '</p> </div>')
+						.children('div:first')
+							.fadeIn('slow');
+
+					input.val('');
+
+				},
+				dataType: 'json'
+			});
+
+			return false;
+
+		});
+
+	}
+
+
 	
 });

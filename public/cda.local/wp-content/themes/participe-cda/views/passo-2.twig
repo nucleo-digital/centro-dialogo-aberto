@@ -11,7 +11,6 @@
 
 {% include "_color-theme.twig" %}
 
-
 <style type="text/css">
 body {
     background-color: {{post.cda_color_field_id_post}}
@@ -19,22 +18,106 @@ body {
 
 </style>
 
+
+
+
 <div>
 
 <hr>
 
+<p>ABA SELECIONADA</p>
+
+<p>{{post.post_title}}</p>
+
+<hr>
+
+
 <p>ABAS -----------</p>
-            {% for post in posts %}
-                <p>{{post.title}}</p>
+            {% for post_li in posts %}
+                <ul>
+                    <li style="background-image: url('{{post_li.icon}}');background-color: {% if post_li.post_name == post.post_name %}white{% else %}{{post_li.cda_color_field_id_post}}{% endif %}">
+                        <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/propostas/{{post_li.post_name}}">{{post_li.title}}</a>
+                    </li>
+                    
+                </ul>
                 
             {% endfor %}
 <p>----------- ABAS END</p>
 <hr>
 
-<p>ABA SELECIONADA</p>
+
+<b>GALERIA 1</b>
 
 
-<p>{{post.post_title}}</p>
+{% for image in post.mgop_media_value['mgop_mb_galeria-1-fotos-do-projeto'] %}
+    <img src="{{image}}" width="100" height="100"> --
+    
+{% endfor %}
+<br>
+
+<hr>
+
+<b>GALERIA 2</b>
+
+
+{% for image in post.mgop_media_value['mgop_mb_galeria-2-exemplos'] %}
+    <img src="{{image}}" width="100" height="100"> --
+{% endfor %}
+
+
+<br><br>
+<br><br>
+
+
+
+<hr>
+<p><b>VOTOS</b> </p>
+
+<p>{{user_vote}}</p>
+
+<p>{{up}}</p>
+
+
+
+<p>{{down}}</p>
+
+THUMBS UP VOTES: {{up|length}} <br>
+THUMBS DOWN VOTES: {{down|length}}
+
+
+<br><br>
+<br><br>
+
+<p>COMMENTS</p>
+
+
+
+
+
+
+<form id="comment" action="{{bloginfo('home')}}/projetos/{{category_slug}}/propostas/{{post.post_name}}/comment">
+    <label>Deixe seu comment</label>
+    <input name="comment" type="text">
+    <button>Enviar</button>
+</form>
+
+<p>AGUARDANDO</p>
+            <div id="comment_list">
+            {% for comment in user_comments %}
+                <div classo="comment user_comment">
+                   <p class="title">{{comment.comment_content}}</p>
+                   <p class="author">{{comment.comment_author}}</p>
+                </div>
+            {% endfor %}
+            {% for comment in comments %}
+                <div classo="comment">
+                   <p class="title">{{comment.comment_content}}</p>
+                   <p class="author">{{comment.comment_author}}</p>
+                </div>
+            {% endfor %}
+            </div>
+
+
 
 <hr>
 

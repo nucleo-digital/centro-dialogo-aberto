@@ -243,6 +243,17 @@ function change_image_box()
     add_meta_box('postimagediv', __('Ícone (16x16px)'), 'post_thumbnail_meta_box', 'proposta', 'normal', 'high');
 }
 
+// add_action('admin_head', 'my_custom_fonts');
+// function my_custom_fonts() {
+//   echo '<style>
+//             #
+//     body, td, textarea, input, select {
+//       font-family: "Lucida Grande";
+//       font-size: 12px;
+//     } 
+//   </style>';
+// }
+
 
 /**
  * Redirect users on any wp-admin pages

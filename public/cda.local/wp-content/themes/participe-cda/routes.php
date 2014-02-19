@@ -5,6 +5,27 @@ Timber::add_route('projetos/:name', function($params){
     Timber::load_template('capa-passo-1.php', $query);
 });
 
+Timber::add_route('projetos/:name/propostas', function($params){
+    $query = 'category_name='. $params['name'] . '&post_type=proposta&username='.$params['user'];
+    Timber::load_template('passo-2.php', $query);
+});
+
+Timber::add_route('projetos/:name/propostas/:aba', function($params){
+    $query = 'category_name='.$params['name'] . '&post_name=' . $params['aba'] . '&post_type=proposta&username='.$params['user'];
+    Timber::load_template('passo-2.php', $query);
+});
+
+Timber::add_route('projetos/:name/propostas/:aba/comment', function($params){
+    $query = 'category_name='.$params['name'] . '&post_name=' . $params['aba'] . '&post_type=proposta&username='.$params['user'];
+    Timber::load_template('passo-2_comment.php', $query);
+});
+
+Timber::add_route('projetos/:name/propostas/:aba/vote/:thumb', function($params){
+    $query = 'thumb=' . $params['thumb'] . '&category_name='. $params['name'] . '&post_name=' . $params['aba'] . '&post_type=proposta&username='.$params['user'];
+    Timber::load_template('passo-2_vote.php', $query);
+});
+
+
 Timber::add_route('projetos/:name/votar', function($params){
     if (!is_user_logged_in()) {
         wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'] ); exit;
@@ -40,17 +61,3 @@ Timber::add_route('projetos/:name/:user', function($params){
 });
 
 
-Timber::add_route('projetos/:name/passo-2', function($params){
-
-    $category_name = $params['name'];
-    $args = array( 'numberposts' => 1, 'category_name' => $category_name, 'post_type' => 'proposta' );
-    $posts = get_posts( $args );
-
-    $query = 'category_name='. $category_name . '&post_name=' . $posts[0]->post_name . '&post_type=proposta&username='.$params['user'];
-    Timber::load_template('passo-2.php', $query);
-});
-
-Timber::add_route('projetos/:name/passo-2/:aba', function($params){
-    $query = 'category_name='.$params['name'] . '&post_name=' . $params['aba'] . '&post_type=proposta&username='.$params['user'];
-    Timber::load_template('passo-2.php', $query);
-});
