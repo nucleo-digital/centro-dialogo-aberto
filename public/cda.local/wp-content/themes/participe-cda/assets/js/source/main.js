@@ -119,7 +119,16 @@ jQuery(function() {
 		jQuery('.carousel').carousel({interval:1500});
 	});
 
-	if ($('form#comment').length) {
+
+
+	if ($('.proposta').length) {
+
+		var tabs = $('.content-header .tabs .tab a'),
+			width = 100/tabs.length-10;
+
+		// console.log(width);
+		// tabs.width(width);
+
 
 		$('form#comment').bind('submit',function(e,o){
 

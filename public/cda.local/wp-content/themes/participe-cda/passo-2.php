@@ -104,5 +104,7 @@ for($i=0; $i<count($context['posts']); $i++) {
 }
 
 
+// print_r($context['post']);
+
 
 Timber::render('passo-2.twig', $context);

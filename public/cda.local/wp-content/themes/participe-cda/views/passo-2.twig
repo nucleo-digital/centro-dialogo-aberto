@@ -18,57 +18,46 @@ body {
 
 </style>
 
+<div class="proposta content">
 
+    <div class="content-header">
+        <h1>Conheça a proposta</h1>
+        <ul class="tabs">
+        {% for post_li in posts %}
+            <li class="tab">
+                <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/propostas/{{post_li.post_name}}" style="background-image: url('post_li.icon');{% if post_li.post_name == post.post_name %}background-color: {{post_li.cda_color_field_id_post}};color: #fff;{% else %}background-color: #fff;color: {{post_li.cda_color_field_id_post}};{% endif %}">{{post_li.title}}</a>
+            </li>
+        {% endfor %}
+        </ul>
 
-
-<div>
-
-<hr>
-
-<p>ABA SELECIONADA</p>
-
-<p>{{post.post_title}}</p>
-
-<hr>
-
-
-<p>ABAS -----------</p>
-            {% for post_li in posts %}
-                <ul>
-                    <li style="background-image: url('{{post_li.icon}}');background-color: {% if post_li.post_name == post.post_name %}white{% else %}{{post_li.cda_color_field_id_post}}{% endif %}">
-                        <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/propostas/{{post_li.post_name}}">{{post_li.title}}</a>
-                    </li>
-                    
-                </ul>
-                
+        <h2>{{post.post_excerpt}}</h2>
+   
+    </div>
+    <div class="col-md-6">
+        <div class="gallery-1">
+            <ul>
+            {% for image in post.mgop_media_value['mgop_mb_galeria-1-fotos-do-projeto'] %}
+                <li>
+                    <a href="javascript://"><img src="{{image}}" width="540" height="540"></a>
+                </li>
             {% endfor %}
-<p>----------- ABAS END</p>
-<hr>
+            </ul>
+        </div>
+        <h3>Veja alguns exemplos</h3>
+        <div class="gallery-2">
+            <ul>
+                {% for image in post.mgop_media_value['mgop_mb_galeria-2-exemplos'] %}
+                <li>
+                    <a href="javascript://"><img src="{{image}}" width="200" height="200"></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
 
 
-<b>GALERIA 1</b>
-
-
-{% for image in post.mgop_media_value['mgop_mb_galeria-1-fotos-do-projeto'] %}
-    <img src="{{image}}" width="100" height="100"> --
-    
-{% endfor %}
-<br>
-
-<hr>
-
-<b>GALERIA 2</b>
-
-
-{% for image in post.mgop_media_value['mgop_mb_galeria-2-exemplos'] %}
-    <img src="{{image}}" width="100" height="100"> --
-{% endfor %}
-
-
-<br><br>
-<br><br>
-
-
+</div>
 
 <hr>
 <p><b>VOTOS</b> </p>
