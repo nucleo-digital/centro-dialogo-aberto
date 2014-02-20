@@ -35,7 +35,8 @@ if ($post_slug) {
       'post_status' => 'publish',
       'numberposts' => 1
     );
-    $post = get_posts($get_post_args)[0];
+    $get_post = get_posts($get_post_args);
+    if (count($post) > 0) $post = $get_post[0];
 }
 
 $post_meta = get_post_meta($post->ID);
