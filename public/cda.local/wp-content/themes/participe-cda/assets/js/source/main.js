@@ -130,6 +130,23 @@ jQuery(function() {
 			interval: 3000
 		});
 
+		$('#gallery2 .pause').bind('click',function(){
+
+			$('#gallery2')
+				.carousel('pause')
+				.addClass('paused');
+
+		});
+
+		$('#gallery2 .play').bind('click',function(){
+
+			$('#gallery2')
+				.carousel('cycle')
+				.removeClass('paused');
+
+		});
+
+
 		var userComent = {
 
 			open : function() {

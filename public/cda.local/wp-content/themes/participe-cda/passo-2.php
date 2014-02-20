@@ -49,7 +49,6 @@ foreach ($post_meta as $key => $value) {
 $context['post'] = $post;
 
 // IMAGE GALLERY
-
 $context['post']->mgop_media_value = unserialize($context['post']->mgop_media_value);
 
 foreach ($context['post']->mgop_media_value as $key => $value) {
@@ -64,9 +63,7 @@ foreach ($context['post']->mgop_media_value as $key => $value) {
 
 }
 
-
 // USER
-
 if (get_query_var('username')){
     $current_user = get_user_by('login', get_query_var('username'));
 
@@ -81,13 +78,7 @@ if (get_query_var('username')){
 }
 
 $context['comments'] = get_comments(array('order'=>'desc', 'post_id' => $post->ID, 'status' => 'approve'));
-// $context['comments'] = get_comments(array('post_id' => $post->ID));
-// $context['comments'] = get_comments(array('post_id' => $post->ID));
-// $context['comments'] = get_comments();
 $context['user_comments'] = get_comments(array('order'=>'desc', 'user_id' => $current_user->ID, 'status' => 'hold', 'post_id' => $post->ID));
-
-// print_r($post->ID);
-// print_r($context['comments']);
 
 // VOTES
 $context['up'] = get_post_meta( $context['post']->ID, 'up' );
@@ -98,17 +89,10 @@ if (in_array($current_user->ID, $context['up']))
 else if (in_array($current_user->ID, $context['down']))
   $context['user_vote'] = 'down';
 
-
-
 // ICONE
-
 for($i=0; $i<count($context['posts']); $i++) {
   $icon = wp_get_attachment_url( $context['posts'][$i]->_thumbnail_id, array(16,16) );
   $context['posts'][$i]->icon = $icon;
 }
-
-
-// print_r($context['post']);
-
 
 Timber::render('passo-2.twig', $context);

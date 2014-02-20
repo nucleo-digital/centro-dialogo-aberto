@@ -13,7 +13,10 @@
 
 <style type="text/css">
 
-body
+body,
+.carousel-control span,
+.modal .glyphicon,
+.carousel-caption
 {
     background-color: {{post.cda_color_field_id_post}};
 }
@@ -30,9 +33,35 @@ body
     <div class="content-header">
         <h1>Conheça a proposta</h1>
         <ul class="tabs">
+
         {% for post_li in posts %}
+
+            {% set has_icon = "" %}
+            {% set style = "" %}
+
+            {% set color = 'color: ' ~  post_li.cda_color_field_id_post %}
+            {% set bg = 'background-color: #fff' %}
+            {% set image = '' %}
+
+
+            {% if post_li.icon|length %}
+                {% set image = 'background-image: url(' ~ post_li.icon ~ ')' %}
+                {% set has_icon = 'has_icon' %}
+            {% endif %}
+
+            {% if post_li.post_name == post.post_name %}
+                {% set color = 'color: #fff' %}
+                {% set bg = 'background-color: ' ~  post_li.cda_color_field_id_post %}
+
+                {% if post_li.icon|length %}
+                    {% set image = 'background-image: url(' ~ post_li.icon|slice(0, length-4) ~ '_white.png)' %}
+                {% endif %}
+            {% endif %}
+
+            {% set style = bg ~ ';' ~ color ~ ';' ~ image ~ ';' %}
+
             <li class="tab">
-                <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/propostas/{{post_li.post_name}}" style="background-image: url('post_li.icon');{% if post_li.post_name == post.post_name %}background-color: {{post_li.cda_color_field_id_post}};color: #fff;{% else %}background-color: #fff;color: {{post_li.cda_color_field_id_post}};{% endif %}">{{post_li.title}}</a>
+                <a class="{{has_icon}}" href="{{bloginfo('home')}}/projetos/{{category_slug}}/propostas/{{post_li.post_name}}" style="{{style}}">{{post_li.title}}</a>
             </li>
         {% endfor %}
         </ul>
@@ -45,51 +74,72 @@ body
     <div class="content-container">
 
         <div class="col-left col-sm-6">
-            <div id="gallery1" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#gallery1" data-slide-to="0" class="active"></li>
-                    <li data-target="#gallery1" data-slide-to="1"></li>
-                    <li data-target="#gallery1" data-slide-to="2"></li>
-                </ol>
+            <div id="gallery1" class="carousel slide small carousel-fade" data-ride="carousel">
 
-                <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     {% for image in post.mgop_media_value['mgop_mb_galeria-1-fotos-do-projeto'] %}
                     <div class="item {% if loop.first %}active{% endif %}">
-                        <img src="{{image['url']}}" alt="..." width="540" height="305">
+                        <img src="{{image['url']}}">
                     </div>
                     {% endfor %}    
                 </div>
 
-                <!-- Controls -->
-                <a class="left carousel-control" href="#gallery1" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-                <a class="right carousel-control" href="#gallery1" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
+                <a href="javascript://" class="modal_open carousel-control" data-toggle="modal" data-target="#gallery1_modal"><span><!-- --></span></a>
             </div>
+
+
+            <div class="modal fade  modal-lg" id="gallery1_modal" tabindex="-1" role="dialog" aria-labelledby="gallery1_modalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+
+                    <div id="gallery1_large" class="carousel slide large carousel-fade" data-ride="carousel">
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            {% for image in post.mgop_media_value['mgop_mb_galeria-1-fotos-do-projeto'] %}
+                            <div class="item {% if loop.first %}active{% endif %}">
+                                <img src="{{image['url']}}" width="880" height="560">
+                                <div class="carousel-caption">
+                                    {{image['caption']}}
+                                </div>
+                            </div>
+                            {% endfor %}    
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#gallery1_large" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#gallery1_large" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+
+
+                </div>
+              </div>
+            </div>
+
+
+
             <div class="exemplos">
                 <h3>Veja alguns exemplos</h3>
-                <div id="gallery2" class="carousel slide" data-ride="carousel">
+                <div id="gallery2" class="carousel slide small carousel-fade" data-ride="carousel">
 
-                    <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         {% for image in post.mgop_media_value['mgop_mb_galeria-2-exemplos'] %}
                         <div class="item {% if loop.first %}active{% endif %}">
                             <img src="{{image['url']}}" alt="..." width="200" height="200">
+                            <div class="carousel-caption">
+                                {{image['caption']}}
+                            </div>
                         </div>
                         {% endfor %}    
                     </div>
 
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#gallery2" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a class="right carousel-control" href="#gallery2" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
+                    <a href="javascript://" class="carousel-control pause"><span><!-- --></span></a>
+                    <a href="javascript://" class="carousel-control play"><span><!-- --></span></a>
                 </div>
                 <div class="post-content">
                     {{post.post_content}}
