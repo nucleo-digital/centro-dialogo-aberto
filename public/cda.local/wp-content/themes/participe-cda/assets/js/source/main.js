@@ -167,22 +167,30 @@ jQuery(function() {
 			var direction = this.id,
 				action = $(this).parent().hasClass('selected') ? 'dislike' : 'like',
 				url = $(this).data('url'),
-				sibling = $(this).parent().siblings('.up,.down');
+				sibling = $(this).parent().siblings('.up,.down'),
+				counter = $(this).children('p');
 
 			$(this)
 				.parent()
 					.toggleClass('selected');
 
+			if (action == 'like') {
+				counter.text(parseInt(counter.text())+1);
+			} else {
+				counter.text(parseInt(counter.text())-1);
+			}
+
 			$.post(url + '/' + direction + '/' + action);
 
 			if (sibling.hasClass('selected')) {
 
+				counter = sibling.find('p');
+				counter.text(parseInt(counter.text())-1);
 				sibling.removeClass('selected');
 
 				direction = direction == 'up' ? 'down': 'up';
-				action = action == 'like' ? 'dislike' : 'like'; 
 
-				$.post(url + '/' + direction + '/' + action);
+				$.post(url + '/' + direction + '/dislike');
 
 			}
 
