@@ -18,7 +18,8 @@ $get_post_args = array(
   'post_status' => 'publish',
   'numberposts' => 1
 );
-$post = get_posts($get_post_args)[0];
+$get_post = get_posts($get_post_args);
+if (count($post) > 0) $post = $get_post[0];
 
 $thumb = get_query_var('thumb');
 $action = get_query_var('action');
