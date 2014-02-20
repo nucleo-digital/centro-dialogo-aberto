@@ -20,9 +20,15 @@ Timber::add_route('projetos/:name/propostas/:aba/comment', function($params){
     Timber::load_template('passo-2_comment.php', $query);
 });
 
-Timber::add_route('projetos/:name/propostas/:aba/vote/:thumb', function($params){
-    $query = 'thumb=' . $params['thumb'] . '&category_name='. $params['name'] . '&post_name=' . $params['aba'] . '&post_type=proposta&username='.$params['user'];
+Timber::add_route('projetos/:name/propostas/:aba/vote/:thumb/:action', function($params){
+    $query = 'thumb=' . $params['thumb'] . '&category_name='. $params['name'] . '&action='. $params['action'] . '&post_name=' . $params['aba'] . '&post_type=proposta&username='.$params['user'];
     Timber::load_template('passo-2_vote.php', $query);
+});
+
+Timber::add_route('projetos/:name/propostas/:aba/v', function($params){
+    $query = 'category_name='. $params['name'] . '&post_name=' . $params['aba'] . '&post_type=proposta&username='.$params['user'];
+    Timber::load_template('passo-2_vote.php', $query);
+    Timber::load_template('passo-2_v.php', $query);
 });
 
 

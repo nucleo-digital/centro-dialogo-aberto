@@ -96,6 +96,7 @@ body {
 */
 body {
     padding:0;
+    font-family: 'museoSans';
 }
 #content {
     margin-top: 90px;
@@ -315,7 +316,7 @@ h1 a, h2 a, h3 a {
                 background-color: white;
                 color: $blue_bg;
                 //margin-right: 11px;
-                padding: 16px;
+                padding: 16px 10px 10px;
                 em {
                     background-color: $blue_bg;
                     color: #fff;
@@ -966,9 +967,12 @@ h1 a, h2 a, h3 a {
 .proposta {
 
     .content-header {
-        min-width: $width;
-        background-color: #fff;
+        background-color: #e7e7e7;
+        float: left;
         height: 46px;
+        position: fixed;
+        width: 100%;
+        z-index: 1024;
         h1 {
             float: left;
             font-family: 'museoSans';
@@ -992,17 +996,211 @@ h1 a, h2 a, h3 a {
                 }
             } 
         }
+    }
+    .content-sub-header {
+        border-bottom: 2px solid #FFFFFF;
+        display: block;
+        float: left;
+        padding: 12px 0;
+        width: 100%;
+        text-align: center;
+        margin: 46px 0 15px;
         h2 {
-            border-bottom: 2px solid #FFFFFF;
-            color: #FFFFFF;
-            display: block;
-            float: left;
             font-size: 21px;
-            padding: 12px 0;
-            text-align: center;
-            width: 100%;
             font-family: 'museoSans';
+            color: #FFFFFF;
         }
     }
+    .content-container {
+        float: left;
+        margin-top: 45px;
+        width: 100%;
+        margin: 0 10px 10px;
+        .col-left {
+            background-color: rgba(0, 0, 0, 0.2);
+            box-shadow: 3px 3px 10px #333333;
+            padding: 0;
+            .exemplos {
+                h3 {
+                    font-size: 21px;
+                    color: #fff;
+                    padding: 10px;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+                }
+                #gallery2 {
+                    width: 200px;
+                    float: left;
+                }
+                .post-content {
+                    margin: 10px 10px 10px 210px;
+                }
+            }
+        }
+        .col-right {
+            h3 {
+                font-size: 21px;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+                font-family: 'museoSans';
+            }
+            .vote {
+                text-align: center;
+                padding: 0;
+                list-style: none;
+                width: 75%;
+                margin: 0 auto;
+                li {
+                    display: inline-block;
+                    margin-right: 30px;
+                    a {
+                        background-color: #FFFFFF;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        border-radius: 100%;
+                        display: inline-block;
+                        height: 50px;
+                        width: 50px;
+                        p {
+                            color: #FFFFFF;
+                            font-size: 16px;
+                            padding: 55px 0 0;
+                            text-align: center;
+                            font-family: 'museoSans';
+                        }
+                    }
+
+                }
+                li.selected {
+                    a {
+                        background-color: rgba(0, 0, 0, 0.2);
+                    }
+                }
+                li.wait {
+                    a {
+                        background-image: url(http://soulagementdesmaux.com/images/wait.gif);
+                    }
+                }
+                .up a {
+                    background-image: url(assets/images/vote_up.png);
+                    cursor: default;
+                }
+                .down a {
+                    background-image: url(assets/images/vote_down.png);
+                    cursor: default;
+                }
+                .quotes {
+                    margin-right: 0px;
+                }
+                .quotes a {
+                    background-image: url(assets/images/vote_comment.png);
+                }
+
+            }
+            .vote.enabled {
+
+                li {
+                    a {
+                        cursor: pointer;
+                    }
+                    // a:hover {
+                    //     background-color: rgba(0, 0, 0, 0.2);
+                    // }
+                    // .up a:hover {
+                    //     background-image: url(assets/images/vote_up_white.png);
+                    // }
+                    // .down:hover a {
+                    //     background-image: url(assets/images/vote_down_white.png);
+                    // }
+                    // .quotes:hover a {
+                    //     background-image: url(assets/images/vote_comment_white.png);
+                    // }
+                }
+
+            }
+            .user_comment {
+                background-color: rgba(0, 0, 0, 0.2);
+                border-radius: 15px;
+                margin: 30px auto 0;
+                padding: 30px 30px 60px;
+                width: 75%;
+                position: relative; 
+                label {
+                    white-space: nowrap;
+                    color: #fff;
+                    font-size: 14px;
+                    font-family: 'museoSans';
+                    font-weight: normal;
+                }
+                input {
+                    background-color: rgba(0, 0, 0, 0);
+                    border: 0px none;
+                    // border-color: transparent transparent transparent #FFFFFF;
+                    // border-style: none none none solid;
+                    // border-width: 0 0 0 1px;
+                    color: #FFFFFF;
+                    font-family: 'museoSans';
+                    font-size: 14px;
+                    width: 100%;
+                }
+                button {
+                    float: right;
+                    margin: 10px 0;
+                }
+            }
+            .user_comment:after {
+                bottom: 100%; 
+                left: 70%; 
+                border: solid transparent; 
+                content: " "; 
+                height: 0; 
+                width: 0; 
+                position: absolute; 
+                pointer-events: none; 
+                border-color: transparent;
+                border-bottom-color: rgba(0, 0, 0, 0.2); 
+                border-width: 15px; 
+                margin-left: -30px; 
+            }
+            .comments {
+                background-color: rgba(0, 0, 0, 0.2);
+                border-radius: 15px;
+                margin: 30px auto 0;
+                padding: 10px 0px 30px;
+                width: 75%;
+                position: relative; 
+                h3 {
+                    font-size: 18px;
+                    color: #fff;
+                    padding: 10px;
+                    text-align: center;
+                    font-family: 'museoSans';
+                }
+                .comments_wrapper {
+                    height: 200px;
+                    overflow: auto;
+                    .comment {
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                        color: #fff;
+                        padding: 0 30px;
+                        font-size: 15px;
+                        margin-bottom: 5px;
+                        .comment_author {
+                            font-weight: bold;
+                        }
+                        .comment_hold {
+                            color: #666;
+                        }
+                    }
+                    .user_hold {
+                        background-color:  rgba(255, 255, 255, 0.9);
+                        color: #999;
+                    }
+                }
+
+            }
+        }
+    }
+
 }
 

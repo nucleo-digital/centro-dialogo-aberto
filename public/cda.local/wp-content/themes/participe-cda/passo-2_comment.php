@@ -10,6 +10,15 @@
  */
 
 $context = Timber::get_context();
+$post_slug = get_query_var('post_name');
+
+$get_post_args = array(
+  'name' => $post_slug,
+  'post_type' => 'proposta',
+  'post_status' => 'publish',
+  'numberposts' => 1
+);
+$post = get_posts($get_post_args)[0];
 
 
 if (get_query_var('username')){
@@ -20,12 +29,12 @@ if (get_query_var('username')){
 }
 
 $comment = $_POST["comment"];
-// $comment = 'OLHA!';
+// $comment = ' kh kjh k jhkh kh khkj hkjh jkh kj hkjh k!';
 $time = current_time('mysql');
 $data = array(
     'comment_author' => $current_user->user_nicename,
-    'comment_author_email' => user_email,
-    'comment_author_url' => user_url,
+    'comment_author_email' => $user_email,
+    'comment_author_url' => $user_url,
     'comment_content' => $comment,
     'comment_post_ID' => $post->ID,
     'comment_author' => $current_user->user_login,

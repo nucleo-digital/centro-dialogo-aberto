@@ -57,8 +57,8 @@ foreach ($context['post']->mgop_media_value as $key => $value) {
   $i=0;
 
   foreach ($value as $v) {
-    $img_url = wp_get_attachment_url( $v );
-    $context['post']->mgop_media_value[$key][$i] = $img_url;
+    $img = wp_prepare_attachment_for_js( $v );
+    $context['post']->mgop_media_value[$key][$i] = $img;
     $i++;
   }
 
@@ -81,9 +81,13 @@ if (get_query_var('username')){
 }
 
 $context['comments'] = get_comments(array('order'=>'desc', 'post_id' => $post->ID, 'status' => 'approve'));
+// $context['comments'] = get_comments(array('post_id' => $post->ID));
+// $context['comments'] = get_comments(array('post_id' => $post->ID));
+// $context['comments'] = get_comments();
 $context['user_comments'] = get_comments(array('order'=>'desc', 'user_id' => $current_user->ID, 'status' => 'hold', 'post_id' => $post->ID));
 
-
+// print_r($post->ID);
+// print_r($context['comments']);
 
 // VOTES
 $context['up'] = get_post_meta( $context['post']->ID, 'up' );

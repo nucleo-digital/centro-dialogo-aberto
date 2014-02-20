@@ -20,21 +20,15 @@ $get_post_args = array(
 );
 $post = get_posts($get_post_args)[0];
 
-$thumb = get_query_var('thumb');
-$action = get_query_var('action');
 
-if (get_query_var('username')){
-    $current_user = get_user_by('login', get_query_var('username'));
-} else {
-    global $current_user;
-    get_currentuserinfo();
-}
+$up = get_post_meta( $post->ID, 'up' );
+$down = get_post_meta( $post->ID, 'down' );
 
-echo $action . 'd';
+print_r($up);
 
-if ($action == 'like') 
-    add_post_meta($post->ID, $thumb, $current_user->ID, 0);
-else
-    delete_post_meta($post->ID, $thumb, $current_user->ID);
+// if ($action == 'like') 
+//     add_post_meta($post->ID, $thumb, $current_user->ID, 0);
+// else
+//     delete_post_meta($post->ID, $thumb, $current_user->ID);
 
 ?>

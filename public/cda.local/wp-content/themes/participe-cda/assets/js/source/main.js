@@ -126,9 +126,72 @@ jQuery(function() {
 		var tabs = $('.content-header .tabs .tab a'),
 			width = 100/tabs.length-10;
 
-		// console.log(width);
-		// tabs.width(width);
+		$('.carousel').carousel({
+			interval: 3000
+		});
 
+		var userComent = {
+
+			open : function() {
+
+				$('.user_comment').slideDown('fast');
+				$('.vote .quotes').addClass('selected');
+				$('.user_comment input:text').focus();
+
+			},
+
+			close : function() {
+
+				$('.user_comment').slideUp('fast');
+				$('.vote .quotes').removeClass('selected');
+
+			},
+
+			toggle : function() {
+
+				if ($('.vote .quotes').hasClass('selected')) {
+					userComent.close();
+				} else {
+					userComent.open();
+				}
+
+			}
+
+
+		};
+
+		$('.vote .quotes').bind('click',userComent.toggle);
+
+		var vote = function() {
+
+			var direction = this.id,
+				action = $(this).parent().hasClass('selected') ? 'dislike' : 'like',
+				url = $(this).data('url'),
+				sibling = $(this).parent().siblings('.up,.down');
+
+			$(this)
+				.parent()
+					.toggleClass('selected');
+
+			$.post(url + '/' + direction + '/' + action);
+
+			if (sibling.hasClass('selected')) {
+
+				sibling.removeClass('selected');
+
+				direction = direction == 'up' ? 'down': 'up';
+				action = action == 'like' ? 'dislike' : 'like'; 
+
+				$.post(url + '/' + direction + '/' + action);
+
+			}
+
+			userComent.open();
+
+		};
+
+		$('#up,#down','.vote').bind('click',vote);
+		
 
 		$('form#comment').bind('submit',function(e,o){
 
@@ -144,10 +207,12 @@ jQuery(function() {
 				},
 				success : function (comment) {
 
-					$('#comment_list')
-						.prepend('<div style="display: none;" classo="comment user_comment"> <p class="title">' + comment.comment_content + '</p> <p class="author">' + comment.comment_author + '</p> </div>')
+					$('.comments .comments_wrapper')
+						.prepend('<div style="display: none;" class="comment user_hold"> <p class="comment_hold">Comentário aguardando aprovação</p> <p class="comment_author">' + comment.comment_author + '</p> <p class="comment_time">Agora</p>  <p class="comment_title">' + comment.comment_content + '</p></div>')
 						.children('div:first')
 							.fadeIn('slow');
+
+					userComent.close();
 
 					input.val('');
 

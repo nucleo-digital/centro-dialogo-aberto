@@ -12,8 +12,15 @@
 {% include "_color-theme.twig" %}
 
 <style type="text/css">
-body {
-    background-color: {{post.cda_color_field_id_post}}
+
+body
+{
+    background-color: {{post.cda_color_field_id_post}};
+}
+
+.proposta .content-container .col-right .comments .comments_wrapper .comment .comment_author
+{
+    color: {{post.cda_color_field_id_post}};
 }
 
 </style>
@@ -29,88 +36,117 @@ body {
             </li>
         {% endfor %}
         </ul>
+    </div>
 
+    <div class="content-sub-header">
         <h2>{{post.post_excerpt}}</h2>
-   
-    </div>
-    <div class="col-md-6">
-        <div class="gallery-1">
-            <ul>
-            {% for image in post.mgop_media_value['mgop_mb_galeria-1-fotos-do-projeto'] %}
-                <li>
-                    <a href="javascript://"><img src="{{image}}" width="540" height="540"></a>
-                </li>
-            {% endfor %}
-            </ul>
-        </div>
-        <h3>Veja alguns exemplos</h3>
-        <div class="gallery-2">
-            <ul>
-                {% for image in post.mgop_media_value['mgop_mb_galeria-2-exemplos'] %}
-                <li>
-                    <a href="javascript://"><img src="{{image}}" width="200" height="200"></a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-
     </div>
 
+    <div class="content-container">
 
-</div>
+        <div class="col-left col-sm-6">
+            <div id="gallery1" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#gallery1" data-slide-to="0" class="active"></li>
+                    <li data-target="#gallery1" data-slide-to="1"></li>
+                    <li data-target="#gallery1" data-slide-to="2"></li>
+                </ol>
 
-<hr>
-<p><b>VOTOS</b> </p>
-
-<p>{{user_vote}}</p>
-
-<p>{{up}}</p>
-
-
-
-<p>{{down}}</p>
-
-THUMBS UP VOTES: {{up|length}} <br>
-THUMBS DOWN VOTES: {{down|length}}
-
-
-<br><br>
-<br><br>
-
-<p>COMMENTS</p>
-
-
-
-
-
-
-<form id="comment" action="{{bloginfo('home')}}/projetos/{{category_slug}}/propostas/{{post.post_name}}/comment">
-    <label>Deixe seu comment</label>
-    <input name="comment" type="text">
-    <button>Enviar</button>
-</form>
-
-<p>AGUARDANDO</p>
-            <div id="comment_list">
-            {% for comment in user_comments %}
-                <div classo="comment user_comment">
-                   <p class="title">{{comment.comment_content}}</p>
-                   <p class="author">{{comment.comment_author}}</p>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    {% for image in post.mgop_media_value['mgop_mb_galeria-1-fotos-do-projeto'] %}
+                    <div class="item {% if loop.first %}active{% endif %}">
+                        <img src="{{image['url']}}" alt="..." width="540" height="305">
+                    </div>
+                    {% endfor %}    
                 </div>
-            {% endfor %}
-            {% for comment in comments %}
-                <div classo="comment">
-                   <p class="title">{{comment.comment_content}}</p>
-                   <p class="author">{{comment.comment_author}}</p>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#gallery1" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#gallery1" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+            <div class="exemplos">
+                <h3>Veja alguns exemplos</h3>
+                <div id="gallery2" class="carousel slide" data-ride="carousel">
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        {% for image in post.mgop_media_value['mgop_mb_galeria-2-exemplos'] %}
+                        <div class="item {% if loop.first %}active{% endif %}">
+                            <img src="{{image['url']}}" alt="..." width="200" height="200">
+                        </div>
+                        {% endfor %}    
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#gallery2" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#gallery2" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
                 </div>
-            {% endfor %}
+                <div class="post-content">
+                    {{post.post_content}}
+                </div>
+
+            </div>
+        </div>
+        <div class="col-right col-sm-6">
+            <h3>Qual a sua opinião?</h3>
+            <!-- <ul class="vote {% if user_vote|length %}disabled{% else %}enabled{% endif %}"> -->
+            <ul class="vote enabled">
+                <li class="up {% if user_vote == 'up' %}selected{% endif %}"><a class="thumb" id="up" data-url="{{bloginfo('home')}}/projetos/{{category_slug}}/propostas/{{post.post_name}}/vote" href="javascript://"><p>{{up|length}}</p></a></li>
+                <li class="down {% if user_vote == 'down' %}selected{% endif %}"><a class="thumb" id="down" data-url="{{bloginfo('home')}}/projetos/{{category_slug}}/propostas/{{post.post_name}}/vote" href="javascript://"><p>{{down|length}}</p></a></li>
+                <li class="quotes"><a href="javascript://"><p>{{comments|length}}</p></a></li>
+            </ul>
+
+            <div class="user_comment" style="display: none;">
+                <form id="comment" action="{{bloginfo('home')}}/projetos/{{category_slug}}/propostas/{{post.post_name}}/comment">
+                    <label for="comment_input">Deixe seu cometário sobre a proposta</label>
+                    <input id="comment_input" name="comment" type="text">
+                    <button>enviar</button>
+                </form>
+            </div>
+
+            <div class="comments">
+                <h3>Últimos comentários</h3>
+                <div class="comments_wrapper">
+
+                    {% for comment in user_comments %}
+                    <div class="comment user_hold">
+                        <p class="comment_hold">Comentário aguardando aprovação</p>
+                        <p class="comment_author">{{comment.comment_author}}</p>
+                        <p class="comment_time">{{comment.comment_date}}</p>
+                        <p class="comment_title">{{comment.comment_content}}</p>
+                    </div>
+                    {% endfor %}
+
+                    {% for comment in comments %}
+                    <div class="comment">
+                       <p class="comment_author">{{comment.comment_author}}</p>
+                       <p class="comment_time">{{comment.comment_date}}</p>
+                       <p class="comment_title">{{comment.comment_content}}</p>
+                    </div>
+                    {% endfor %}
+
+                    {{comment}}
+
+                </div>
             </div>
 
 
-
-<hr>
+        </div>
+    </div>
 
 
 </div>
+
+
 
 {% endblock %}
