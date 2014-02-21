@@ -11,6 +11,12 @@
 
 {% include "_color-theme.twig" %}
 
+{% set cor_post = post.cda_color_field_id_post %}
+
+{% if cor_post == "#" %}
+    {% set cor_post = cor_projeto %}
+{% endif %}
+
 <style type="text/css">
 
 body,
@@ -18,12 +24,12 @@ body,
 .modal .glyphicon,
 .carousel-caption
 {
-    background-color: {{post.cda_color_field_id_post}};
+    background-color: {{cor_post}};
 }
 
 .proposta .content-container .col-right .comments .comments_wrapper .comment .comment_author
 {
-    color: {{post.cda_color_field_id_post}};
+    color: {{cor_post}};
 }
 
 </style>
@@ -38,8 +44,13 @@ body,
 
             {% set has_icon = "" %}
             {% set style = "" %}
+            {% set cor = post_li.cda_color_field_id_post %}
 
-            {% set color = 'color: ' ~  post_li.cda_color_field_id_post %}
+            {% if cor == "#" %}
+                {% set cor = cor_projeto %}
+            {% endif %}
+
+            {% set color = 'color: ' ~  cor %}
             {% set bg = 'background-color: #fff' %}
             {% set image = '' %}
 
@@ -51,7 +62,7 @@ body,
 
             {% if post_li.post_name == post.post_name %}
                 {% set color = 'color: #fff' %}
-                {% set bg = 'background-color: ' ~  post_li.cda_color_field_id_post %}
+                {% set bg = 'background-color: ' ~  cor %}
 
                 {% if post_li.icon|length %}
                     {% set image = 'background-image: url(' ~ post_li.icon|slice(0, length-4) ~ '_white.png)' %}
