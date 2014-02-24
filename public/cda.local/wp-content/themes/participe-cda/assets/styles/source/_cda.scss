@@ -1005,10 +1005,12 @@ h1 a, h2 a, h3 a {
                     border-radius: 5px 5px 0 0;
                     display: block;
                     margin: 4px 5px 0;
-                    padding: 11px 10px;
+                    padding: 0 10px;
+                    line-height: 46px;
+                    height: 42px;
                 }
                 .has_icon {
-                    padding: 11px 10px 11px 40px;
+                    padding: 0 10px 0 40px;
                 }
             } 
         }
