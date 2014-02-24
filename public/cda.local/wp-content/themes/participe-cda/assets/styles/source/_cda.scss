@@ -95,7 +95,6 @@ $width: 960px;
   opacity: 1;
 }
 .proposta .carousel-caption {
-  background: none repeat scroll 0 0 #FF0000;
   bottom: 0;
   float: left;
   left: 0;
@@ -1052,6 +1051,13 @@ h1 a, h2 a, h3 a {
                         background-image: url("assets/images/icon_left.png");
                         left: -25px;
                     }
+                }
+                #gallery2_modal .carousel-control {
+                    @include icon_round();
+                    opacity: 0;
+                    background-image: url("assets/images/icon_magnify.png");
+                    background-color: red;
+                    width: 50%;
                 }
             }
             .large {

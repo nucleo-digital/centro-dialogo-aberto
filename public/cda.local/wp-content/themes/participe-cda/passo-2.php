@@ -17,8 +17,11 @@ $context['step_avaliacao'] = 'step_beforey_selected';
 $context['step_proposta'] = 'step_selected';
 
 $query = array(
-    'category' => $obj_category->term_id,
-    'post_type' => 'proposta'
+    'category'  => $obj_category->term_id,
+    'post_type' => 'proposta',
+    'orderby'   => 'post_date',
+    'order'     => 'DESC',
+    'numberposts' => 9999
 );
 $context['posts'] = Timber::get_posts($query);
 
