@@ -98,8 +98,12 @@ $width: 960px;
   bottom: 0;
   float: left;
   left: 0;
-  padding: 5px 10px;
+
   right: auto;
+}
+
+.proposta .carousel-caption:not(:empty) {
+  padding: 5px 10px;
 }
 
 
@@ -1096,18 +1100,22 @@ h1 a, h2 a, h3 a {
                 }
                 .play,.pause {
                     span {
-                        bottom: 72px;
+                        bottom: 30%;
                         right: 72px;
                     }
                 }
             }
             #gallery2 {
-                .item {
-                    img {
-                        width: 100%;
-                        max-width: 900px;
+                .carousel-inner {
+                    .item {
+                        max-height: 200px;
+                        img {
+                            width: 100%;
+                            max-width: 900px;
+                        }
                     }
                 }
+
             }
             .paused {
                 .play {
@@ -1134,6 +1142,7 @@ h1 a, h2 a, h3 a {
                 }
                 .post-content {
                     margin: 10px 10px 10px 210px;
+                    color: #fff;
                 }
             }
         }

@@ -13,7 +13,7 @@
 
 {% set cor_post = post.cda_color_field_id_post %}
 
-{% if cor_post == "#" %}
+{% if cor_post == "#" or cor_post == "" %}
     {% set cor_post = cor_projeto %}
 {% endif %}
 
@@ -142,9 +142,7 @@ body,
                         {% for image in post.mgop_media_value['mgop_mb_galeria-2-exemplos'] %}
                         <div class="item {% if loop.first %}active{% endif %}">
                             <img src="{{image['url']}}" alt="..." width="200" height="200">
-                            <div class="carousel-caption">
-                                {{image['caption']}}
-                            </div>
+                            <div class="carousel-caption">{{image['caption']}}</div>
                         </div>
                         {% endfor %}    
                     </div>

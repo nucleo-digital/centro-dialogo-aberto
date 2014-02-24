@@ -55,16 +55,19 @@ $context['post'] = $post;
 // IMAGE GALLERY
 $context['post']->mgop_media_value = unserialize($context['post']->mgop_media_value);
 
-foreach ($context['post']->mgop_media_value as $key => $value) {
+if ($context['post']->mgop_media_value != null) {
 
-  $i=0;
+  foreach ($context['post']->mgop_media_value as $key => $value) {
 
-  foreach ($value as $v) {
-    $img = wp_prepare_attachment_for_js( $v );
-    $context['post']->mgop_media_value[$key][$i] = $img;
-    $i++;
+    $i=0;
+
+    foreach ($value as $v) {
+      $img = wp_prepare_attachment_for_js( $v );
+      $context['post']->mgop_media_value[$key][$i] = $img;
+      $i++;
+    }
+
   }
-
 }
 
 // USER
