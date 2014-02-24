@@ -988,7 +988,7 @@ h1 a, h2 a, h3 a {
         z-index: 1024;
         h1 {
             float: left;
-            font-family: 'museoSans';
+            font-family: 'museo700';
             font-size: 19px;
             padding: 15px 5px 0 10px;
         }
@@ -1025,7 +1025,7 @@ h1 a, h2 a, h3 a {
         margin: 46px 0 15px;
         h2 {
             font-size: 21px;
-            font-family: 'museoSans';
+            font-family: 'museo700';
             color: #FFFFFF;
         }
     }
@@ -1133,6 +1133,7 @@ h1 a, h2 a, h3 a {
             padding: 0;
             .exemplos {
                 h3 {
+                    font-family: "museo700";
                     font-size: 21px;
                     color: #fff;
                     padding: 10px;
@@ -1154,7 +1155,7 @@ h1 a, h2 a, h3 a {
                 color: #fff;
                 padding: 10px;
                 text-align: center;
-                font-family: 'museoSans';
+                font-family: 'museo700';
             }
             .vote {
                 text-align: center;
@@ -1286,7 +1287,7 @@ h1 a, h2 a, h3 a {
                     color: #fff;
                     padding: 10px;
                     text-align: center;
-                    font-family: 'museoSans';
+                    font-family: 'museo700';
                 }
                 .comments_wrapper {
                     height: 200px;
