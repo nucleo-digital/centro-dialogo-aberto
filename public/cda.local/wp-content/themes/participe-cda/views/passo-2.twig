@@ -84,13 +84,13 @@ body,
 
     <div class="content-container">
 
-        <div class="col-left col-sm-6">
+        <div class="col-left col-xs-12 col-sm-8 col-lg-6">
             <div id="gallery1" class="carousel slide small carousel-fade" data-ride="carousel">
 
                 <div class="carousel-inner">
                     {% for image in post.mgop_media_value['mgop_mb_galeria-1-fotos-do-projeto'] %}
                     <div class="item {% if loop.first %}active{% endif %}">
-                        <img src="{{image['url']}}">
+                        <img src="{{image.get_src}}">
                     </div>
                     {% endfor %}    
                 </div>
@@ -192,7 +192,7 @@ body,
 
 
         </div>
-        <div class="col-right col-sm-6">
+        <div class="col-right  col-xs-12 col-sm-4 col-lg-6">
             <h3>Qual a sua opinião?</h3>
             <!-- <ul class="vote {% if user_vote|length %}disabled{% else %}enabled{% endif %}"> -->
             <ul class="vote enabled">
