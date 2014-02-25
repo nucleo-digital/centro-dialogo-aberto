@@ -6,6 +6,11 @@ Timber::add_route('projetos/:name', function($params){
 });
 
 Timber::add_route('projetos/:name/propostas', function($params){
+
+    if (!is_user_logged_in()) {
+        wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'].'/propostas' ); exit;
+    }
+
     $query = 'category_name='. $params['name'] . '&post_type=proposta&username='.$params['user'];
     Timber::load_template('passo-2.php', $query);
 });
@@ -13,7 +18,7 @@ Timber::add_route('projetos/:name/propostas', function($params){
 Timber::add_route('projetos/:name/propostas/:aba', function($params){
 
     if (!is_user_logged_in()) {
-        wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'] ); exit;
+        wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'].'/propostas/'.$params['aba'] ); exit;
     }
     
     $query = 'category_name='.$params['name'] . '&post_name=' . $params['aba'] . '&post_type=proposta&username='.$params['user'];
