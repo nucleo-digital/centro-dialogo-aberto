@@ -191,7 +191,7 @@ jQuery(function() {
 				.parent()
 					.toggleClass('selected');
 
-			if (action == 'like') {
+			if (action === 'like') {
 				counter.text(parseInt(counter.text())+1);
 			} else {
 				counter.text(parseInt(counter.text())-1);
@@ -205,7 +205,7 @@ jQuery(function() {
 				counter.text(parseInt(counter.text())-1);
 				sibling.removeClass('selected');
 
-				direction = direction == 'up' ? 'down': 'up';
+				direction = direction === 'up' ? 'down': 'up';
 
 				$.post(url + '/' + direction + '/dislike');
 
@@ -231,6 +231,8 @@ jQuery(function() {
 					'comment' : input.val()
 				},
 				success : function (comment) {
+
+					$('.no_comments').hide();
 
 					$('.comments .comments_wrapper')
 						.prepend('<div style="display: none;" class="comment user_hold"> <p class="comment_hold">Comentário aguardando aprovação</p> <p class="comment_author">' + comment.comment_author + '</p> <p class="comment_time">Agora</p>  <p class="comment_title">' + comment.comment_content + '</p></div>')

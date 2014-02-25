@@ -62,7 +62,7 @@ if ($context['post']->mgop_media_value != null) {
     $i=0;
 
     foreach ($value as $v) {
-      $img = wp_prepare_attachment_for_js( $v );
+      $img = new TimberImage($v);
       $context['post']->mgop_media_value[$key][$i] = $img;
       $i++;
     }

@@ -1102,22 +1102,10 @@ h1 a, h2 a, h3 a {
                 }
                 .play,.pause {
                     span {
-                        bottom: 30%;
-                        right: 72px;
+                        top: 75px;
+                        left: 75px;
                     }
                 }
-            }
-            #gallery2 {
-                .carousel-inner {
-                    .item {
-                        max-height: 200px;
-                        img {
-                            width: 100%;
-                            max-width: 900px;
-                        }
-                    }
-                }
-
             }
             .paused {
                 .play {
@@ -1142,6 +1130,16 @@ h1 a, h2 a, h3 a {
                 #gallery2 {
                     width: 200px;
                     float: left;
+                    .carousel-inner {
+                        .item {
+                            max-height: 200px;
+                            img {
+                                width: 100%;
+                                max-width: 900px;
+                            }
+                        }
+                    }
+
                 }
                 .post-content {
                     margin: 10px 10px 10px 210px;
@@ -1311,6 +1309,12 @@ h1 a, h2 a, h3 a {
                         background-color:  rgba(255, 255, 255, 0.9);
                         color: #999;
                     }
+                    .no_comments {
+                        padding: 15px;
+                        text-align: center;
+                        color: #fff;
+                    }
+
                 }
 
             }

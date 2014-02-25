@@ -138,11 +138,12 @@ body,
                 <h3>Veja alguns exemplos</h3>
                 <div id="gallery2" class="carousel slide small carousel-fade" data-ride="carousel">
 
+
                     <div class="carousel-inner">
                         {% for image in post.mgop_media_value['mgop_mb_galeria-2-exemplos'] %}
                         <div class="item {% if loop.first %}active{% endif %}">
-                            <img src="{{image['url']}}" alt="..." width="200" height="200">
-                            <div class="carousel-caption">{{image['caption']}}</div>
+                            <img src="{{image.get_src|resize(200, 200)}}">
+                            <div class="carousel-caption">{{image.caption}}</div>
                         </div>
                         {% endfor %}    
                     </div>
@@ -209,8 +210,12 @@ body,
             </div>
 
             <div class="comments">
-                <h3>Últimos comentários</h3>
+                <h3>Comentários</h3>
                 <div class="comments_wrapper">
+
+                     {% if user_comments|length == 0 and comments|length == 0 %}
+                     <div class="no_comments">Seja o primeiro a comentar sobre este tópico</div>
+                     {% endif %}
 
                     {% for comment in user_comments %}
                     <div class="comment user_hold">
