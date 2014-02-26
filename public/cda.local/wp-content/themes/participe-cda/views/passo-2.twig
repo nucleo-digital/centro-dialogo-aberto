@@ -22,7 +22,8 @@
 body,
 .carousel-control span,
 .modal .glyphicon,
-.carousel-caption
+.carousel-caption,
+.proposta #gallery2 .carousel-control a
 {
     background-color: {{cor_post}};
 }
@@ -110,9 +111,9 @@ body,
                         <div class="carousel-inner">
                             {% for image in post.mgop_media_value['mgop_mb_galeria-1-fotos-do-projeto'] %}
                             <div class="item {% if loop.first %}active{% endif %}">
-                                <img src="{{image['url']}}" width="880" height="560">
+                                <img src="{{image.get_src}}" width="880" height="560">
                                 <div class="carousel-caption">
-                                    {{image['caption']}}
+                                    {{image.caption}}
                                 </div>
                             </div>
                             {% endfor %}    
@@ -148,8 +149,13 @@ body,
                         {% endfor %}    
                     </div>
 
-                    <a href="javascript://" class="carousel-control pause"><span><!-- --></span></a>
-                    <a href="javascript://" class="carousel-control play"><span><!-- --></span></a>
+                    <div class="carousel-control">
+                        <a href="javascript://" class="control"></a>
+                        <a href="javascript://" class="magnify" data-toggle="modal" data-target="#gallery2_modal"></a>
+                    </div>
+
+<!--                     <a href="javascript://" class="carousel-control pause"><span></span></a>
+                    <a href="javascript://" class="carousel-control play"><span></span></a> -->
                 </div>
                 <div class="post-content">
                     {{post.post_content}}
@@ -168,21 +174,21 @@ body,
                         <div class="carousel-inner">
                             {% for image in post.mgop_media_value['mgop_mb_galeria-2-exemplos'] %}
                             <div class="item {% if loop.first %}active{% endif %}">
-                                <img src="{{image['url']}}" alt="..." width="200" height="200">
-                                <div class="carousel-caption">
-                                    {{image['caption']}}
-                                </div>
+                                <img src="{{image.get_src}}">
+                                <div class="carousel-caption">{{image.caption}}</div>
                             </div>
                             {% endfor %}    
                         </div>
 
                         <!-- Controls -->
+                        {% if post.mgop_media_value['mgop_mb_galeria-2-exemplos']|length > 1 %}
                         <a class="left carousel-control" href="#gallery2_large" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                         <a class="right carousel-control" href="#gallery2_large" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
+                        {% endif %}
                     </div>
 
 

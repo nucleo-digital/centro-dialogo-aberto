@@ -130,19 +130,31 @@ jQuery(function() {
 			interval: 3000
 		});
 
-		$('#gallery2 .pause').bind('click',function(){
+		$('#gallery2 .control').bind('click',function(){
 
-			$('#gallery2')
-				.carousel('pause')
-				.addClass('paused');
+			var gallery2 = $('#gallery2');
+
+			if (gallery2.hasClass('paused')) {
+				
+				gallery2
+					.carousel('cycle')
+					.removeClass('paused');
+				
+			} else {
+
+				gallery2
+					.carousel('pause')
+					.addClass('paused');
+
+
+
+			}
 
 		});
 
-		$('#gallery2 .play').bind('click',function(){
+		$('#gallery2 .play span').bind('click',function(){
 
-			$('#gallery2')
-				.carousel('cycle')
-				.removeClass('paused');
+
 
 		});
 

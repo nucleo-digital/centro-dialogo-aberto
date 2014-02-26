@@ -307,9 +307,9 @@ h1 a, h2 a, h3 a {
             float: left;
             list-display-style: none;
             display: inline-block;
-            // background-repeat: no-repeat;
-            // background-position: right center;
-            // background-image: url(assets/images/step_arrow_line.png);
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-image: url(assets/images/step_arrow_line.png);
             height: 45px;
             position: relative;
             a {
@@ -1118,7 +1118,7 @@ h1 a, h2 a, h3 a {
                 background-color: #fff;
             }
             max-width: 900px;
-            #gallery1_modal {
+            #gallery1_modal, #gallery2_modal {
                 .modal-dialog {
                     width: 900px;
                     // margin-left: 440px;
@@ -1171,32 +1171,12 @@ h1 a, h2 a, h3 a {
                 .carousel-control:hover span {
                     opacity: 1;
                 }
-                .play {
-                    display: none;
-                    span {
-                        background-image: url("assets/images/icon_play.png");
-                    }
-                }
-                .pause {
-                    span {
-                        background-image: url("assets/images/icon_pause.png");
-                    }
-                }
                 .play,.pause {
                     span {
                         top: 75px;
                         left: 75px;
                     }
                 }
-            }
-            .paused {
-                .play {
-                    display: block;
-                }
-                .pause {
-                    display: none;
-                }
-
             }
             background-color: rgba(0, 0, 0, 0.2);
             box-shadow: 3px 3px 10px #333333;
@@ -1220,8 +1200,38 @@ h1 a, h2 a, h3 a {
                                 max-width: 900px;
                             }
                         }
+
+                    }
+                    .carousel-control {
+                        a {
+                            @include icon_round();
+                            display: none;
+                            position: absolute;
+                            top: 75px;
+                        }
+                        .control {
+                            background-image: url("assets/images/icon_pause.png");
+                            left: 45px;
+                        }
+                        .magnify {
+                            background-image: url("assets/images/icon_magnify.png");
+                            right: 45px;
+                        }
+                    }
+                    .carousel-control:hover {
+                        a {
+                            display: block;
+                        }
+
                     }
 
+                }
+                #gallery2.paused {
+                    .carousel-control {
+                        .control {
+                            background-image: url("assets/images/icon_play.png");
+                        }
+                    }
                 }
                 .post-content {
                     margin: 10px 10px 10px 210px;
