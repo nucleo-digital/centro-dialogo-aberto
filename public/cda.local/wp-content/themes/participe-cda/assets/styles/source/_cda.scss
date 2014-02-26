@@ -985,7 +985,55 @@ h1 a, h2 a, h3 a {
         background-image: url(assets/images/step_em_white_x.png);
     }
 
+    // button.next_step {
+    //   position: relative;
+    //   display: block;
+    //   width: 150px;
+    //   height: 50px;
+    //   border-radius: 10px 5px 5px 10px;
+    //   background: lightgrey;
+    //   font: 22px Constantia, sans-serif;
+    //   color: blue;
+    //   line-height: 50px;
+    //   text-align: center;
+    //   text-decoration: none;
+    // }
 
+    // button.next_step:before,
+    // button.next_step:after {
+    //   content: '';
+    //   position: absolute;
+    //   right: -15px;
+    //   width: 32px;
+    //   height: 15px;
+    //   border-radius: 5px;
+    //   background: lightgrey;
+    // }
+    // button.next_step:before {
+        
+    //   top: 9px;
+    //   -webkit-transform: rotate(65deg);
+    //   -ms-transform: rotate(65deg);
+    //   transform: rotate(65deg);
+    // }
+    // button.next_step:after {
+    //   bottom: 9px;
+    //   -webkit-transform: rotate(-65deg);
+    //   -ms-transform: rotate(-65deg);
+    //   transform: rotate(-65deg);
+    // }
+
+    a.next_step {
+        border-radius: 10px;
+        color: #FFFFFF;
+        display: block;
+        font-family: "museo",Arial,sans-serif;
+        font-size: 16px;
+        margin: 30px auto 0;
+        padding: 10px;
+        width: 130px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.50);
+    }
 
     .category {
         margin: 0;
