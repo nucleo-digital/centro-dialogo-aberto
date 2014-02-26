@@ -26,6 +26,7 @@ $context['posts'] = Timber::get_posts($query);
 $category_slug = get_query_var('category_name');
 $obj_category = get_category_by_slug( $category_slug );
 $context['step_avaliacao'] = 'step_selected';
+$context['show_step_2'] = true;
 
 $context['nome_projeto'] = $obj_category->name;
 $context['id_projeto'] = $obj_category->term_id;

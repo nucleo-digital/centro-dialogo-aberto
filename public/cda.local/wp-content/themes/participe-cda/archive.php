@@ -24,6 +24,7 @@
         $data['nome_projeto'] = $obj_category->name;
         $data['id_projeto'] = $obj_category->term_id;
         $data['cor_projeto'] = get_tax_meta($obj_category->term_id,'cda_color_field_id');
+        $data['step_avaliacao'] = 'step_selected';
         
         $data['title'] = 'Archive';
         if (is_day()){
