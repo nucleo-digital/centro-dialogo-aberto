@@ -20,7 +20,9 @@ $context['cor_projeto'] = get_tax_meta($obj_category->term_id,'cda_color_field_i
 
 $context['username'] = get_query_var('username');
 
-$img = new TimberImage(get_tax_meta($obj_category->term_id,'cda_image_2_field_id')['id']);
+
+$img_obj = get_tax_meta($obj_category->term_id,'cda_image_2_field_id');
+$img = new TimberImage($img_obj['id']);
 
 $context['mapa_projeto'] = $img;
 
