@@ -167,10 +167,52 @@ function propostas_post_type() {
 
 }
 
+function sugestoes_post_type() {
+
+    $labels = array(
+        'name'                => _x( 'Sugestões', 'Post Type General Name', 'text_domain' ),
+        'singular_name'       => _x( 'Sugestão', 'Post Type Singular Name', 'text_domain' ),
+        'menu_name'           => __( 'Sugestão', 'text_domain' ),
+        'parent_item_colon'   => __( 'Sugestão Pai', 'text_domain' ),
+        'all_items'           => __( 'Todas as sugestões', 'text_domain' ),
+        'view_item'           => __( 'Ver sugestão', 'text_domain' ),
+        'add_new_item'        => __( 'Adicionar nova sugestão', 'text_domain' ),
+        'add_new'             => __( 'Nova sugestão', 'text_domain' ),
+        'edit_item'           => __( 'Editar sugestão', 'text_domain' ),
+        'update_item'         => __( 'Atualizar sugestão', 'text_domain' ),
+        'search_items'        => __( 'Procurar sugestões', 'text_domain' ),
+        'not_found'           => __( 'Nenhuma sugestão encontrada', 'text_domain' ),
+        'not_found_in_trash'  => __( 'Nenhuma sugestão encontrada na lixeira', 'text_domain' ),
+    );
+    $args = array(
+        'label'               => __( 'sugestao', 'text_domain' ),
+        'description'         => __( 'Sugestões a serem analisadas', 'text_domain' ),
+        'labels'              => $labels,
+        'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt'),
+        'taxonomies'          => array( 'category', 'post_tag' ),
+        'hierarchical'        => false,
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'show_in_nav_menus'   => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => 5,
+        'menu_icon'           => '',
+        'can_export'          => true,
+        'has_archive'         => true,
+        'exclude_from_search' => false,
+        'publicly_queryable'  => true,
+        'capability_type'     => 'page',
+    );
+    register_post_type( 'sugestao', $args );
+
+}
+
 
 // Hook into the 'init' action
 add_action( 'init', 'avaliacoes_post_type', 0 );
 add_action( 'init', 'propostas_post_type', 0 );
+// add_action( 'init', 'sugestoes_post_type', 0 );
 
 
 if (is_admin()){
@@ -220,6 +262,8 @@ if (is_admin()){
     $my_meta_cat->addColor($prefix.'color_field_id',array('name'=> __('Cor representativa ','tax-meta')));
     //List of images to build background and slideshow image
     $my_meta_cat->addText($prefix.'text_field_id',array('name'=> __('Lista de ID para imagens a serem utilizadas no mosaico e slideshow ','tax-meta')));
+
+    $my_meta_cat->addImage($prefix.'image_2_field_id',array('name'=> __('Mapa para Sugestões (Passo 3)','tax-meta')));
 
     //Color field
     $my_meta_post->addColor($prefix.'color_field_id_post',array('name'=> 'Cor representativa '));

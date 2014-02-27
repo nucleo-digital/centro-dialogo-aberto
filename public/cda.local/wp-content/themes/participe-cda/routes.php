@@ -1,9 +1,39 @@
 <?php
 
-Timber::add_route('projetos/:name', function($params){
+// PASSO 3
+
+Timber::add_route('projetos/:name/edit_points', function($params){
+
+    // if (!is_user_logged_in() || !is_admin()) {
+    //     wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'] ); exit;
+    // }
+
     $query = 'category_name='.$params['name'];
-    Timber::load_template('capa-passo-1.php', $query);
+    Timber::load_template('passo-3-edit_points.php', $query);
 });
+
+Timber::add_route('projetos/:name/update_points', function($params){
+
+    // if (!is_user_logged_in() || !is_admin()) {
+    //     wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'] ); exit;
+    // }
+
+    $query = 'category_name='.$params['name'];
+    Timber::load_template('passo-3-update_points.php', $query);
+});
+
+Timber::add_route('projetos/:name/update_points/:points', function($params){
+
+    // if (!is_user_logged_in() || !is_admin()) {
+    //     wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'] ); exit;
+    // }
+
+    $query = 'category_name='.$params['name'] . '&points=' . $params['points'];
+    Timber::load_template('passo-3-update_points.php', $query);
+});
+
+
+// PASSO 2
 
 Timber::add_route('projetos/:name/propostas', function($params){
 
@@ -42,6 +72,13 @@ Timber::add_route('projetos/:name/propostas/:aba/v', function($params){
 });
 
 
+// PASSO 1
+
+Timber::add_route('projetos/:name', function($params){
+    $query = 'category_name='.$params['name'];
+    Timber::load_template('capa-passo-1.php', $query);
+});
+
 Timber::add_route('projetos/:name/votar', function($params){
     if (!is_user_logged_in()) {
         wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'] ); exit;
@@ -75,5 +112,9 @@ Timber::add_route('projetos/:name/:user', function($params){
     $query = 'category_name='.$params['name'] . '&posts_per_page=12&post_type=avaliacao&username='.$params['user'];
     Timber::load_template('resultado-passo-1.php', $query);
 });
+
+
+
+
 
 

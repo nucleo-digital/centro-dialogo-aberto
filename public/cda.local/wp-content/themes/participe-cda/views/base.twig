@@ -9,6 +9,7 @@
 </head>
     <body class="{{body_class}}" data-source="base.twig">
         <header>
+            {% block header %}
             <div class="navbar navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <div class="container-fluid">
@@ -20,7 +21,6 @@
                         </div>
                    </div>
                </div>
-               {% block header %}
                {% if function('is_home') or function('is_page') %}
                     <div class="navbar-bottom">
                         {% if is_user_logged_in %}
@@ -81,8 +81,9 @@
                         </div>
                     </div>
                 {% endif %}
-                {% endblock %}
+                
             </div>
+            {% endblock %}
         </header>
 
 
