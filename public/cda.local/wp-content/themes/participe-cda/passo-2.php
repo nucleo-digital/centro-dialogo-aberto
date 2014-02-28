@@ -13,7 +13,7 @@ $context = Timber::get_context();
 $post_slug = get_query_var('post_name');
 $context['category_slug'] = get_query_var('category_name');
 $obj_category = get_category_by_slug( $context['category_slug'] );
-$context['step_avaliacao'] = 'step_beforey_selected';
+$context['step_avaliacao'] = 'step_before_selected';
 $context['step_proposta'] = 'step_selected';
 $context['show_step_2'] = true;
 

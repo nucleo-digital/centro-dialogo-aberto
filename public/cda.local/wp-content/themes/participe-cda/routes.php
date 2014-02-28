@@ -1,6 +1,6 @@
 <?php
 
-// PASSO 3
+// PASSO 3 ----------------------------------------
 
 Timber::add_route('projetos/:name/edit_points', function($params){
 
@@ -33,7 +33,23 @@ Timber::add_route('projetos/:name/update_points/:points', function($params){
 });
 
 
-// PASSO 2
+function sugestao($params){
+    $query = 'category_name='.$params['name'] . '&aba=' . $params['aba'];
+
+
+    if ($params['aba'] == 'geral')
+        Timber::load_template('passo-3-geral.php', $query);
+    else
+        Timber::load_template('passo-3.php', $query);
+}
+
+Timber::add_route('projetos/:name/sugestao/:aba', sugestao);
+Timber::add_route('projetos/:name/sugestao', sugestao);
+
+
+
+
+// PASSO 2 ----------------------------------
 
 Timber::add_route('projetos/:name/propostas', function($params){
 

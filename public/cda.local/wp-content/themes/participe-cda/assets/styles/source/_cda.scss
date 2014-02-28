@@ -73,6 +73,24 @@ $width: 960px;
     width: 50px;
 }
 
+@mixin point() {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid;
+    background-color: #fff;
+    border-radius: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: -15px 0 0 -15px;
+}
+
+.point.selected {
+    border-width: 5px !important;
+}
+
 
 .carousel-fade .carousel-inner .item {
   opacity: 0;
@@ -1430,16 +1448,7 @@ h1 a, h2 a, h3 a {
     .map_zone {
         position: relative;
         .pt {
-            display: block;
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border: 1px solid;
-            background-color: #fff;
-            border-radius: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            cursor: pointer;
+            @include point();
             background-image: url("assets/images/pt_cover.png");
         }
         .pt_del:hover {
@@ -1448,10 +1457,191 @@ h1 a, h2 a, h3 a {
 
         .map {
             cursor: crosshair;
-            .img {
-
+            img {
+                width: 100%;
+                max-width: 1700px;
             }
         }
     }
 }
 
+
+
+.sugestao {
+
+    .content-header {
+        background-color: #e7e7e7;
+        float: left;
+        height: 46px;
+        position: fixed;
+        width: 100%;
+        z-index: 1024;
+        h1 {
+            float: left;
+            font-family: 'museo700';
+            font-size: 19px;
+            padding: 15px 5px 0 10px;
+        }
+        .tabs {
+
+            list-style: none;
+            padding: 0;
+            float: right;
+            margin: 0;
+            .tab {
+                display: inline-block;
+                a {
+                    background-color: #cbcbcc;
+                    background-position: 10px center;
+                    background-repeat: no-repeat;
+                    border-radius: 5px 5px 0 0;
+                    display: block;
+                    margin: 4px 5px 0;
+                    padding: 0 10px 0 10px;
+                    height: 42px;
+                    color: #fff;
+                    span {
+                        display: inline-block;
+                        float: left;
+                        height: 23px;
+                        margin: 10px 10px 0 0;
+                        width: 23px;
+                    }
+                    p {
+                        line-height: 46px;
+                        display: inline-block;
+                    }
+                }
+                .has_icon {
+                    padding: 0 10px 0 40px;
+                }
+
+            } 
+            .tab.selected {
+                a {
+                    background-color: #fff;
+                }
+                span {
+                    background-color: green;
+                }
+            }
+            .tab.proposta {
+                span {
+                    background-image: url("assets/images/passo3_tab-proposta.png");
+                }
+            }
+            .tab.user {
+                span {
+                    background-image: url("assets/images/passo3_tab-user.png");
+                    height: 20px;
+                    width: 20px;
+                }
+            }
+            .tab.geral {
+                span {
+                    background-image: url("assets/images/passo3_tab-geral.png");
+                    height: 21px;
+                    width: 32px;
+                }
+            }
+            .tab.selected.proposta {
+                span {
+                    background-image: url("assets/images/passo3_tab-proposta_selected.png");
+                }
+            }
+            .tab.selected.user {
+                span {
+                    background-image: url("assets/images/passo3_tab-user_selected.png");
+                }
+            }
+            .tab.selected.geral {
+                span {
+                    background-image: url("assets/images/passo3_tab-geral_selected.png");
+                }
+            }
+        }
+    }
+    .content-container {
+
+        .col-left {
+            padding: 0;
+
+            .map_zone {
+                margin-top: 46px;
+                position: relative;
+                .map {
+                    img {
+                        width: 100%
+                    }
+                }
+                .spots {
+                    .point {
+                        @include point();
+                    }
+                    .point_blank, .pt_x, .pt_ {
+                        background-image: url("assets/images/pt_cover.png");
+                    }
+                    .pt_x, .pt_ {
+                        display: none;
+                    }
+                }
+
+            }
+
+
+
+            .points {
+                background-color: #E7E7E7;
+                bottom: 0;
+                height: 50px;
+                position: fixed;
+                width: 100%;
+
+                .point {
+                    @include point();
+                    position: relative;
+                    margin: 10px 0 0 15px;
+                    float: left;
+                    div {
+                        display: none;
+                    }
+                    span {
+                        color: #FFFFFF;
+                        display: none;
+                        font-family: 'museo700';
+                        margin: -35px 0 0 14px;
+                        padding: 3px;
+                        white-space: nowrap;
+                    }
+
+                }
+            }
+            .points.disabled {
+                .point {
+                    opacity: 0.5;
+                    cursor: default !important;
+                }
+            }
+
+
+        }
+        .col-right {
+
+            border-left: 2px dashed red;
+
+        }
+
+    
+
+
+
+
+
+    }
+
+    .tab.user.pt_x , .tab.user.pt_ {
+        display: block;
+    }
+
+
+}

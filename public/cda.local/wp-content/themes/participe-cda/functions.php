@@ -212,7 +212,7 @@ function sugestoes_post_type() {
 // Hook into the 'init' action
 add_action( 'init', 'avaliacoes_post_type', 0 );
 add_action( 'init', 'propostas_post_type', 0 );
-// add_action( 'init', 'sugestoes_post_type', 0 );
+add_action( 'init', 'sugestoes_post_type', 0 );
 
 
 if (is_admin()){
@@ -263,10 +263,14 @@ if (is_admin()){
     //List of images to build background and slideshow image
     $my_meta_cat->addText($prefix.'text_field_id',array('name'=> __('Lista de ID para imagens a serem utilizadas no mosaico e slideshow ','tax-meta')));
 
-    $my_meta_cat->addImage($prefix.'image_2_field_id',array('name'=> __('Mapa para Sugestões (Passo 3)','tax-meta')));
+    $my_meta_cat->addImage($prefix.'image_2_field_id',array('name'=> __('Mapa para Sugestões do Passo 3','tax-meta')));
+
+    $my_meta_cat->addText($prefix.'text_field_id_2',array('name'=> __('Lista de ID de ícones do passo 3','tax-meta')));
+
 
     //Color field
     $my_meta_post->addColor($prefix.'color_field_id_post',array('name'=> 'Cor representativa '));
+
 
     //Finish Meta Box Decleration
     $my_meta_cat->Finish();

@@ -267,7 +267,7 @@ jQuery(function() {
 
 	if ($('.edit_points').length) {
 
-		var map,points,pts,list,mapTop,mapLeft;
+		var map,img,points,pts,list,mapTop,mapLeft;
 
 		var PTS = {
 
@@ -275,6 +275,7 @@ jQuery(function() {
 
 				map = $('.map_zone');
 				list = map.data('points');
+				img = $('img',map);
 				// list = '';
 				mapTop = parseInt($('.map_zone').position().top);
 				mapLeft = parseInt($('.map_zone').position().left);
@@ -289,7 +290,7 @@ jQuery(function() {
 			load : function() {
 
 				var listArr = list.split('l');
-					listArr.shift()
+					listArr.shift();
 
 				$(listArr).each(function(i,o){
 					PTS.plot(o.split('x'));
@@ -309,8 +310,16 @@ jQuery(function() {
 
 			includePoint : function(e) {
 
-				var y = e.clientY - mapTop;
 				var x = e.clientX - mapLeft;
+				var y = e.clientY - mapTop;
+				var imgW = img.width();
+				var imgH = img.height();
+
+				// x = x*100/imgW;
+				// y = y*100/imgH;
+
+				x = Math.round(x*100/imgW);
+				y = Math.round(y*100/imgH);
 
 				PTS.plot([x,y]);
 
@@ -336,7 +345,7 @@ jQuery(function() {
 
 			plot : function(coord) {
 
-				$('.points').append('<div class="pt pt_del" data-coord="' + coord.join('x') + '" style="left:' + (coord[0]-15) + 'px;top:' + (coord[1]-15) + 'px"></div>');
+				$('.points').append('<div class="pt pt_del" data-coord="' + coord.join('x') + '" style="left:' + coord[0] + '%;top:' + coord[1] + '%"></div>');
 
 			},
 
@@ -358,6 +367,22 @@ jQuery(function() {
 		};
 
 		PTS.init();
+
+	}
+
+	if ($('.sugestao').length) {
+
+
+		if (!S) {
+			alert('Erro.');
+			return;
+		}
+
+
+
+
+
+
 
 	}
 

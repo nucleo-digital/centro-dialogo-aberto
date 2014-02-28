@@ -11,29 +11,15 @@
 
 {% include "_color-theme.twig" %}
 
+
 {% set cor_post = post.cda_color_field_id_post %}
 
 {% if cor_post == "#" or cor_post == "" %}
     {% set cor_post = cor_projeto %}
 {% endif %}
 
-<style type="text/css">
+{% include "_color-theme-passo-2.twig" %}
 
-body,
-.carousel-control span,
-.modal .glyphicon,
-.carousel-caption,
-.proposta #gallery2 .carousel-control a
-{
-    background-color: {{cor_post}};
-}
-
-.proposta .content-container .col-right .comments .comments_wrapper .comment .comment_author
-{
-    color: {{cor_post}};
-}
-
-</style>
 
 <div class="proposta content">
 
