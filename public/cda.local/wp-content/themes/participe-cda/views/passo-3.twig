@@ -44,7 +44,7 @@
         </ul>
     </div>
 
-    <div class="content-container tab_{{tab}}">
+    <div class="content-container tab_{{tab}} editing">
 
     {% set spotsArr = spots|split('l') %}
 
@@ -83,30 +83,51 @@
         </div>
         <div class="col-sm-2 col-right">
             <div class="info">
+                {% if tab == 'proposta' %}
                 <div class="info_content info_proposta">
                     <h1 class="titulo_proposta">Mapa conceito proposto</h1>
-                    <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
-                    <button class="create_my_map"></button>
+                    <div class="bottom_info">
+                        <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
+                        <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/minha_sugestao" class="button create_my_map">CRIAR MEU MAPA</a>
+                    </a>
                 </div>
-                <div class="info_content info_minha_sugestao">
+                {% elseif tab == 'minha_sugestao' %}
+                <div class="info_content info_minha_sugestao editing">
                     <h1 class="titulo_my_map">Minha sugestao de mapa</h1>
                     <div class="point_info">
                         <div class="point"></div>
                     </div>
-                    <div class="extra_info">Você pode sugerir outra atividade ou tipo de uso para esta área, selecionando no menu de ícones abaixo.</div>
+                    <div class="bottom_info">
+                        <div class="extra_info">Você pode sugerir outra atividade ou tipo de uso para esta área, selecionando no menu de ícones abaixo.</div>
+                        <button class="finish_my_map">FINALIZAR MAPA</button>
+                    </div>  
                 </div>
-                <div class="info_content info_usermap">
-                    <h1 class="titulo_user_map">Sugestao de {{tab_user_login}}</h1>
-                    <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
+                <div class="info_content info_minha_sugestao finished">
+                    <h1 class="titulo_my_map">Minha sugestao de mapa</h1>
+                    <div class="bottom_info">
+                        <a href="http://www.facebook.com/sharer.php?u={{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/{{user_login}}&caption=Como o Vale do Anhangabaú deve ser usado?&t=Veja minha sugestão de mapa de uso e dê a sua também. Ajude São Paulo a repensar o Centro!" target="_blank" class="publish_my_map">PUBLICAR MEU MAPA NO FACEBOOK</a>
+                        <button class="edit_my_map">EDITAR MEU MAPA</button>
+                    </div>
                 </div>
+                {% elseif tab == 'geral' %}
                 <div class="info_content info_geral">
                     <h1 class="titulo_user_map">Como a populaçao quer o Vale!</h1>
-                    <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
+                    <div class="bottom_info">
+                        <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
+                        <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/minha_sugestao" class="button create_my_map">IR PARA O MEU MAPA</a>
+                    </div>
                 </div>
+                {% else %}
+                <div class="info_content info_usermap">
+                    <h1 class="titulo_user_map">Sugestao de {{tab_user_login}}</h1>
+                    <div class="bottom_info">
+                        <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
+                        <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/minha_sugestao" class="button create_my_map">CRIAR MEU MAPA</a>
+                    </div>
+                </div>
+                {% endif %}
                 
-                <button class="finish_my_map"></button>
             </div>
-
         </div>
     </div>
 

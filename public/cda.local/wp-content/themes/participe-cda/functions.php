@@ -264,10 +264,8 @@ if (is_admin()){
     //List of images to build background and slideshow image
     $my_meta_cat->addText($prefix.'text_field_id',array('name'=> __('Lista de ID para imagens a serem utilizadas no mosaico e slideshow ','tax-meta')));
 
-    $my_meta_cat->addImage($prefix.'image_2_field_id',array('name'=> __('Mapa para Sugestões do Passo 3','tax-meta')));
-
     $my_meta_cat->addText($prefix.'text_field_id_2',array('name'=> __('Lista de ID de ícones do passo 3','tax-meta')));
-
+    $my_meta_cat->addImage($prefix.'image_2_field_id',array('name'=> __('Mapa para Sugestões do Passo 3','tax-meta')));
 
     //Color field
     $my_meta_post->addColor($prefix.'color_field_id_post',array('name'=> 'Cor representativa '));
@@ -291,6 +289,71 @@ function change_image_box()
 {
     add_meta_box('postimagediv', __('Ícone (16x16px)'), 'post_thumbnail_meta_box', 'proposta', 'normal', 'high');
 }
+
+
+function category_custom_html() {
+
+    $screen = get_current_screen();
+    // print_r($screen);
+?>
+    <table id="edit_points_wrapper" class="form-table enable">
+        <tr class="form-field">
+            <th scope="row" valign="top"><label>&nbsp;</label></th>
+            <td class="enabled">
+                <?php add_thickbox(); ?>
+                <a id="edit_points" class="thickbox button button-primary en" href="<?php echo get_bloginfo('url'); ?>/projetos/">Editar os pontos no mapa</a>
+             </td>
+            <td class="disabled">
+                <?php add_thickbox(); ?>
+                <a class=" button button-primary" href="javascript://" onclick="alert('Atenção! Clique em Atualizar, depois volte a essa tela, para editar os pontos no mapa.');">Editar os pontos no mapa</a>
+             </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+        var wrapper = document.getElementById('edit_points_wrapper');
+        var editPoints = document.getElementById('edit_points');
+        var slug = document.getElementById('slug');
+        var field = document.getElementById('cda_image_2_field_id[src]');
+        editPoints.href = editPoints.href + slug.value + '/edit_points/?TB_iframe=true&width=1024';
+
+        function editPointsToggle() {
+
+            if (field.value.length)
+                wrapper.style.display = 'table';
+            else
+                wrapper.style.display = 'none';
+
+        }
+
+        if (!field.value.length) {
+            wrapper.className = 'form-table disable';
+        }
+
+        field.addEventListener('DOMAttrModified',editPointsToggle);
+        editPointsToggle();
+
+    </script>
+
+    <style type="text/css">
+
+        .edit_points_wrapper .button {
+            display: inline;
+            padding: 5px;
+        }
+
+        .disable .enabled,
+        .enable .disabled,
+        .hide 
+        {
+            display: none;
+        }
+
+    </style>
+
+<?php
+}
+add_action( 'category_edit_form', 'category_custom_html' );
 
 // add_action('admin_head', 'my_custom_fonts');
 // function my_custom_fonts() {

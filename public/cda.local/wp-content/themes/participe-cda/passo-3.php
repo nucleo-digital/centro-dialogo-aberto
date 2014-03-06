@@ -57,11 +57,13 @@ if (!$aba || $aba == 'proposta') {
 
 } else if ($aba == 'minha_sugestao') {
 
-  $context['tab'] = 'minha_sugestao';
-  $context['tab_user'] = 'selected';
-
   global $current_user;
   get_currentuserinfo();
+
+  $context['tab'] = 'minha_sugestao';
+  $context['tab_user'] = 'selected';
+  $context['user_login'] = $current_user->user_login;
+
 
   $query = array(
       'category'  => $obj_category->term_id,

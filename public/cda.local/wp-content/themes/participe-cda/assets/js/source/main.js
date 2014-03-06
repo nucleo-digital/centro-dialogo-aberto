@@ -352,16 +352,13 @@ jQuery(function() {
 
 				pts = $('.map_zone .point');
 
-				
-
-
 			},
 
-			updateDb : function() {
+            updateDb : function() {
 
-				$.post(window.location.href.replace('edit_', 'update_') + list);
+                $.post(window.location.href.replace('edit_','update_').replace('?','') + list);
 
-			}
+            }
 
 		};
 
@@ -379,8 +376,6 @@ jQuery(function() {
 
 				init : function() {
 
-					console.log(S);
-
 					$('.point','.map_zone .spots').bind('click',function() {
 						if ($(this).hasClass('selected')) {
 							S.unselectSpot(this);
@@ -390,10 +385,18 @@ jQuery(function() {
 					});
 
 					$('.point','.points').bind('click',S.choosePoint);
+					$('.info .create_my_map').bind('click',S.myMap.create);
+					$('.info .finish_my_map').bind('click',S.myMap.finish);
+					$('.info .edit_my_map').bind('click',S.myMap.edit);
+					$('.info .publish_my_map').bind('click',S.myMap.publish);
 
 				},
 
 				selectSpot : function(obj) {
+
+					if ($('.tab_minha_sugestao').hasClass('finished')) {
+						return;
+					}
 
 					$('.point','.map_zone .spots').removeClass('selected');
 					$(obj).addClass('selected');
@@ -491,9 +494,52 @@ jQuery(function() {
 
 					console.log(window.location.href.replace('sugestao/minha_sugestao', 'user_points') + S.userPoints.join('l'));
 
+				},
+
+				myMap : {
+
+					create : function() {
+
+					},
+
+					finish : function() {
+
+						$('.point.selected').removeClass('selected');
+
+						$('.tab_minha_sugestao')
+							.removeClass('editing')
+							.addClass('finished');
+
+					},
+					edit : function() {
+
+						$('.tab_minha_sugestao')
+							.removeClass('finished')
+							.addClass('editing');
+
+					},
+					publish : function() {
+						console.log('PUBLISH DUDE');
+
+						// var url = window.location.href;
+
+						// var this.href = 'http://www.facebook.com/sharer.php?' +
+						//      'u=the url you want to share'
+						//      &t=title of the article/post/whatever" 
+						//      target="_blank
+
+						// <a title="Share this article/post/whatever on Facebook" 
+						//      href="http://www.facebook.com/sharer.php?
+						//      u=the url you want to share
+						//      &t=title of the article/post/whatever" 
+						//      target="_blank">
+						//      <img src="your/path/to/facebook-icon.png" 
+						//              alt="Share on Facebook" />
+						// </a>
+
+					}
+
 				}
-
-
 
 			};
 
