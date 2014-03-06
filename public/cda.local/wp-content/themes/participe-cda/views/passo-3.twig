@@ -26,11 +26,11 @@
                     <p>Proposta</p>
                 </a>
             </li>
-            <li class="tab user {{tab_mapa}}">
+            <li class="tab user {{tab_user}} {{tab_user_url}}">
                 <span></span>
-                <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/{{tab_mapa_url}}">
+                <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/{{tab_user_url}}">
                     <span></span>
-                    <p>{{tab_mapa_title}}</p>
+                    <p>{{tab_user_title}}</p>
                 </a>
             </li>
             <li class="tab geral {{tab_geral}}">
@@ -44,19 +44,25 @@
         </ul>
     </div>
 
-    <div class="content-container">
+    <div class="content-container tab_{{tab}}">
 
     {% set spotsArr = spots|split('l') %}
 
     {% set userArr = post.post_content|split(',') %}
 
-        <div class="col-sm-11 col-left">
+        <div class="col-sm-10 col-left">
             <div class="map_zone">
                 <div class="spots">
                     {% for spot in spotsArr|slice(1, length) %}
                     {% set coord = spot|split('x') %}
-                    {% set userPt = userArr[loop.index] %}
-                    <div class="point pt_{{userPt}}" id="" style="top:{{coord[1]}}%;left:{{coord[0]}}%"></div>
+
+                    {% if userArr[loop.index] == '' %}
+                        {% set userPt = '' %}
+                    {% else %}
+                        {% set userPt = 'pt_' ~ userArr[loop.index] %}
+                    {% endif %}
+
+                    <div class="point {{userPt}}" id="{{userPt}}" data-index="{{loop.index}}" style="top:{{coord[1]}}%;left:{{coord[0]}}%"></div>
                     {% endfor %}
                 </div>
                 <div class="map">
@@ -66,15 +72,40 @@
             {% if tab == 'minha_sugestao' %}
             <div class="points disabled">
             {% for pt in pts %}
-                <div class="point pt_{{pt.ID}}" id="point_{{pt.ID}}">
-                    <span>{{pt.caption}}</span>
-                    <div>{{pt.post_content}}</div>
+                <div class="point_wrapper point_wrapper_{{pt.ID}}">
+                    <div class="point pt_{{pt.ID}}" id="point_{{pt.ID}}"></div>
+                    <h2>{{pt.caption}}</h2>
+                    <div class="content">{{pt.post_content}}</div>
                 </div>
             {% endfor %}
             </div>
             {% endif %}
         </div>
-        <div class="col-sm-1 col-right">
+        <div class="col-sm-2 col-right">
+            <div class="info">
+                <div class="info_content info_proposta">
+                    <h1 class="titulo_proposta">Mapa conceito proposto</h1>
+                    <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
+                    <button class="create_my_map"></button>
+                </div>
+                <div class="info_content info_minha_sugestao">
+                    <h1 class="titulo_my_map">Minha sugestao de mapa</h1>
+                    <div class="point_info">
+                        <div class="point"></div>
+                    </div>
+                    <div class="extra_info">Você pode sugerir outra atividade ou tipo de uso para esta área, selecionando no menu de ícones abaixo.</div>
+                </div>
+                <div class="info_content info_usermap">
+                    <h1 class="titulo_user_map">Sugestao de {{tab_user_login}}</h1>
+                    <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
+                </div>
+                <div class="info_content info_geral">
+                    <h1 class="titulo_user_map">Como a populaçao quer o Vale!</h1>
+                    <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
+                </div>
+                
+                <button class="finish_my_map"></button>
+            </div>
 
         </div>
     </div>
@@ -85,22 +116,22 @@
 
 <script type="text/javascript">
 
-    var info = {
+    // var info = {
 
-        pts : {},
-        spots : '{{spots}}',
-        usr : '{{post.post_content}}'
+    //     pts : {},
+    //     spots : '{{spots}}',
+    //     usr : '{{post.post_content}}'
 
-    }
+    // }
 
     {% for pt in pts %}
 
-    S.pts['{{pt.ID}}'] = {
-        id : {{pt.ID}},
-        title : '{{pt.caption}}',
-        descr : '{{pt.post_content|replace({"'": "´"})}}',
-        url : '{{pt.guid}}'
-    }
+    // info.pts['{{pt.ID}}'] = {
+    //     id : {{pt.ID}},
+    //     title : '{{pt.caption}}',
+    //     descr : '{{pt.post_content|replace({"'": "´"})}}',
+    //     url : '{{pt.guid}}'
+    // }
     {% endfor %}
 
 </script>

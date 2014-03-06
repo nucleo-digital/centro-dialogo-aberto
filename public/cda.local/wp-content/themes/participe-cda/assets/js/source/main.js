@@ -372,17 +372,118 @@ jQuery(function() {
 
 	if ($('.sugestao').length) {
 
+		var S = {
 
-		if (!S) {
-			alert('Erro.');
-			return;
-		}
+			init : function() {
+
+				$('.point','.map_zone .spots').bind('click',function() {
+					if ($(this).hasClass('selected')) {
+						S.unselectSpot(this);
+					} else {
+						S.selectSpot(this);
+					}
+				});
+
+				$('.point','.points').bind('click',S.choosePoint);
+
+			},
+
+			selectSpot : function(obj) {
+
+				$('.point','.map_zone .spots').removeClass('selected');
+				$(obj).addClass('selected');
+
+				var id = obj.id.length ? obj.id.replace('pt_','') : null;
+
+				S.selectPoint(id);
+				S.selectInfo(id);
+
+			},
+
+			unselectSpot : function(obj) {
+
+				$(obj).removeClass('selected');
+
+				S.unselectPoint();
+
+			},
+
+			selectPoint : function(id) {
+
+				$('.points')
+					.removeClass('disabled')
+					.find('.point')
+						.removeClass('selected');
+
+				if (id) {
+					$('.points #point_' + id).addClass('selected');
+				}
+
+			},
+
+			unselectPoint : function() {
+
+				$('.points')
+					.toggleClass('disabled enabled')
+					.find('.point')
+						.removeClass('selected');
+
+
+			},
+
+			selectInfo : function(id) {
+
+				$('.point','.info').removeClass();
+
+				if (id) {
+					$('.point_info','.info')
+						.html($('.point_wrapper_' + id).html());
+
+					$('.tab_minha_sugestao .point_info').show();
+
+				} else {
+					$('.tab_minha_sugestao .point_info').hide();
+				}
+
+
+			},
+
+			unselectInfo : function() {
 
 
 
 
+			},
+
+			choosePoint : function() {
+
+				if ($('.points').hasClass('disabled enabled')) {
+					return;
+				}
+
+				var id = this.id.replace('point_','');
+
+				var spot = $('.point.selected','.map_zone .spots');
+				// var info = 
+
+				var spotId = spot[0].id;
+
+				spot
+					.attr('id','pt_' + id)
+					.removeClass(spotId)
+					.addClass('pt_' + id);
 
 
+				S.selectPoint(id);
+				S.selectInfo(id);
+
+			}
+
+
+
+		};
+
+		S.init();
 
 	}
 

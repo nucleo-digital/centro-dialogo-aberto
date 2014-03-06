@@ -1,24 +1,27 @@
 <style type="text/css">
 
 .proposta #gallery2 .carousel-control a,
-.sugestao .content-container .col-left .points .point span,
-.sugestao .content-container .col-left .points .point,
+.sugestao .content-container .col-left .points .point_wrapper .point span,
+.sugestao .content-container .col-left .points .point_wrapper .point,
 .sugestao .content-container .col-left .map_zone .spots .point,
+.sugestao .content-container .col-right .info .info_content .point_info .point,
 .sugestao .content-header .tabs .tab.selected span
 {
     background-color: {{cor_projeto}};
 }
 
 .sugestao .content-header h1,
-.sugestao .content-header .tabs .tab.selected a
+.sugestao .content-header .tabs .tab.selected a,
+.sugestao .content-container .col-right .info
 {
     color: {{cor_projeto}};
 }
 
+.sugestao .content-container .col-left .map_zone,
 .sugestao .content-container .col-left .map_zone .spots .point,
-.sugestao .content-container .col-left .points .point {
+.sugestao .content-container .col-left .points .point_wrapper .point
+{
 	border-color: {{cor_projeto}};
-	background-color: {{cor_projeto}};
 }
 
 
@@ -26,7 +29,7 @@
 
 {% for pt in pts %}
 .pt_{{pt.ID}} {
-    background-image: url({{pt.guid}});
+    background-image: url({{pt.guid}}) !important;
 }
 {% endfor %}
 

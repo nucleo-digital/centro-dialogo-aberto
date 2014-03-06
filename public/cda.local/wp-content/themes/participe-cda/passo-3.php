@@ -36,8 +36,8 @@ foreach ($pts as $i=>$id) {
 }
 
 $context['pts'] = $pts;
-$context['tab_mapa_title'] = 'Minha sugestão';
-$context['tab_mapa_url'] = 'minha_sugestao';
+$context['tab_user_title'] = 'Minha sugestão';
+$context['tab_user_url'] = 'minha_sugestao';
 
 if (!$aba || $aba == 'proposta') {
 
@@ -55,7 +55,7 @@ if (!$aba || $aba == 'proposta') {
 } else if ($aba == 'minha_sugestao') {
 
   $context['tab'] = 'minha_sugestao';
-  $context['tab_mapa'] = 'selected';
+  $context['tab_user'] = 'selected';
 
   global $current_user;
   get_currentuserinfo();
@@ -68,14 +68,20 @@ if (!$aba || $aba == 'proposta') {
       'numberposts' => 1
   );  
 
+} else if ($aba == 'geral') {
+
+  $context['tab'] = 'geral';
+  $context['tab_geral'] = 'selected';
+
 } else {
 
   $current_user = get_user_by('login', $aba);
 
-  $context['tab'] = $aba;
-  $context['tab_mapa'] = 'selected';
-  $context['tab_mapa_title'] = 'Mapa de ' . $current_user->user_nicename;
-  $context['tab_mapa_url'] = $aba;
+  $context['tab'] = 'usermap';
+  $context['tab_user'] = 'selected';
+  $context['tab_user_title'] = 'Mapa de ' . $current_user->display_name;
+  $context['tab_user_url'] = $aba;
+  $context['tab_user_login'] = $current_user->display_name;
 
   $query = array(
       'category'  => $obj_category->term_id,

@@ -37,9 +37,9 @@ function sugestao($params){
     $query = 'category_name='.$params['name'] . '&aba=' . $params['aba'];
 
 
-    if ($params['aba'] == 'geral')
-        Timber::load_template('passo-3-geral.php', $query);
-    else
+    // if ($params['aba'] == 'geral')
+    //     Timber::load_template('passo-3-geral.php', $query);
+    // else
         Timber::load_template('passo-3.php', $query);
 }
 

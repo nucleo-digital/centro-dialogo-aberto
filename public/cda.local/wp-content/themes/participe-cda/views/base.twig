@@ -56,10 +56,9 @@
                             </div>
                             <ul class="steps_header">
                                 <li class=" {{step_avaliacao}} step_first step"><a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}"><em>1</em> Avaliação</a></li>
-                                <!-- <li class=" {{step_proposta}} step"><a href="javascript://"><em>2</em> Proposta</a></li> -->
                                 {% if show_step_2 %}
                                 <li class=" {{step_proposta}} step"><a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}/propostas/"><em>2</em> Proposta</a></li>
-                                <li class=" {{step_sugestao}} step_last"><a hreff="{{bloginfo('home')}}/projetos/{{slug_projeto}}/sugestao/"><em>3</em> Sugestão</a></li>
+                                <li class=" {{step_sugestao}} step_last"><a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}/sugestao/"><em>3</em> Sugestão</a></li>
                                 {% endif %}
                             </ul>
                             {% if is_user_logged_in %}

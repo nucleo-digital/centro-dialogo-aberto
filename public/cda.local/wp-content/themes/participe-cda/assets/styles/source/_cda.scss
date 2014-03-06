@@ -1565,10 +1565,10 @@ h1 a, h2 a, h3 a {
 
         .col-left {
             padding: 0;
-
             .map_zone {
-                margin-top: 46px;
+                margin-top: 66px;
                 position: relative;
+                border-right: 2px dashed;
                 .map {
                     img {
                         width: 100%
@@ -1577,12 +1577,7 @@ h1 a, h2 a, h3 a {
                 .spots {
                     .point {
                         @include point();
-                    }
-                    .point_blank, .pt_x, .pt_ {
                         background-image: url("assets/images/pt_cover.png");
-                    }
-                    .pt_x, .pt_ {
-                        display: none;
                     }
                 }
 
@@ -1597,15 +1592,17 @@ h1 a, h2 a, h3 a {
                 position: fixed;
                 width: 100%;
 
-                .point {
-                    @include point();
-                    position: relative;
-                    margin: 10px 0 0 15px;
-                    float: left;
+                .point_wrapper {
+                    .point {
+                        @include point();
+                        position: relative;
+                        margin: 10px 0 0 15px;
+                        float: left;
+                    }
                     div {
                         display: none;
                     }
-                    span {
+                    h2 {
                         color: #FFFFFF;
                         display: none;
                         font-family: 'museo700';
@@ -1613,7 +1610,6 @@ h1 a, h2 a, h3 a {
                         padding: 3px;
                         white-space: nowrap;
                     }
-
                 }
             }
             .points.disabled {
@@ -1627,7 +1623,35 @@ h1 a, h2 a, h3 a {
         }
         .col-right {
 
-            border-left: 2px dashed red;
+            .info {
+                margin-top: 66px;
+                font-family: 'museoSans';
+                font-size: 12px;
+                .info_content {
+                    display: none;
+                    h1 {
+                        border-bottom: 1px solid #EBEBEC;
+                        font-size: 16px;
+                        margin-bottom: 10px;
+                        padding-bottom: 10px;
+                    }
+                    .point_info {
+                        display: none;
+                        h2 {
+                            font-size: 16px;
+                            font-family: 'museo700';
+                        }
+                        .point {
+                            @include point();
+                            position: relative;
+                            margin: 0 0 10px;
+                        }
+                    }
+
+
+                }
+
+            }
 
         }
 
@@ -1638,6 +1662,14 @@ h1 a, h2 a, h3 a {
 
 
     }
+
+    .tab_proposta .info_proposta,
+    .tab_minha_sugestao .info_minha_sugestao,
+    .tab_usermap .info_usermap,
+    .tab_geral .info_geral {
+        display: block !important;
+    }
+
 
     .tab.user.pt_x , .tab.user.pt_ {
         display: block;
