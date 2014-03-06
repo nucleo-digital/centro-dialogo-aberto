@@ -48,7 +48,7 @@
 
     {% set spotsArr = spots|split('l') %}
 
-    {% set userArr = post.post_content|split(',') %}
+    {% set userArr = post.post_content|split('l') %}
 
         <div class="col-sm-10 col-left">
             <div class="map_zone">
@@ -113,16 +113,17 @@
 
 </div>
 
+{% if tab == 'minha_sugestao' %}
 
 <script type="text/javascript">
 
-    // var info = {
+    var data = {
 
-    //     pts : {},
-    //     spots : '{{spots}}',
-    //     usr : '{{post.post_content}}'
+        pts : {},
+        spots : '{{spots}}',
+        usr : [{{post.post_content|replace({"l": ","})}}]
 
-    // }
+    }
 
     {% for pt in pts %}
 
@@ -135,7 +136,35 @@
     {% endfor %}
 
 </script>
+{% endif %}
+
+{% if tab == 'geral' %}
+
+<script type="text/javascript">
+
+    var data = {
+
+        pts : {},
+        spots : '{{spots}}',
+        spotsData : {}
+        usr : [],
+        posts : [
+        {% for post in posts %}
+            [{{ post.post_content|replace({"l": ","}) }}],
+        {% endfor %}
+        ]
+
+    }
+
+    {% for pt in pts %}
 
 
+    {% endfor %}
+
+
+
+</script>
+
+{% endif %}
 
 {% endblock %}

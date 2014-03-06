@@ -32,6 +32,15 @@ Timber::add_route('projetos/:name/update_points/:points', function($params){
     Timber::load_template('passo-3-update_points.php', $query);
 });
 
+Timber::add_route('projetos/:name/user_points/:points', function($params){
+
+    // if (!is_user_logged_in() || !is_admin()) {
+    //     wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'] ); exit;
+    // }
+
+    $query = 'category_name='.$params['name'] . '&points=' . $params['points'];
+    Timber::load_template('passo-3-user_points.php', $query);
+});
 
 function sugestao($params){
     $query = 'category_name='.$params['name'] . '&aba=' . $params['aba'];

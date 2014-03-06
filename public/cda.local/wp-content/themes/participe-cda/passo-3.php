@@ -52,6 +52,9 @@ if (!$aba || $aba == 'proposta') {
       'numberposts' => 1
   );
 
+  $context['post'] = Timber::get_posts($query);
+  $context['post'] = $context['post'][0];
+
 } else if ($aba == 'minha_sugestao') {
 
   $context['tab'] = 'minha_sugestao';
@@ -68,10 +71,24 @@ if (!$aba || $aba == 'proposta') {
       'numberposts' => 1
   );  
 
+  $context['post'] = Timber::get_posts($query);
+  $context['post'] = $context['post'][0];
+
 } else if ($aba == 'geral') {
 
   $context['tab'] = 'geral';
   $context['tab_geral'] = 'selected';
+
+  $query = array(
+      'category'  => $obj_category->term_id,
+      'post_type' => 'sugestao',
+      'order'     => 'ASC',
+      'numberposts' => 99999999999
+  );  
+
+  $context['posts'] = Timber::get_posts($query);
+
+  // print_r($context['posts']);
 
 } else {
 
@@ -91,9 +108,9 @@ if (!$aba || $aba == 'proposta') {
       'numberposts' => 1
   );  
 
-}
+  $context['post'] = Timber::get_posts($query);
+  $context['post'] = $context['post'][0];
 
-$context['post'] = Timber::get_posts($query);
-$context['post'] = $context['post'][0];
+}
 
 Timber::render('passo-3.twig', $context);

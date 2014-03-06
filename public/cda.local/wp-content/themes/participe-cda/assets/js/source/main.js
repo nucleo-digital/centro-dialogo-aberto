@@ -1,5 +1,4 @@
 'use strict';
-var AA;
 function resize () {
 	var height = $(window).height() - $('.navbar').height();
 	$('.home_grid').height(height);
@@ -372,118 +371,159 @@ jQuery(function() {
 
 	if ($('.sugestao').length) {
 
-		var S = {
+		if ($('.tab_minha_sugestao').length) {
 
-			init : function() {
+			var S = {
 
-				$('.point','.map_zone .spots').bind('click',function() {
-					if ($(this).hasClass('selected')) {
-						S.unselectSpot(this);
-					} else {
-						S.selectSpot(this);
+				userPoints : data.usr,
+
+				init : function() {
+
+					console.log(S);
+
+					$('.point','.map_zone .spots').bind('click',function() {
+						if ($(this).hasClass('selected')) {
+							S.unselectSpot(this);
+						} else {
+							S.selectSpot(this);
+						}
+					});
+
+					$('.point','.points').bind('click',S.choosePoint);
+
+				},
+
+				selectSpot : function(obj) {
+
+					$('.point','.map_zone .spots').removeClass('selected');
+					$(obj).addClass('selected');
+
+					var id = obj.id.length ? obj.id.replace('pt_','') : null;
+
+					S.selectPoint(id);
+					S.selectInfo(id);
+
+				},
+
+				unselectSpot : function(obj) {
+
+					$(obj).removeClass('selected');
+
+					S.unselectPoint();
+					S.unselectInfo();
+
+				},
+
+				selectPoint : function(id) {
+
+					$('.points')
+						.removeClass('disabled')
+						.addClass('enabled')
+						.find('.point')
+							.removeClass('selected');
+
+					if (id) {
+						$('.points #point_' + id).addClass('selected');
 					}
-				});
 
-				$('.point','.points').bind('click',S.choosePoint);
+				},
 
-			},
+				unselectPoint : function() {
 
-			selectSpot : function(obj) {
-
-				$('.point','.map_zone .spots').removeClass('selected');
-				$(obj).addClass('selected');
-
-				var id = obj.id.length ? obj.id.replace('pt_','') : null;
-
-				S.selectPoint(id);
-				S.selectInfo(id);
-
-			},
-
-			unselectSpot : function(obj) {
-
-				$(obj).removeClass('selected');
-
-				S.unselectPoint();
-
-			},
-
-			selectPoint : function(id) {
-
-				$('.points')
-					.removeClass('disabled')
-					.find('.point')
-						.removeClass('selected');
-
-				if (id) {
-					$('.points #point_' + id).addClass('selected');
-				}
-
-			},
-
-			unselectPoint : function() {
-
-				$('.points')
-					.toggleClass('disabled enabled')
-					.find('.point')
-						.removeClass('selected');
+					$('.points')
+						.removeClass('enabled')
+						.addClass('disabled')
+						.find('.point')
+							.removeClass('selected');
 
 
-			},
+				},
 
-			selectInfo : function(id) {
+				selectInfo : function(id) {
 
-				$('.point','.info').removeClass();
+					$('.point','.info').removeClass();
 
-				if (id) {
-					$('.point_info','.info')
-						.html($('.point_wrapper_' + id).html());
+					if (id) {
+						$('.point_info','.info')
+							.html($('.point_wrapper_' + id).html());
 
-					$('.tab_minha_sugestao .point_info').show();
+						$('.tab_minha_sugestao .point_info').show();
 
-				} else {
+					} else {
+						$('.tab_minha_sugestao .point_info').hide();
+					}
+
+
+				},
+
+				unselectInfo : function() {
+
 					$('.tab_minha_sugestao .point_info').hide();
+
+				},
+
+				choosePoint : function() {
+
+					if ($('.points').hasClass('disabled enabled')) {
+						return;
+					}
+
+					var id = this.id.replace('point_','');
+					var spot = $('.point.selected','.map_zone .spots');
+					var index = spot.data('index');
+					S.userPoints[index] = id;
+
+					console.log(index);
+
+					var spotId = spot[0].id;
+
+					spot
+						.attr('id','pt_' + id)
+						.removeClass(spotId)
+						.addClass('pt_' + id);
+
+
+					S.selectPoint(id);
+					S.selectInfo(id);
+
+					// http://localhost:8888/cda/public/cda.local/projetos/vale-do-anhangabau/user_points/343l344l345l346l348l346l343l345/
+					$.post(window.location.href.replace('sugestao/minha_sugestao', 'user_points') + S.userPoints.join('l'));
+
+					console.log(window.location.href.replace('sugestao/minha_sugestao', 'user_points') + S.userPoints.join('l'));
+
 				}
 
 
-			},
 
-			unselectInfo : function() {
+			};
+
+			S.init();
+
+		}
+
+		if ($('.tab_geral').length) {
+
+			var S = {
+
+				posts : data.posts,
+
+				init : function() {
 
 
 
-
-			},
-
-			choosePoint : function() {
-
-				if ($('.points').hasClass('disabled enabled')) {
-					return;
 				}
 
-				var id = this.id.replace('point_','');
 
-				var spot = $('.point.selected','.map_zone .spots');
-				// var info = 
-
-				var spotId = spot[0].id;
-
-				spot
-					.attr('id','pt_' + id)
-					.removeClass(spotId)
-					.addClass('pt_' + id);
-
-
-				S.selectPoint(id);
-				S.selectInfo(id);
 
 			}
 
+			S.init();
 
 
-		};
 
-		S.init();
+
+
+		}
 
 	}
 

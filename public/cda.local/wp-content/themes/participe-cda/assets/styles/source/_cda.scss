@@ -89,6 +89,8 @@ $width: 960px;
 
 .point.selected {
     border-width: 5px !important;
+    width: 40px !important;
+    height: 40px !important;
 }
 
 
@@ -1579,6 +1581,9 @@ h1 a, h2 a, h3 a {
                         @include point();
                         background-image: url("assets/images/pt_cover.png");
                     }
+                    .point.selected {
+                        margin: -20px 0 0 -20px;
+                    }
                 }
 
             }
@@ -1599,15 +1604,20 @@ h1 a, h2 a, h3 a {
                         margin: 10px 0 0 15px;
                         float: left;
                     }
+                    .point.selected {
+                        margin: 5px -5px 0 10px;
+                    }
                     div {
                         display: none;
                     }
                     h2 {
                         color: #FFFFFF;
                         display: none;
+                        float: left;
                         font-family: 'museo700';
-                        margin: -35px 0 0 14px;
-                        padding: 3px;
+                        font-size: 16px;
+                        margin: -35px 0 0 -20px;
+                        padding: 5px;
                         white-space: nowrap;
                     }
                 }
@@ -1616,6 +1626,13 @@ h1 a, h2 a, h3 a {
                 .point {
                     opacity: 0.5;
                     cursor: default !important;
+                }
+            }
+            .points.enabled {
+                .point_wrapper:hover {
+                    h2 {
+                        display: block;
+                    }
                 }
             }
 
@@ -1650,6 +1667,9 @@ h1 a, h2 a, h3 a {
 
 
                 }
+                .extra_info {
+                    display: none;
+                }
 
             }
 
@@ -1663,13 +1683,20 @@ h1 a, h2 a, h3 a {
 
     }
 
+    .tab_proposta, .tab_usermap {
+        .map_zone {
+            .point {
+                cursor: default !important;
+            }
+        }
+    }
+
     .tab_proposta .info_proposta,
     .tab_minha_sugestao .info_minha_sugestao,
     .tab_usermap .info_usermap,
     .tab_geral .info_geral {
         display: block !important;
     }
-
 
     .tab.user.pt_x , .tab.user.pt_ {
         display: block;
