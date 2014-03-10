@@ -1713,6 +1713,13 @@ h1 a, h2 a, h3 a {
     .tab_minha_sugestao.editing {
         .map {
             img {
+                opacity: 0.3;
+            }
+        }
+    }
+    .tab_proposta {
+        .map {
+            img {
                 opacity: 0.5;
             }
         }

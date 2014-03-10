@@ -57,13 +57,16 @@ if (!$aba || $aba == 'proposta') {
 
 } else if ($aba == 'minha_sugestao') {
 
+    if (!is_user_logged_in()) {
+        wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$context['slug_projeto'].'/sugestao/minha_sugestao/' ); exit;
+    }
+
   global $current_user;
   get_currentuserinfo();
 
   $context['tab'] = 'minha_sugestao';
   $context['tab_user'] = 'selected';
   $context['user_login'] = $current_user->user_login;
-
 
   $query = array(
       'category'  => $obj_category->term_id,
@@ -74,6 +77,21 @@ if (!$aba || $aba == 'proposta') {
   );  
 
   $context['post'] = Timber::get_posts($query);
+
+  if (!count($context['post'])) {
+
+    $query = array(
+        'category'  => $obj_category->term_id,
+        'post_type' => 'sugestao',
+        'orderby'   => 'post_date',
+        'order'     => 'ASC',
+        'numberposts' => 1
+    );
+
+    $context['post'] = Timber::get_posts($query);
+
+  }
+
   $context['post'] = $context['post'][0];
 
 } else if ($aba == 'geral') {

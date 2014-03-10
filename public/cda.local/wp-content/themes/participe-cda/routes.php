@@ -4,6 +4,8 @@
 
 Timber::add_route('projetos/:name/edit_points', function($params){
 
+    print_r(!$data['is_admin']);
+
     // if (!is_user_logged_in() || !is_admin()) {
     //     wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'] ); exit;
     // }
