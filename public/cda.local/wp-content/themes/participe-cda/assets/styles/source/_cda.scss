@@ -1678,8 +1678,13 @@ h1 a, h2 a, h3 a {
 
                 }
                 .bottom_info {
+                    // position: fixed;
+                    // bottom: 60px;
+                    border-top: 1px solid rgba(230, 230, 230, 0.59);
+                    margin-top: 10px;
+                    padding-top: 10px;
                     .extra_info {
-                        display: none;
+                        // display: none;
                     }
                     a, button {
                         border: 0 none;
