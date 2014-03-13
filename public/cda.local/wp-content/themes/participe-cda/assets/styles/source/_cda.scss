@@ -1492,6 +1492,7 @@ h1 a, h2 a, h3 a {
             margin: 0;
             .tab {
                 display: inline-block;
+                position: relative;
                 a {
                     background-color: #cbcbcc;
                     background-position: 10px center;
@@ -1526,6 +1527,14 @@ h1 a, h2 a, h3 a {
                 span {
                     background-color: green;
                 }
+            }
+            .tab.selected:after {
+                border-style: solid;
+                border-width: 8px;
+                bottom: -35px;
+                content: "";
+                left: 15px;
+                position: absolute;
             }
             .tab.proposta {
                 span {
@@ -1568,7 +1577,7 @@ h1 a, h2 a, h3 a {
         .col-left {
             padding: 0;
             .map_zone {
-                margin-top: 66px;
+                margin-top: 100px;
                 position: relative;
                 border-right: 2px dashed;
                 .map {
@@ -1652,9 +1661,9 @@ h1 a, h2 a, h3 a {
         .col-right {
 
             .info {
-                margin-top: 66px;
+                margin-top: 100px;
                 font-family: 'museoSans';
-                font-size: 12px;
+                font-size: 13px;
                 .info_content {
                     h1 {
                         border-bottom: 1px solid #EBEBEC;
@@ -1663,6 +1672,9 @@ h1 a, h2 a, h3 a {
                         padding-bottom: 10px;
                     }
                     .point_info {
+                        border-bottom: 1px solid rgba(230, 230, 230, 0.59);
+                        margin-bottom: 10px;
+                        padding-bottom: 10px;
                         display: none;
                         h2 {
                             font-size: 16px;
@@ -1678,11 +1690,9 @@ h1 a, h2 a, h3 a {
 
                 }
                 .bottom_info {
-                    // position: fixed;
-                    // bottom: 60px;
-                    border-top: 1px solid rgba(230, 230, 230, 0.59);
-                    margin-top: 10px;
-                    padding-top: 10px;
+                    position: fixed;
+                    bottom: 10px;
+                    padding-right: 10px;
                     .extra_info {
                         // display: none;
                     }
@@ -1702,10 +1712,17 @@ h1 a, h2 a, h3 a {
                     
                 }
 
+                /* Landscape phones and down */
+                @media (max-height: 768px) { 
+                    .bottom_info {
+                        position: relative;
+                        bottom: auto !important;
+                        padding-right: 0px;
+                    }
+
+                }
             }
-
         }
-
     }
 
     .tab_proposta, .tab_usermap, .tab_minha_sugestao.finished {
@@ -1729,6 +1746,11 @@ h1 a, h2 a, h3 a {
             }
         }
     }
+
+    .tab_minha_sugestao .bottom_info {
+        bottom: 60px !important;
+    }
+
     .tab_minha_sugestao.editing .info_minha_sugestao.editing,
     .tab_minha_sugestao.finished .info_minha_sugestao.finished
     {

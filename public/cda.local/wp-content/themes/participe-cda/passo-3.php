@@ -29,6 +29,7 @@ $img_map = get_tax_meta($obj_category->term_id,'cda_image_2_field_id');
 $context['img_map'] = new TimberImage($img_map);
 
 $pts = get_tax_meta($obj_category->term_id,'cda_text_field_id_2');
+$context['pts_numbers'] = $pts;
 $pts = split (",", $pts);
 
 foreach ($pts as $i=>$id) {
@@ -108,7 +109,7 @@ if (!$aba || $aba == 'proposta') {
 
   $context['posts'] = Timber::get_posts($query);
 
-  // print_r($context['posts']);
+  print_r($context['posts']);
 
 } else {
 

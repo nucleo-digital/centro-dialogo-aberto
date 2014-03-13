@@ -142,7 +142,7 @@
 
         pts : {},
         spots : '{{spots}}',
-        usr : [{{post.post_content|replace({"l": ","})}}]
+        usr : [{{post.post_content|replace({"l": "," , 'x':'"x"'})}}]
 
     }
 
@@ -165,13 +165,13 @@
 
     var data = {
 
-        pts : {},
+        pts : {% for pt in pts_numbers %}{{pt}}{% endfor %},
         spots : '{{spots}}',
-        spotsData : {}
+        spotsData : {},
         usr : [],
         posts : [
         {% for post in posts %}
-            [{{ post.post_content|replace({"l": ","}) }}],
+            [{{ post.post_content|replace({"l": "," , 'x':'"x"'}) }}],
         {% endfor %}
         ]
 
