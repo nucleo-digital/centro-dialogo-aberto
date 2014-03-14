@@ -1452,6 +1452,7 @@ h1 a, h2 a, h3 a {
         .pt {
             @include point();
             background-image: url("assets/images/pt_cover.png");
+
         }
         .pt_del:hover {
             background-image: url("assets/images/pt_x.png");
@@ -1591,6 +1592,10 @@ h1 a, h2 a, h3 a {
                         @include point();
                         background-image: url("assets/images/pt_cover.png");
                         z-index: 3;
+                    }
+                    .point.fixed {
+                        background-color: #999999;
+                        cursor: default;
                     }
                     .point.selected {
                         margin: -20px 0 0 -20px;

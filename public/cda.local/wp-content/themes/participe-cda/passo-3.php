@@ -29,12 +29,17 @@ $img_map = get_tax_meta($obj_category->term_id,'cda_image_2_field_id');
 $context['img_map'] = new TimberImage($img_map);
 
 $pts = get_tax_meta($obj_category->term_id,'cda_text_field_id_2');
+
+// print_r(pts);
+
 $context['pts_numbers'] = $pts;
 $pts = split (",", $pts);
 
 foreach ($pts as $i=>$id) {
   $pts[$i] = new TimberImage($id);
 }
+
+// print_r($pts);
 
 $context['pts'] = $pts;
 $context['tab_user_title'] = 'Minha sugestão';

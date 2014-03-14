@@ -376,7 +376,9 @@ jQuery(function() {
 
 				init : function() {
 
-					$('.point','.map_zone .spots').bind('click',function() {
+					S.setFixed();
+
+					$('.point','.map_zone .spots').not('.fixed').bind('click',function() {
 						if ($(this).hasClass('selected')) {
 							S.unselectSpot(this);
 						} else {
@@ -389,6 +391,23 @@ jQuery(function() {
 					$('.info .finish_my_map').bind('click',S.myMap.finish);
 					$('.info .edit_my_map').bind('click',S.myMap.edit);
 					$('.info .publish_my_map').bind('click',S.myMap.publish);
+
+
+
+				},
+
+				setFixed : function() {
+
+					var fixed = $('.fixo');
+
+					fixed.each(function(){
+
+						console.log($('.spots .' + this.id.replace('point_','pt_')));
+						console.log(this.id.replace('point_','pt_'));
+
+						$('.spots .' + this.id.replace('point_','pt_')).addClass('fixed');
+
+					});
 
 				},
 

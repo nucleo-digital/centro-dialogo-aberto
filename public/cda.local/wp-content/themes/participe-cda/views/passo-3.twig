@@ -73,7 +73,7 @@
             <div class="points disabled">
             {% for pt in pts %}
                 <div class="point_wrapper point_wrapper_{{pt.ID}}">
-                    <div class="point pt_{{pt.ID}}" id="point_{{pt.ID}}"></div>
+                    <div class="point pt_{{pt.ID}} {{pt._wp_attachment_image_alt}}" id="point_{{pt.ID}}"></div>
                     <h2>{{pt.caption}}</h2>
                     <div class="content">{{pt.post_content}}</div>
                 </div>
