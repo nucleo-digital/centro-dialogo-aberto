@@ -109,8 +109,6 @@ if (!$aba || $aba == 'proposta') {
 
   $context['posts'] = Timber::get_posts($query);
 
-  print_r($context['posts']);
-
 } else {
 
   $current_user = get_user_by('login', $aba);

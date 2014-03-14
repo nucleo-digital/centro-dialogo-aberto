@@ -547,30 +547,6 @@ jQuery(function() {
 
 		}
 
-		if ($('.tab_geral').length) {
-
-			var S = {
-
-				posts : data.posts,
-
-				init : function() {
-
-
-
-				}
-
-
-
-			}
-
-			S.init();
-
-
-
-
-
-		}
-
 	}
 
 

@@ -146,15 +146,6 @@
 
     }
 
-    {% for pt in pts %}
-
-    // info.pts['{{pt.ID}}'] = {
-    //     id : {{pt.ID}},
-    //     title : '{{pt.caption}}',
-    //     descr : '{{pt.post_content|replace({"'": "´"})}}',
-    //     url : '{{pt.guid}}'
-    // }
-    {% endfor %}
 
 </script>
 {% endif %}
@@ -165,8 +156,9 @@
 
     var data = {
 
-        pts : {% for pt in pts_numbers %}{{pt}}{% endfor %},
-        spots : '{{spots}}',
+        // pts : {% for pt in pts_numbers|split(',') %}{{pt}}{% endfor %},
+        icones : [{{pts_numbers}}],
+        spots : [{{spots|replace({"l": ","})}}],
         spotsData : {},
         usr : [],
         posts : [
@@ -176,12 +168,6 @@
         ]
 
     }
-
-    {% for pt in pts %}
-
-
-    {% endfor %}
-
 
 
 </script>
