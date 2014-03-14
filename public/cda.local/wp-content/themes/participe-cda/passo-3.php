@@ -98,6 +98,10 @@ if (!$aba || $aba == 'proposta') {
 
   }
 
+
+
+  $context['display_name'] = $current_user->display_name;
+
   $context['post'] = $context['post'][0];
 
 } else if ($aba == 'geral') {
