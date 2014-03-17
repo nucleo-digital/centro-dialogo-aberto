@@ -159,11 +159,8 @@ if (!$aba || $aba == 'proposta') {
   $context['votes'] = $v;
   $context['votesArr'] = $votes;
 
-
-
-  print_r($context['votes']);
-
-  exit();
+  // print_r($context['votes']);
+  // exit();
 
 } else {
 
