@@ -150,13 +150,20 @@ if (!$aba || $aba == 'proposta') {
 
   foreach ($votes as $i => $vote) {
     $v[$i] = Array();
-    $v[$i] = [array_keys($votes[$i])[0],array_keys($votes[$i])[1],array_keys($votes[$i])[2]];
+    // $v[$i] = [array_keys($votes[$i])[0],array_keys($votes[$i])[1],array_keys($votes[$i])[2]];
+    $v[$i][0] = array_keys($votes[$i])[0];
+    $v[$i][1] = array_keys($votes[$i])[1];
+    $v[$i][2] = array_keys($votes[$i])[2];
   }
 
   $context['votes'] = $v;
   $context['votesArr'] = $votes;
 
-  // print_r($context['votesArr']);
+
+
+  print_r($context['votes']);
+
+  exit();
 
 } else {
 
