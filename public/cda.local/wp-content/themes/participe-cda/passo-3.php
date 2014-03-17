@@ -156,6 +156,8 @@ if (!$aba || $aba == 'proposta') {
   $context['votes'] = $v;
   $context['votesArr'] = $votes;
 
+  // print_r($context['votesArr']);
+
 } else {
 
   $current_user = get_user_by('login', $aba);

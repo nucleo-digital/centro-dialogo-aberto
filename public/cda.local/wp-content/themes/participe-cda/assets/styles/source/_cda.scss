@@ -1676,7 +1676,48 @@ h1 a, h2 a, h3 a {
                         margin-bottom: 10px;
                         padding-bottom: 10px;
                     }
+                    .voting {
+                        border-bottom: 1px solid #EBEBEC;
+                        margin-bottom: 10px;
+                        display: none;
+                        float: left;
+                        .vote {
+                            width: 100%;
+                            float: left;
+                            // .col-sm-3 {
+                            //     padding: 0 20px 0 0;
+                            // }
+                            // .col-sm-9 {
+                            //     padding: 0 20px 0 0;
+                            // }
+                            .col {
+                                padding: 0 20px 0 0;
+                            }
+                            .pt {
+                                @include point();
+                                position: relative;
+                                margin: 0 0 10px;
+                                display: inline-block;
+                                cursor: default;
+                                width: 20px;
+                                height: 20px;
+                                background-size: 23px auto;
+                            }
+                            .voteWrapper {
+                                background-color: #EDEFF0;
+                                height: 13px;
+                                margin: 8px 0 0;
+                                span {
+                                    display: inline-block;
+                                    float: left;
+                                    height: 100%;
+                                }
+                            }
+                        }
+
+                    }
                     .point_info {
+                        float: left;
                         border-bottom: 1px solid rgba(230, 230, 230, 0.59);
                         margin-bottom: 10px;
                         padding-bottom: 10px;
@@ -1689,6 +1730,7 @@ h1 a, h2 a, h3 a {
                             @include point();
                             position: relative;
                             margin: 0 0 10px;
+                            cursor: default;
                         }
                     }
 
@@ -1749,6 +1791,11 @@ h1 a, h2 a, h3 a {
             img {
                 opacity: 0.5;
             }
+        }
+    }
+    .tab_geral {
+        .points {
+            display: none;
         }
     }
 

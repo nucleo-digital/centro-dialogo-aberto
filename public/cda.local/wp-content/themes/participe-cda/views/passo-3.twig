@@ -20,26 +20,26 @@
         <h1>Como o {{nome_projeto}} deve ser usado?</h1>
         <ul class="tabs">
 
-            <li class="tab proposta {{tab_proposta}}">
+            <li id="proposta" class="tab proposta {{tab_proposta}}">
                 
                 <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/">
                     <span></span>
                     <p>Proposta</p>
                 </a>
             </li>
-            <li class="tab user {{tab_user}} {{tab_user_url}}">
+            <li id="{{tab}}" class="tab user {{tab_user}} {{tab_user_url}}">
                 <span></span>
                 <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/{{tab_user_url}}">
                     <span></span>
                     <p>{{tab_user_title}}</p>
                 </a>
             </li>
-            <!-- <li class="tab geral {{tab_geral}}">
+            <li id="geral" class="tab geral {{tab_geral}}">
                 <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/geral/">
                     <span></span>
                     <p>Sugestão geral</p>
                 </a>
-            </li> -->
+            </li>
 
 
         </ul>
@@ -81,7 +81,7 @@
                     <img src="{{img_map.get_src}}">
                 </div>
             </div>
-            {% if tab == 'minha_sugestao' %}
+            {% if tab == 'minha_sugestao' or tab == 'geral' %}
             <div class="points disabled">
             {% for pt in pts %}
                 <div class="point_wrapper point_wrapper_{{pt.ID}}">
@@ -124,6 +124,41 @@
                 {% elseif tab == 'geral' %}
                 <div class="info_content info_geral">
                     <h1 class="titulo_user_map">Como a populaçao quer o Vale!</h1>
+                    <div class="voting">
+                        <div class="vote1 vote">
+                            <div class="col col-sm-3">
+                                <div class="pt"></div>
+                            </div>
+                            <div class="col col-sm-9">
+                                <div class="voteWrapper">
+                                    <span style="width: "></span>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="vote2 vote">
+                            <div class="col  col-sm-3">
+                                <div class="pt"></div>
+                            </div>
+                            <div class="col col-sm-9">
+                                <div class="voteWrapper">
+                                    <span style="width: "></span>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="vote3 vote">
+                            <div class="col  col-sm-3">
+                                <div class="pt"></div>
+                            </div>
+                            <div class="col col-sm-9">
+                                <div class="voteWrapper">
+                                    <span style="width: "></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="point_info">
+                        <div class="point"></div>
+                    </div>
                     <div class="bottom_info">
                         <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
                         <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/minha_sugestao" class="button create_my_map">IR PARA O MEU MAPA</a>
@@ -170,14 +205,91 @@
 
         // pts : {% for pt in pts_numbers|split(',') %}{{pt}}{% endfor %},
         icones : [{{pts_numbers}}],
-        spots : [{{spots|replace({"l": ","})}}],
-        spotsData : {},
-        usr : [],
-        posts : [
-        {% for post in posts %}
-            [{{ post.post_content|replace({"l": "," , 'x':'"x"'}) }}],
-        {% endfor %}
+        spots : [
+            {% for spot in spots %}
+            '{{spot}}',
+            {% endfor %}
+        ],
+        votes : [
+            {% for vote in votesArr %}
+            [
+                {% for pt,count in vote %}
+
+                {% if pt != 'x' %}
+
+                [{{pt}} , {{count}}],
+
+                {% endif %}
+
+                // {{pt}} : {{count}},
+
+
+                {% endfor %}
+            ],
+            {% endfor %}
+        ],
+        votesSpots : [
+            {% for vote in votesArr %}
+            [
+                {% for pt,count in vote %}
+
+                {% if pt != 'x' %}
+
+                {{pt}} ,
+
+                {% endif %}
+
+                // {{pt}} : {{count}},
+
+
+                {% endfor %}
+            ],
+            {% endfor %}
+        ],
+        votesCount : [
+            {% for vote in votesArr %}
+            [
+                {% for pt,count in vote %}
+
+                {% if pt != 'x' %}
+
+                {{count}},
+
+                {% endif %}
+
+                // {{pt}} : {{count}},
+
+
+                {% endfor %}
+            ],
+            {% endfor %}
         ]
+        // votes : [
+        //     {% for vote in votesArr %}
+        //     {
+        //         {% for pt,count in vote %}
+
+        //         {{pt}} : {{count}},
+
+
+        //         {% endfor %}
+        //     },
+        //     {% endfor %}
+        // ],
+        // voting : [
+        //     {% for vote in votesArr %}
+        //     [
+        //         {% for pt,count in vote %}
+        //         {
+        //             pt : '{{pt}}',
+        //             count : {{count}}
+        //         },
+        //         {% endfor %}
+        //     ],
+        //     {% endfor %}
+        // ]
+        // voting : 
+        
 
     }
 

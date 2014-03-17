@@ -368,7 +368,15 @@ jQuery(function() {
 
 	if ($('.sugestao').length) {
 
-		if ($('.tab_minha_sugestao').length) {
+		// var data = data;
+
+		// if (!data) {
+		// 	data = {};
+		// }
+
+		var tab = $('.tab.selected').attr('id');
+
+		if (tab === 'minha_sugestao' || tab === 'geral') {
 
 			var S = {
 
@@ -376,7 +384,7 @@ jQuery(function() {
 
 				init : function() {
 
-					S.setFixed();
+					S['init_' + tab]();
 
 					$('.point','.map_zone .spots').not('.fixed').bind('click',function() {
 						if ($(this).hasClass('selected')) {
@@ -393,6 +401,21 @@ jQuery(function() {
 					$('.info .publish_my_map').bind('click',S.myMap.publish);
 
 
+
+
+
+				},
+
+				init_minha_sugestao : function () {
+
+					console.log('init sug');
+
+					S.setFixed();
+					
+				},
+
+				init_geral : function() {
+					console.log('init geral');
 
 				},
 
@@ -469,10 +492,15 @@ jQuery(function() {
 						$('.point_info','.info')
 							.html($('.point_wrapper_' + id).html());
 
-						$('.tab_minha_sugestao .point_info').show();
+						$('.point_info','.tab_minha_sugestao,.tab_geral').show();
+
+						if (tab === 'geral') {
+							S.selectVoting(id);
+						}
 
 					} else {
-						$('.tab_minha_sugestao .point_info').hide();
+						$('.point_info').hide();
+						$('.voting').hide();
 					}
 
 
@@ -480,8 +508,47 @@ jQuery(function() {
 
 				unselectInfo : function() {
 
-					$('.tab_minha_sugestao .point_info').hide();
+					$('.point_info').hide();
+					$('.voting').hide();
 
+				},
+
+				selectVoting : function (id) {
+
+					var index = $('.spots #pt_' + id).data('index'),
+						total = eval(data.votesCount[index].join('+')),
+						length = eval(data.votes[index].length);
+
+					var counts = [
+							data.votes[index][0][1]*100/total,
+							data.votes[index][1][1]*100/total,
+							data.votes[index][2][1]*100/total
+							];
+
+					var pts = [
+							data.votes[index][0][0],
+							data.votes[index][1][0],
+							data.votes[index][2][0]
+							];
+
+					for (var i=0;i<4;i++)  {
+
+
+						$('.voting .vote' + (i+1) + ' .pt')
+							.removeClass()
+								.addClass('pt pt_' + pts[i])
+							.parent()
+							.siblings()
+							.find('span')
+							.css('width',counts[i] + '%');
+
+					
+
+					}
+
+					$('.voting').show();
+
+					
 				},
 
 				choosePoint : function() {
