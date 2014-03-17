@@ -149,11 +149,7 @@ if (!$aba || $aba == 'proposta') {
   $v = Array();
 
   foreach ($votes as $i => $vote) {
-    $v[$i] = Array();
-    // $v[$i] = [array_keys($votes[$i])[0],array_keys($votes[$i])[1],array_keys($votes[$i])[2]];
-    $v[$i][0] = array_keys($votes[$i])[0];
-    $v[$i][1] = array_keys($votes[$i])[1];
-    $v[$i][2] = array_keys($votes[$i])[2];
+    $v[$i] = Array(array_keys($votes[$i])[0],array_keys($votes[$i])[1],array_keys($votes[$i])[2]);
   }
 
   $context['votes'] = $v;
