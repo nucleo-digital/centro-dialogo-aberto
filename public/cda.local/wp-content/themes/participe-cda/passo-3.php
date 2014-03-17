@@ -149,7 +149,7 @@ if (!$aba || $aba == 'proposta') {
   $v = Array();
 
   foreach ($votes as $i => $vote) {
-    $v[$i] = Array(array_keys($votes[$i])[0],array_keys($votes[$i])[1],array_keys($votes[$i])[2]);
+    $v[$i] = array_keys($votes[$i]);
   }
 
   $context['votes'] = $v;
