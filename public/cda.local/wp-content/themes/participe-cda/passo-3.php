@@ -23,7 +23,10 @@ $context['id_projeto'] = $obj_category->term_id;
 $context['slug_projeto'] = $obj_category->slug;
 $context['cor_projeto'] = get_tax_meta($obj_category->term_id,'cda_color_field_id');
 
-$context['spots'] = get_option( 'passo-3-points_'  . $context['id_projeto']);
+$spots = get_option( 'passo-3-points_'  . $context['id_projeto']);
+$spots = split("l", $spots);
+array_splice($spots, 0, 1);
+$context['spots'] = $spots;
 
 $img_map = get_tax_meta($obj_category->term_id,'cda_image_2_field_id');
 $context['img_map'] = new TimberImage($img_map);
@@ -116,7 +119,42 @@ if (!$aba || $aba == 'proposta') {
       'numberposts' => 99999999999
   );  
 
-  $context['posts'] = Timber::get_posts($query);
+  $posts = Timber::get_posts($query);
+
+  $votes = Array();
+
+  foreach ($spots as $i=>$spot) {
+
+    $votes[$i] = Array();
+    foreach ($pts as $pt) {
+      $votes[$i][$pt->ID] = 0;
+    }
+    $i++;
+  }
+
+
+  foreach ($posts as $post) {
+
+    $post_votes = split("l", $post->post_content);
+
+    array_splice($post_votes, 0, 1);
+
+    foreach ($votes as $i => $vote) {
+      $votes[$i][$post_votes[$i]]++;
+      arsort($votes[$i]);
+    }
+
+  }
+
+  $v = Array();
+
+  foreach ($votes as $i => $vote) {
+    $v[$i] = Array();
+    $v[$i] = [array_keys($votes[$i])[0],array_keys($votes[$i])[1],array_keys($votes[$i])[2]];
+  }
+
+  $context['votes'] = $v;
+  $context['votesArr'] = $votes;
 
 } else {
 

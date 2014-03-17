@@ -47,21 +47,32 @@
 
     <div class="content-container tab_{{tab}} editing">
 
-    {% set spotsArr = spots|split('l') %}
-
-    {% set userArr = post.post_content|split('l') %}
 
         <div class="col-sm-10 col-left">
             <div class="map_zone">
                 <div class="spots">
-                    {% for spot in spotsArr|slice(1, length) %}
+
+                    {% set userArr = post.post_content|split('l') %}
+
+                    {% for spot in spots %}
                     {% set coord = spot|split('x') %}
 
-                    {% if userArr[loop.index] == '' %}
-                        {% set userPt = '' %}
+                    {% set userPt = '' %}
+
+                    {% if tab == 'geral' %}
+
+                        {% if votes[loop.index][0] != '' %}
+                            {% set userPt = 'pt_' ~ votes[loop.index][0] %}
+                        {% endif %}
+
                     {% else %}
-                        {% set userPt = 'pt_' ~ userArr[loop.index] %}
+
+                        {% if userArr[loop.index] != '' %}
+                            {% set userPt = 'pt_' ~ userArr[loop.index] %}
+                        {% endif %}
+
                     {% endif %}
+
 
                     <div class="point {{userPt}}" id="{{userPt}}" data-index="{{loop.index}}" style="top:{{coord[1]}}%;left:{{coord[0]}}%"></div>
                     {% endfor %}
