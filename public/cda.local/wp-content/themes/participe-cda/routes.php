@@ -1,5 +1,12 @@
 <?php
 
+
+Timber::add_route('midias', function($params){
+
+    Timber::load_template('midias.php', $query);
+});
+
+
 // PASSO 3 ----------------------------------------
 
 Timber::add_route('projetos/:name/edit_points', function($params){
