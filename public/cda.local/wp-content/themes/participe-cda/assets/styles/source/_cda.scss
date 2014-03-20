@@ -1615,6 +1615,7 @@ h1 a, h2 a, h3 a {
                 position: fixed;
                 width: 100%;
                 z-index: 5;
+                display: none;
                 .point_wrapper {
                     .point {
                         @include point();
@@ -1776,7 +1777,7 @@ h1 a, h2 a, h3 a {
         }
     }
 
-    .tab_proposta, .tab_usermap, .tab_minha_sugestao.finished {
+    .tab_minha_sugestao.finished {
         .map_zone {
             .point {
                 cursor: default !important;
@@ -1789,6 +1790,9 @@ h1 a, h2 a, h3 a {
                 opacity: 0.3;
             }
         }
+        .points {
+            display: none !important;
+        }
     }
     .tab_proposta {
         .map {
@@ -1798,9 +1802,9 @@ h1 a, h2 a, h3 a {
         }
     }
     .tab_geral {
-        .points {
-            display: none;
-        }
+        // .points {
+        //     display: none;
+        // }
     }
 
     .tab_minha_sugestao .bottom_info {

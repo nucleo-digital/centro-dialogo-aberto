@@ -81,7 +81,6 @@
                     <img src="{{img_map.get_src}}">
                 </div>
             </div>
-            {% if tab == 'minha_sugestao' or tab == 'geral' %}
             <div class="points disabled">
             {% for pt in pts %}
                 <div class="point_wrapper point_wrapper_{{pt.ID}}">
@@ -91,13 +90,15 @@
                 </div>
             {% endfor %}
             </div>
-            {% endif %}
         </div>
         <div class="col-sm-2 col-right">
             <div class="info">
                 {% if tab == 'proposta' %}
                 <div class="info_content info_proposta">
                     <h1 class="titulo_proposta">Mapa conceito proposto</h1>
+                    <div class="point_info">
+                        <div class="point"></div>
+                    </div>
                     <div class="bottom_info">
                         <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
                         <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/minha_sugestao" class="button create_my_map">CRIAR MEU MAPA</a>
@@ -167,6 +168,9 @@
                 {% else %}
                 <div class="info_content info_usermap">
                     <h1 class="titulo_user_map">Sugestao de {{tab_user_login}}</h1>
+                    <div class="point_info">
+                        <div class="point"></div>
+                    </div>
                     <div class="bottom_info">
                         <div class="extra_info">Você pode fazer sugestões para o planejamento do Vale, selecionando uma das áreas no mapa e depois escolhendo uma atividade ou tipo de uso no menu de ícones abaixo.</div>
                         <a href="{{bloginfo('home')}}/projetos/{{category_slug}}/sugestao/minha_sugestao" class="button create_my_map">CRIAR MEU MAPA</a>
@@ -181,35 +185,12 @@
 
 </div>
 
-{% if tab == 'minha_sugestao' %}
-
 <script type="text/javascript">
+
+    {% if tab == 'geral' %}
 
     var data = {
 
-        pts : {},
-        spots : '{{spots}}',
-        usr : [{{post.post_content|replace({"l": "," , 'x':'"x"'})}}]
-
-    }
-
-
-</script>
-{% endif %}
-
-{% if tab == 'geral' %}
-
-<script type="text/javascript">
-
-    var data = {
-
-        // pts : {% for pt in pts_numbers|split(',') %}{{pt}}{% endfor %},
-        icones : [{{pts_numbers}}],
-        spots : [
-            {% for spot in spots %}
-            '{{spot}}',
-            {% endfor %}
-        ],
         votes : [
             {% for vote in votesArr %}
             [
@@ -239,9 +220,6 @@
 
                 {% endif %}
 
-                // {{pt}} : {{count}},
-
-
                 {% endfor %}
             ],
             {% endfor %}
@@ -257,45 +235,26 @@
 
                 {% endif %}
 
-                // {{pt}} : {{count}},
-
-
                 {% endfor %}
             ],
             {% endfor %}
         ]
-        // votes : [
-        //     {% for vote in votesArr %}
-        //     {
-        //         {% for pt,count in vote %}
-
-        //         {{pt}} : {{count}},
-
-
-        //         {% endfor %}
-        //     },
-        //     {% endfor %}
-        // ],
-        // voting : [
-        //     {% for vote in votesArr %}
-        //     [
-        //         {% for pt,count in vote %}
-        //         {
-        //             pt : '{{pt}}',
-        //             count : {{count}}
-        //         },
-        //         {% endfor %}
-        //     ],
-        //     {% endfor %}
-        // ]
-        // voting : 
         
 
     }
 
+    {% else %}
+
+    var data = {
+
+        usr : [{{post.post_content|replace({"l": "," , 'x':'"x"'})}}]
+
+    }
+
+    {% endif %}
+
 
 </script>
 
-{% endif %}
 
 {% endblock %}

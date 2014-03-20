@@ -9,7 +9,6 @@ jQuery(function() {
 
 	$('.form-group.edit button').bind('click',function() {
 		var input = $(this).siblings('input:text,input:password');
-		console.log(input);
 
 		input.attr('disabled',!input.attr('disabled'));
 
@@ -376,7 +375,7 @@ jQuery(function() {
 
 		var tab = $('.tab.selected').attr('id');
 
-		if (tab === 'minha_sugestao' || tab === 'geral') {
+		// if (tab === 'minha_sugestao' || tab === 'geral') {
 
 			var S = {
 
@@ -384,7 +383,9 @@ jQuery(function() {
 
 				init : function() {
 
-					S['init_' + tab]();
+					if (tab != 'geral') {
+						S.setFixed();
+					}
 
 					$('.point','.map_zone .spots').not('.fixed').bind('click',function() {
 						if ($(this).hasClass('selected')) {
@@ -401,22 +402,6 @@ jQuery(function() {
 					$('.info .publish_my_map').bind('click',S.myMap.publish);
 
 
-
-
-
-				},
-
-				init_minha_sugestao : function () {
-
-					console.log('init sug');
-
-					S.setFixed();
-					
-				},
-
-				init_geral : function() {
-					console.log('init geral');
-
 				},
 
 				setFixed : function() {
@@ -424,9 +409,6 @@ jQuery(function() {
 					var fixed = $('.fixo');
 
 					fixed.each(function(){
-
-						console.log($('.spots .' + this.id.replace('point_','pt_')));
-						console.log(this.id.replace('point_','pt_'));
 
 						$('.spots .' + this.id.replace('point_','pt_')).addClass('fixed');
 
@@ -492,7 +474,7 @@ jQuery(function() {
 						$('.point_info','.info')
 							.html($('.point_wrapper_' + id).html());
 
-						$('.point_info','.tab_minha_sugestao,.tab_geral').show();
+						$('.point_info').show();
 
 						if (tab === 'geral') {
 							S.selectVoting(id);
@@ -542,8 +524,6 @@ jQuery(function() {
 							.find('span')
 							.css('width',counts[i] + '%');
 
-					
-
 					}
 
 					$('.voting').show();
@@ -562,8 +542,6 @@ jQuery(function() {
 					var index = spot.data('index');
 					S.userPoints[index] = id;
 
-					console.log(index);
-
 					var spotId = spot[0].id;
 
 					spot
@@ -575,10 +553,7 @@ jQuery(function() {
 					S.selectPoint(id);
 					S.selectInfo(id);
 
-					// http://localhost:8888/cda/public/cda.local/projetos/vale-do-anhangabau/user_points/343l344l345l346l348l346l343l345/
 					$.post(window.location.href.replace('sugestao/minha_sugestao', 'user_points') + S.userPoints.join('l'));
-
-					console.log(window.location.href.replace('sugestao/minha_sugestao', 'user_points') + S.userPoints.join('l'));
 
 				},
 
@@ -605,23 +580,6 @@ jQuery(function() {
 
 					},
 					publish : function() {
-						console.log('PUBLISH DUDE');
-
-						// var url = window.location.href;
-
-						// var this.href = 'http://www.facebook.com/sharer.php?' +
-						//      'u=the url you want to share'
-						//      &t=title of the article/post/whatever" 
-						//      target="_blank
-
-						// <a title="Share this article/post/whatever on Facebook" 
-						//      href="http://www.facebook.com/sharer.php?
-						//      u=the url you want to share
-						//      &t=title of the article/post/whatever" 
-						//      target="_blank">
-						//      <img src="your/path/to/facebook-icon.png" 
-						//              alt="Share on Facebook" />
-						// </a>
 
 					}
 
@@ -631,7 +589,7 @@ jQuery(function() {
 
 			S.init();
 
-		}
+		// }
 
 	}
 
