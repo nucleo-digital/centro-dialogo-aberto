@@ -84,6 +84,17 @@ switch($_GET['action']) {
                     $mail = wp_mail( $to, $subject, $message, $headers );
 
                     if( $mail ) {
+                        print_r($to);
+                        print_r('<br>');
+                        print_r($from_email);
+                        print_r('<br>');
+                        print_r($from_name);
+                        print_r('<br>');
+                        print_r($message);
+                        print_r('<br>');
+                        print_r($headers);
+                        print_r('<br>');
+                        print_r($mail);
                         $context['mensagem_status'] = 'info';
                         $context['mensagem'] = 'Confira o link de confirmação em seu email. <br> <a href="../entrar">Clique aqui para fazer login</a>';
                     } else {
