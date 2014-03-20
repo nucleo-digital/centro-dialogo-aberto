@@ -63,19 +63,20 @@ switch($_GET['action']) {
                         'user_pass' => $random_password
                     )
                 );
-                
+
                 // if  update user return true then lets send user an email containing the new password
                 if( $update_user ) {
-                    $to = $email;
+                    $to = $user->user_email;
                     $subject = 'Nova senha';
-                    $sender = get_option('name');
+                    $from_email = get_option('admin_email');
+                    $from_name = 'Gestão Urbana SP - Centro Diálogo Aberto'; //get_option('name');
                     
                     $message = 'Sua nova senha é: '.$random_password;
                     
                     $headers[] = 'MIME-Version: 1.0' . "\r\n";
                     $headers[] = 'Content-type: text/html; charset=utf-8' . "\r\n";
                     $headers[] = "X-Mailer: PHP \r\n";
-                    $headers[] = 'From: '.$sender.' < '.$email.'>' . "\r\n";
+                    $headers[] = 'From: '.$from_name.' < '.$from_email.'>' . "\r\n";
                     
                     $mail = wp_mail( $to, $subject, $message, $headers );
 
