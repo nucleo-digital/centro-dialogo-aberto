@@ -1593,12 +1593,16 @@ h1 a, h2 a, h3 a {
                         background-image: url("assets/images/pt_cover.png");
                         z-index: 3;
                     }
+                    .point:hover {
+                        z-index: 5;
+                    }
                     .point.fixed {
                         background-color: #999999;
                         cursor: default;
                     }
                     .point.selected {
                         margin: -20px 0 0 -20px;
+                        z-index: 4;
                     }
                 }
 
