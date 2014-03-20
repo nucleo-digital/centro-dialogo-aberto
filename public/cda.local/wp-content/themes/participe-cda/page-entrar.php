@@ -26,9 +26,13 @@ $post = new TimberPost();
 $context['post'] = $post;
 $context['form_action'] = get_bloginfo('home').'/entrar/';
 $context['redirect_to'] = $_GET['redirect_to'];
+if ($context['redirect_to'] == 1 || !$context['redirect_to']) $context['redirect_to'] = get_bloginfo('home');
 $context['wp_lostpassword_url'] = wp_lostpassword_url();
 $context['mensagem'] = '';
 $context['mensagem_status'] = 'danger';
+
+if (is_user_logged_in())
+    wp_redirect($context['redirect_to']);
 
 
 switch($_GET['action']) {

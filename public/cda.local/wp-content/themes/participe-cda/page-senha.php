@@ -26,9 +26,12 @@ $post = new TimberPost();
 $context['post'] = $post;
 $context['form_action'] = get_bloginfo('home').'/senha/';
 $context['redirect_to'] = $_GET['redirect_to'];
+if ($context['redirect_to'] == 1 || !$context['redirect_to']) $context['redirect_to'] = get_bloginfo('home');
 $context['mensagem'] = '';
 $context['mensagem_status'] = 'danger';
 
+if (is_user_logged_in())
+    wp_redirect($context['redirect_to']);
 
 switch($_GET['action']) {
     case 'lostpassword':
@@ -76,7 +79,7 @@ switch($_GET['action']) {
                     $headers[] = 'MIME-Version: 1.0' . "\r\n";
                     $headers[] = 'Content-type: text/html; charset=utf-8' . "\r\n";
                     $headers[] = "X-Mailer: PHP \r\n";
-                    $headers[] = 'From: '.$from_name.' < '.$from_email.'>' . "\r\n";
+                    $headers[] = 'From: '.$from_name.' <'.$from_email.'>' . "\r\n";
                     
                     $mail = wp_mail( $to, $subject, $message, $headers );
 
@@ -84,9 +87,7 @@ switch($_GET['action']) {
                         $context['mensagem_status'] = 'info';
                         $context['mensagem'] = 'Confira o link de confirmação em seu email. <br> <a href="../entrar">Clique aqui para fazer login</a>';
                     } else {
-
                         print_r('ERRO <br><hr><br>');
-
                         print_r($mail);
                     }
 
