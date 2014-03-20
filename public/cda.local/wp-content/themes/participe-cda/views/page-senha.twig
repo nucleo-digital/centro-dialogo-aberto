@@ -1,0 +1,31 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="content-row">
+        <div class="content-cell">
+            <div class="form_wrapper">
+                <div class="header">
+                <br>
+                    {% if mensagem %}
+                        <br>
+                        <div class="alert alert-{{mensagem_status}}">{{mensagem}}</div>
+                    {% endif %}
+                    <!-- <h2>Você precisa ser um usuário cadastrado para participar</h2> -->
+                </div>
+                <br>
+                <div>
+                    <h3>Recuperar senha</h3>
+                    <p>Digite seu nome de usuário ou endereço de email. Você receberá um link para criar uma nova senha via email.</p>
+                    <form role="form" method="POST" action="{{form_action}}?action=lostpassword" name="login_form">
+                        <input type="hidden" name="redirect_to" value="{{redirect_to}}"/>
+                        <div class="form-group">
+                            <input type="text" name="user_name" id="user_name" placeholder="apelido ou e-mail" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-default pull-right">Obter nova senha</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
