@@ -82,6 +82,11 @@ switch($_GET['action']) {
                     if( $mail ) {
                         $context['mensagem_status'] = 'info';
                         $context['mensagem'] = 'Confira o link de confirmação em seu email. <br> <a href="../entrar">Clique aqui para fazer login</a>';
+                    } else {
+
+                        print_r('ERRO <br><hr><br>');
+
+                        print_r($mail);
                     }
 
                 } else {
