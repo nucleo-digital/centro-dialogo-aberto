@@ -387,7 +387,8 @@ jQuery(function() {
 						S.setFixed();
 					}
 
-					$('.point','.map_zone .spots').not('.fixed').bind('click',function() {
+					// $('.point','.map_zone .spots').not('.fixed').bind('click',function() {
+					$('.point','.map_zone .spots').bind('click',function() {
 						if ($(this).hasClass('selected')) {
 							S.unselectSpot(this);
 						} else {
@@ -427,8 +428,8 @@ jQuery(function() {
 
 					var id = obj.id.length ? obj.id.replace('pt_','') : null;
 
-					S.selectPoint(id);
 					S.selectInfo(id);
+					S.selectPoint(id);
 
 				},
 
@@ -442,6 +443,11 @@ jQuery(function() {
 				},
 
 				selectPoint : function(id) {
+
+					if ($('.spots .pt_' + id).hasClass('fixed')) {
+						S.unselectPoint();
+						return;
+					}
 
 					$('.points')
 						.removeClass('disabled')
@@ -538,7 +544,12 @@ jQuery(function() {
 					}
 
 					var id = this.id.replace('point_','');
+
 					var spot = $('.point.selected','.map_zone .spots');
+
+					if (spot.hasClass('fixed')) return;
+
+
 					var index = spot.data('index');
 					S.userPoints[index] = id;
 
@@ -548,7 +559,6 @@ jQuery(function() {
 						.attr('id','pt_' + id)
 						.removeClass(spotId)
 						.addClass('pt_' + id);
-
 
 					S.selectPoint(id);
 					S.selectInfo(id);
