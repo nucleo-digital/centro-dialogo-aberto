@@ -71,8 +71,9 @@ switch($_GET['action']) {
                 if( $update_user ) {
                     $to = $user->user_email;
                     $subject = 'Nova senha';
-                    $from_email = get_option('admin_email');
-                    $from_name = 'Gestão Urbana SP - Centro Diálogo Aberto'; //get_option('name');
+                    // $from_email = get_option('admin_email');
+                    $from_email = 'no-reply@gestaourbana.prefeitura.sp.gov.br';
+                    $from_name = 'Centro Diálogo Aberto'; //get_option('name');
                     
                     $message = 'Sua nova senha é: '.$random_password;
                     
@@ -84,17 +85,17 @@ switch($_GET['action']) {
                     $mail = wp_mail( $to, $subject, $message, $headers );
 
                     if( $mail ) {
-                        print_r($to);
-                        print_r('<br>');
-                        print_r($from_email);
-                        print_r('<br>');
-                        print_r($from_name);
-                        print_r('<br>');
-                        print_r($message);
-                        print_r('<br>');
-                        print_r($headers);
-                        print_r('<br>');
-                        print_r($mail);
+                        // print_r($to);
+                        // print_r('<br>');
+                        // print_r($from_email);
+                        // print_r('<br>');
+                        // print_r($from_name);
+                        // print_r('<br>');
+                        // print_r($message);
+                        // print_r('<br>');
+                        // print_r($headers);
+                        // print_r('<br>');
+                        // print_r($mail);
                         $context['mensagem_status'] = 'info';
                         $context['mensagem'] = 'Confira o link de confirmação em seu email. <br> <a href="../entrar">Clique aqui para fazer login</a>';
                     } else {
