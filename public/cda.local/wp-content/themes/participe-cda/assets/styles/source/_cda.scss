@@ -1519,6 +1519,9 @@ h1 a, h2 a, h3 a {
                 a:hover {
                     color: #cbcbcc;
                     background-color: #fff;
+                    span {
+                        background-color: #cbcbcc;
+                    }
                 }
                 .has_icon {
                     padding: 0 10px 0 40px;
@@ -1544,7 +1547,6 @@ h1 a, h2 a, h3 a {
                 }
                 a:hover span {
                     background-image: url("assets/images/passo3_tab-proposta_selected.png");
-                    background-color: #cbcbcc;
                 }
             }
             .tab.user {
@@ -1555,7 +1557,6 @@ h1 a, h2 a, h3 a {
                 }
                 a:hover span {
                     background-image: url("assets/images/passo3_tab-user_selected.png");
-                    background-color: #cbcbcc;
                 }
             }
             .tab.geral {
@@ -1566,7 +1567,6 @@ h1 a, h2 a, h3 a {
                 }
                 a:hover span {
                     background-image: url("assets/images/passo3_tab-geral_selected.png");
-                    background-color: #cbcbcc;
                 }
             }
             .tab.selected.proposta {
