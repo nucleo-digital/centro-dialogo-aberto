@@ -1516,6 +1516,10 @@ h1 a, h2 a, h3 a {
                         display: inline-block;
                     }
                 }
+                a:hover {
+                    color: #cbcbcc;
+                    background-color: #fff;
+                }
                 .has_icon {
                     padding: 0 10px 0 40px;
                 }
@@ -1524,9 +1528,6 @@ h1 a, h2 a, h3 a {
             .tab.selected {
                 a {
                     background-color: #fff;
-                }
-                span {
-                    background-color: green;
                 }
             }
             .tab.selected:after {
@@ -1541,6 +1542,10 @@ h1 a, h2 a, h3 a {
                 span {
                     background-image: url("assets/images/passo3_tab-proposta.png");
                 }
+                a:hover span {
+                    background-image: url("assets/images/passo3_tab-proposta_selected.png");
+                    background-color: #cbcbcc;
+                }
             }
             .tab.user {
                 span {
@@ -1548,12 +1553,20 @@ h1 a, h2 a, h3 a {
                     height: 20px;
                     width: 20px;
                 }
+                a:hover span {
+                    background-image: url("assets/images/passo3_tab-user_selected.png");
+                    background-color: #cbcbcc;
+                }
             }
             .tab.geral {
                 span {
                     background-image: url("assets/images/passo3_tab-geral.png");
                     height: 21px;
                     width: 32px;
+                }
+                a:hover span {
+                    background-image: url("assets/images/passo3_tab-geral_selected.png");
+                    background-color: #cbcbcc;
                 }
             }
             .tab.selected.proposta {
