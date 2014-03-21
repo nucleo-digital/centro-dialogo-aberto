@@ -22,6 +22,7 @@ $context['nome_projeto'] = $obj_category->name;
 $context['id_projeto'] = $obj_category->term_id;
 $context['slug_projeto'] = $obj_category->slug;
 $context['cor_projeto'] = get_tax_meta($obj_category->term_id,'cda_color_field_id');
+$context['step_url'] = 'sugestao';
 
 $spots = get_option( 'passo-3-points_'  . $context['id_projeto']);
 $spots = split("l", $spots);

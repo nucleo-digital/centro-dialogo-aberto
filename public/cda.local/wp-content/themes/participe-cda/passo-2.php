@@ -16,6 +16,7 @@ $obj_category = get_category_by_slug( $context['category_slug'] );
 $context['step_avaliacao'] = 'step_before_selected';
 $context['step_proposta'] = 'step_selected';
 $context['show_step_2'] = true;
+$context['step_url'] = 'propostas';
 
 $query = array(
     'category'  => $obj_category->term_id,

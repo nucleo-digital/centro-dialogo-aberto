@@ -50,7 +50,7 @@
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{nome_projeto}}</a>
                                 <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
                                     {% for category in categories %}
-                                    <li role="presentation" class=""><a href="{{bloginfo('home')}}/projetos/{{category.slug}}" tabindex="-1" role="menuitem">{{category.name}}</a></li>
+                                    <li role="presentation" class=""><a href="{{bloginfo('home')}}/projetos/{{category.slug}}/{{step_url}}" tabindex="-1" role="menuitem">{{category.name}}</a></li>
                                     {% endfor %}
                                   </ul>
                             </div>
