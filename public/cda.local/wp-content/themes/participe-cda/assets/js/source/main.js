@@ -68,6 +68,7 @@ jQuery(function() {
 				}
 
 				$('.steps .footer .prev').show();
+				$('.steps .footer .back').hide();
 
 				s.load();
 
@@ -81,6 +82,7 @@ jQuery(function() {
 
 				if (s.current === 1) {
 					$('.steps .footer .prev').hide();
+					$('.steps .footer .back').show();
 				}
 
 				// if (s.votes) // TODO: Indicar qual a pessoa votou
