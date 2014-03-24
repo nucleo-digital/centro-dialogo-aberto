@@ -927,6 +927,13 @@ h1 a, h2 a, h3 a {
               min-height: 200px;
               width: 200px;
             }
+            .carousel.pull-right {
+                margin-right: -38px;
+            }
+            .carousel.pull-left {
+                margin-left: -38px;
+            }
+            
             /* Since positioning the image, we need to help out the caption */
             .carousel-caption {
               z-index: 10;
