@@ -89,7 +89,7 @@ $width: 960px;
 
 @mixin button($padding, $margin, $font-size) {
     border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
     color: #FFFFFF;
     display: block;
     font-family: "museo",Arial,sans-serif;
@@ -783,7 +783,7 @@ h1 a, h2 a, h3 a {
             border-radius: 10px;
 
             &:hover {
-                box-shadow: 3px 3px 10px 3px rgba(0,0,0,.5);
+                box-shadow: 3px 3px 10px 3px rgba(0,0,0,.25);
             }
         }
         .happy {
@@ -1086,7 +1086,7 @@ h1 a, h2 a, h3 a {
             width: 195px;
         }
         a.fb_button:before {
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.50);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
             border-radius: 100%;
             content: "";
             height: 60px;
