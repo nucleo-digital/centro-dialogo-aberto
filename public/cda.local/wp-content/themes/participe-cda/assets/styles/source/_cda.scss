@@ -1668,6 +1668,8 @@ h1 a, h2 a, h3 a {
                     img {
                         width: 100%;
                         z-index: 1;
+                        max-width: 1500px;
+                        max-height: 1000px
                     }
                 }
                 .spots {
