@@ -87,6 +87,18 @@ $width: 960px;
     margin: -15px 0 0 -15px;
 }
 
+@mixin button($padding, $margin, $font-size) {
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    display: block;
+    font-family: "museo",Arial,sans-serif;
+    font-size: $font-size;
+    margin: $margin;
+    padding: $padding;
+    width: 130px;
+}
+
 .point.selected {
     border-width: 5px !important;
     width: 40px !important;
@@ -891,16 +903,17 @@ h1 a, h2 a, h3 a {
                 margin: 0 0 5px 0;
             }
             .start {
-                background: $blue_bg;
-                font-size: 18px;
-                font-family: 'museoSans';
-                background: $blue_bg;
-                color: #fff;
-                box-shadow: 2px 2px 4px 3px rgba(0,0,0,.7);
-                border-radius: 15px;
-                padding: 25px 20px;
-                display: inline-block;
-                margin: 15px 0 0;
+                @include button(25px 20px, 15px auto 0, 18px);
+                // background: $blue_bg;
+                // font-size: 18px;
+                // font-family: 'museoSans';
+                // background: $blue_bg;
+                // color: #fff;
+                // box-shadow: 2px 2px 4px 3px rgba(0,0,0,.7);
+                // border-radius: 15px;
+                // padding: 25px 20px;
+                // display: inline-block;
+                // margin: 15px 0 0;
             }
 
 
@@ -1043,18 +1056,6 @@ h1 a, h2 a, h3 a {
     //   transform: rotate(-65deg);
     // }
 
-    a.next_step {
-        border-radius: 10px;
-        color: #FFFFFF;
-        display: block;
-        font-family: "museo",Arial,sans-serif;
-        font-size: 16px;
-        margin: 30px auto 0;
-        padding: 10px;
-        width: 130px;
-        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.50);
-    }
-
     .category {
         margin: 0;
         display: block;
@@ -1062,6 +1063,63 @@ h1 a, h2 a, h3 a {
         font-size: 21px;
         font-weight: bold;
         line-height: 21px;
+        clear: both;
+    }
+
+    .step_footer {
+        a.button {
+            @include button(10px, 30px auto 0, 16px);
+            // border-radius: 10px;
+            // color: #FFFFFF;
+            // display: block;
+            // font-family: "museo",Arial,sans-serif;
+            // font-size: 16px;
+            // margin: 30px auto 0;
+            // padding: 10px;
+            // width: 130px;
+            // box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.50);
+        }
+        a.fb_button {
+            height: 105px;
+            padding-top: 40px;
+            position: relative;
+            width: 195px;
+        }
+        a.fb_button:before {
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.50);
+            border-radius: 100%;
+            content: "";
+            height: 60px;
+            left: 61px;
+            margin: 0 auto;
+            position: absolute;
+            text-align: center;
+            top: -30px;
+            width: 60px;
+            z-index: 1;
+        }
+        a.fb_button:after {
+            border-radius: 10px;
+            content: "Divulgar o resultado da minha avaliação no Facebook";
+            left: 0;
+            padding-top: 30px;
+            position: absolute;
+            top: 0;
+            z-index: 2;
+
+
+        }
+        a.fb_button em {
+            background-image: url("assets/images/fb_f.png");
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 35px;
+            left: 83px;
+            position: absolute;
+            top: -14px;
+            width: 17px;
+            z-index: 3;
+        }
     }
 
 }

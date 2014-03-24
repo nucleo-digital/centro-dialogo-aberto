@@ -85,15 +85,23 @@
             {% endfor %}
 
             <p class="category">&nbsp;</p>
-            {% if username %}
-                <!--a href="" class="next start">Venha participar você também!</a-->
-            {% else %}
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{compartilhar_link}}" target="_blank">
-                    <img src="{{theme.uri}}/assets/images/fb_result.png">
-                </a>
-            {% endif %}
+            <div class="step_footer">
+                {% if username %}
+                    <!--a href="" class="next start">Venha participar você também!</a-->
+                {% else %}
+                    <!-- <a href="https://www.facebook.com/sharer/sharer.php?u={{compartilhar_link}}" target="_blank">
+                        <img src="{{theme.uri}}/assets/images/fb_result.png">
+                    </a> -->
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{compartilhar_link}}" target="_blank" class="button fb_button"> <em></em></a>
+                {% endif %}
 
-            <a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}/propostas/" class="next_step">Ir para o próximo passo</a>
+                <a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}/propostas/" class="button next_step">Ir para o próximo passo</a>
+            </div>
+
+            <p class="category">&nbsp;</p>
+
+
+
 
         </div>
     </div>

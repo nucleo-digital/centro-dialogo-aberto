@@ -63,6 +63,7 @@ module.exports = function(grunt) {
                         'assets/js/vendor/jquery/jquery.js',
                         'assets/js/vendor/jquery-placeholder/jquery.placeholder.js',
                         'assets/js/vendor/sass-bootstrap/dist/js/bootstrap.js',
+                        'assets/js/vendor/Midway.js/midway.js',
                     ]
                 }
             },
