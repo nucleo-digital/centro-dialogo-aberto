@@ -511,7 +511,7 @@ jQuery(function() {
 
 				selectVoting : function (id) {
 
-					var index = $('.spots #pt_' + id).data('index'),
+					var index = $('.spots #pt_' + id).data('index')-1,
 						total = eval(data.votesCount[index].join('+')),
 						length = eval(data.votes[index].length);
 
