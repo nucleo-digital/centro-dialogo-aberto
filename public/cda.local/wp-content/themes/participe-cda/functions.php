@@ -42,6 +42,7 @@ show_admin_bar( false );
         $data['is_user_logged_in'] = is_user_logged_in();
         $data['current_user'] = wp_get_current_user();
         $data['is_admin'] = is_admin();
+        $data['redirect_to'] = 'http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
 
         $data['menu'] = new TimberMenu();
         return $data;
