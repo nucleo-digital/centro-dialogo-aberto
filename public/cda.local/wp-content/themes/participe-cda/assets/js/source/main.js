@@ -60,35 +60,41 @@ jQuery(function() {
 
 			next : function() {
 
-				if (s.current === s.total) {
-					$('.steps .footer .next').hide();
-					$('.steps .footer .finish').show();
-				} else {
+				if (s.current <= s.total) {
 					s.current++;
 				}
-
-				$('.steps .footer .prev').show();
-				$('.steps .footer .back').hide();
-
-				s.load();
+				s.goToStep();
 
 			},
 
 			prev : function() {
 				s.current--;
+				s.goToStep();
+				
+			},
 
-				$('.steps .footer .next').show();
-				$('.steps .footer .finish').hide();
+			goToStep : function() {
 
-				if (s.current === 1) {
-					$('.steps .footer .prev').hide();
-					$('.steps .footer .back').show();
+				var show = ['prev','next','counter','step_content','emot'],
+					hide = ['back','conclusion','finish'];
+
+				if (s.current > s.total) {
+
+					show = ['finish','conclusion'];
+					hide = ['next','counter','step_content','emot'];
+
+				} else if (s.current === 1) {
+
+					show = ['back'];
+					hide = ['prev'];
+
 				}
 
-				// if (s.votes) // TODO: Indicar qual a pessoa votou
-
+				$('.' + show.join(',.')).show();
+				$('.' + hide.join(',.')).hide();
 
 				s.load();
+
 			},
 
 			finish : function() {
