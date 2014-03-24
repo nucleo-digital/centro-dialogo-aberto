@@ -340,7 +340,7 @@ jQuery(function() {
 				var pt = e.target;
 				var coord = $(pt).data('coord');
 
-				list = list.replace('l' + coord,'');
+				list = list.replace('l' + coord,'l0x0');
 
 				PTS.updateDb();
 
@@ -350,6 +350,10 @@ jQuery(function() {
 			},
 
 			plot : function(coord) {
+
+				if (coord[0] == 0 || coord[1] == 0) {
+					return;
+				}
 
 				$('.points').append('<div class="pt pt_del" data-coord="' + coord.join('x') + '" style="left:' + coord[0] + '%;top:' + coord[1] + '%"></div>');
 

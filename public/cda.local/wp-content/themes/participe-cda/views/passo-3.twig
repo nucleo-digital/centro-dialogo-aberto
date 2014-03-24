@@ -73,8 +73,10 @@
 
                     {% endif %}
 
-
+                    {% if coord[0] != 0 and coord[1] != 0 %}
                     <div class="point {{userPt}}" id="{{userPt}}" data-index="{{loop.index}}" style="top:{{coord[1]}}%;left:{{coord[0]}}%"></div>
+                    {% endif %}
+                    
                     {% endfor %}
                 </div>
                 <div class="map">
