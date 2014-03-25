@@ -114,8 +114,8 @@ jQuery(function() {
 
 	if ($('.home_grid').length) {
 
-		$(window).resize(resize);
-		resize();
+		// $(window).resize(resize);
+		// resize();
 
 	}
 
