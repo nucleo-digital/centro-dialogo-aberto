@@ -12,12 +12,14 @@
 .steps .start,
 .steps.results a.button,
 .steps.results a.button:before,
-.steps.results a.button:after
- {
+.steps.results a.button:after,
+.steps .results_tabs .selected span
+{
     background-color: {{cor_projeto}};
 }
 
-.navbar-bottom .dropdown.locs a.dropdown-toggle {
+.navbar-bottom .dropdown.locs a.dropdown-toggle
+{
     background-color: {{cor_projeto}};
     color: #fff;
 }
@@ -45,7 +47,8 @@
 .navbar-bottom .dropdown .dropdown-menu li a.active, 
 .navbar-bottom .dropdown .dropdown-menu li a:focus,
 .steps .content-cell.white_bg .steps_wrapper,
-.proposta .content-header h1
+.proposta .content-header h1,
+.steps .results_tabs .selected
 {
     color: {{cor_projeto}};
 }
@@ -58,8 +61,11 @@
 .steps .steps_wrapper {
 	background-color: rgba{{cor_projeto | hex2rgb}};
 }
-.navbar-bottom .steps_header li:after {
+.navbar-bottom .steps_header li:after,
+.steps .results_tabs .selected:before
+ {
 	border-left-color: {{cor_projeto}};
 }
+
 </style>
 

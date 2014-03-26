@@ -1,39 +1,140 @@
 {% extends "base.twig" %}
 
+{% block head %}
+    <meta property="og:title" content="Resultado"/>
+    <meta property="og:image" content="{{compartilhar_imagem}}"/>
+    <meta property="og:site_name" content="Centro Diálogo Aberto"/>
+    <meta property="og:description" content="{{profile.display_name}} participou da primeira fase do projeto Centro Diálogo Aberto, avaliando os espaços públicos do centro de São Paulo. Veja o resultado dessa avaliação e participe tambem."/>
+{% endblock %}
+
 {% block content %}
+
+{% include '_bg-mosaic.twig' %}
+{% include "_color-theme.twig" %}
+
 <div class="steps results all_results content-row">
-    <input type="hidden" class="voting_result" value="-1,1,0,x,0,x,0,-1,-1,0,1,1">
     <div class="content-cell">
+
+    
         <div class="steps_wrapper">
             {% if mensagem %}
             <div class="alert alert-warning">{{mensagem}}</div>
             {% endif %}
-            <h2>Qual a sua opnião sobre o {{nome_projeto}} hoje?</h2>
-            <h2>RESULTADO</h2>
-            <h3>Minha avaliação sobre o {{nome_projeto}}</h3>
 
-            <!--div class="category">#PROTEÇÃO</div-->
+            <h2>{{nome_projeto}}<br/>Qual sua avaliação para este local hoje?</h2>
+            
+            {% if username %}
+                <h3>Esta é a avaliação feita por: {{username}}</h3>
+            {% else %}
+                <h2>RESULTADO</h2>
+                <p>Minha avaliação sobre {{nome_projeto}}</p>
+            {% endif %}
 
+            <p class="category">#PROTEÇÃO</p>
             {% set i = 1 %}
+
             {% for post in posts %}
-            <div class="vote step{{i}}">
-                <p>{{post.title}}</p>
-                <ul>
-                    <li class="vote1">80%</li>
-                    <li class="vote0">15%</li>
-                    <li class="vote-1">5%</li>
-                </ul>
-                {% set i = i + 1 %}
-            </div>
+                {% if post.terms('tags')[0].slug == 'protecao' %}
+                    {% set vote_answer = "x" %}
+                    {% for vote in voting %}
+                        {% if vote.comment_post_ID == post.ID %}
+                            {% set vote_answer = vote.comment_content %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="vote step{{i}} vote{{votes_first[post.ID]}}">
+                        <!-- <p>{{votes_first[post.ID]}}</p> -->
+                        <p>{{post.title}}</p>
+                        {% set i = i + 1 %}
+                        <ul>
+                            <li class="vote1">{{votes[post.ID][1] ? votes[post.ID][1] : 0}}%</li>
+                            <li class="vote2">{{votes[post.ID][2] ? votes[post.ID][2] : 0}}%</li>
+                            <li class="vote3">{{votes[post.ID][3] ? votes[post.ID][3] : 0}}%</li>
+                        </ul>
+                        {% set i = i + 1 %}
+                    </div>
+                {% endif %}
             {% endfor %}
 
-            <div class="category">&nbsp;</div>
 
-            <a href="javascript://">
-                <img src="{{theme.uri}}/images/fb_result.png">
-            </a>
+            <p class="category">#CONFORTO</p>
+            {% set i = 1 %}
+
+            {% for post in posts %}
+                {% if post.terms('tags')[0].slug == 'conforto' %}
+                    {% set vote_answer = "x" %}
+                    {% for vote in voting %}
+                        {% if vote.comment_post_ID == post.ID %}
+                            {% set vote_answer = vote.comment_content %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="vote step{{i}} vote{{votes_first[post.ID]}}">
+                        <!-- <p>{{votes_first[post.ID]}}</p> -->
+                        <p>{{post.title}}</p>
+                        {% set i = i + 1 %}
+                        <ul>
+                            <li class="vote1">{{votes[post.ID][1] ? votes[post.ID][1] : 0}}%</li>
+                            <li class="vote2">{{votes[post.ID][2] ? votes[post.ID][2] : 0}}%</li>
+                            <li class="vote3">{{votes[post.ID][3] ? votes[post.ID][3] : 0}}%</li>
+                        </ul>
+                        {% set i = i + 1 %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+
+            <p class="category">#PRAZER</p>
+            {% set i = 1 %}
+
+            {% for post in posts %}
+                {% if post.terms('tags')[0].slug == 'prazer' %}
+                    {% set vote_answer = "x" %}
+                    {% for vote in voting %}
+                        {% if vote.comment_post_ID == post.ID %}
+                            {% set vote_answer = vote.comment_content %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="vote step{{i}} vote{{votes_first[post.ID]}}">
+                        <!-- <p>{{votes_first[post.ID]}}</p> -->
+                        <p>{{post.title}}</p>
+                        {% set i = i + 1 %}
+                        <ul>
+                            <li class="vote1">{{votes[post.ID][1] ? votes[post.ID][1] : 0}}%</li>
+                            <li class="vote2">{{votes[post.ID][2] ? votes[post.ID][2] : 0}}%</li>
+                            <li class="vote3">{{votes[post.ID][3] ? votes[post.ID][3] : 0}}%</li>
+                        </ul>
+                        {% set i = i + 1 %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <p class="category">&nbsp;</p>
+            <div class="step_footer">
+                {% if username %}
+                    <!--a href="" class="next start">Venha participar você também!</a-->
+                {% else %}
+                    <!-- <a href="https://www.facebook.com/sharer/sharer.php?u={{compartilhar_link}}" target="_blank">
+                        <img src="{{theme.uri}}/assets/images/fb_result.png">
+                    </a> -->
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{compartilhar_link}}" target="_blank" class="button fb_button"> <em></em></a>
+                {% endif %}
+
+                <a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}/propostas/" class="button next_step">Ir para o próximo passo</a>
+            </div>
+
+            <p class="category">&nbsp;</p>
+
+
+
 
         </div>
+
+        <div class="results_tabs">
+            <a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}/resultados/" class="minha "><span></span>Minha avaliação</a>
+            <a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}/resultado-geral/" class="geral selected"><span></span>Avaliação geral</a>
+            
+        </div>
+
+
     </div>
 </div>
 {% endblock %}

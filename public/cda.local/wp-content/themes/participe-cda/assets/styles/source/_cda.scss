@@ -99,6 +99,38 @@ $width: 960px;
     width: 130px;
 }
 
+
+
+@mixin next_step($padding, $margin, $font-size, $opacity, $bg-color) {
+
+        @include button($padding, $margin, $font-size);
+
+        @if $bg-color != null {
+            background-color: $bg-color;
+        }
+
+        border-radius: 10px 0 0 10px;
+        width: auto;
+        white-space: nowrap;
+        display: inline-block;
+        position: relative;
+        opacity: $opacity;
+
+        &:after {
+            @if $bg-color != null {
+                background-color: $bg-color;
+            }
+            border-radius: 20%;
+            content: "";
+            padding: 18px;
+            position: absolute;
+            right: -17px;
+            top: 5px;
+            transform: translateY(0%) rotate(46deg);
+        }
+
+}
+
 .point.selected {
     border-width: 5px !important;
     width: 40px !important;
@@ -735,7 +767,6 @@ h1 a, h2 a, h3 a {
         // blend-mode: multiply;
         // background-color: #2DAAE1;
         width: 673px;
-        border-radius: 5px;
         padding: 45px 20px;
         margin: 15px auto 15px;
         color: #fff;
@@ -879,6 +910,79 @@ h1 a, h2 a, h3 a {
         display: none;
         font-size: 18px;
         padding: 120px 0;
+    }
+
+    .results_tabs {
+        left: 0;
+        margin: 0 auto;
+        padding-left: 925px;
+        position: fixed;
+        right: 0;
+        text-align: center;
+        top: 300px;
+        a {
+            background-color: #CCCCCC;
+            clear: left;
+            display: inline-block;
+            float: left;
+            padding: 10px 10px 10px 50px;
+            text-transform: uppercase;
+            position: relative;
+            color: #fff;
+            span {
+                background-image: url("assets/images/passo3_tab-user.png");
+                background-position: center center;
+                background-repeat: no-repeat;
+                display: block;
+                height: 20px;
+                left: 13px;
+                position: absolute;
+                width: 20px;
+
+            }
+        }
+        .geral {
+            span {
+                background-image: url("assets/images/passo3_tab-geral.png");
+                width: 32px;
+                height: 21px;
+            }
+        }
+        .minha {
+            span {
+                margin-left: 5px;
+            }
+
+        }
+        .selected {
+            background-color: #FFFFFF;
+            margin-left: -30px;
+            padding: 10px 10px 10px 83px;
+            span {
+                background-color: #CCCCCC;
+                left: 43px;
+                background-image: url("assets/images/passo3_tab-user_selected.png");
+            }
+        }
+        .selected:before {
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 10px;
+            content: "";
+            height: 0;
+            left: 10px;
+            position: absolute;
+            top: 15px;
+            width: 0;
+
+        }
+        .geral.selected {
+            span {
+                background-image: url("assets/images/passo3_tab-geral_selected.png");
+            }
+        }
+
+        
     }
 
 
@@ -1033,44 +1137,6 @@ h1 a, h2 a, h3 a {
         background-image: url(assets/images/step_em_white_x.png);
     }
 
-    // button.next_step {
-    //   position: relative;
-    //   display: block;
-    //   width: 150px;
-    //   height: 50px;
-    //   border-radius: 10px 5px 5px 10px;
-    //   background: lightgrey;
-    //   font: 22px Constantia, sans-serif;
-    //   color: blue;
-    //   line-height: 50px;
-    //   text-align: center;
-    //   text-decoration: none;
-    // }
-
-    // button.next_step:before,
-    // button.next_step:after {
-    //   content: '';
-    //   position: absolute;
-    //   right: -15px;
-    //   width: 32px;
-    //   height: 15px;
-    //   border-radius: 5px;
-    //   background: lightgrey;
-    // }
-    // button.next_step:before {
-        
-    //   top: 9px;
-    //   -webkit-transform: rotate(65deg);
-    //   -ms-transform: rotate(65deg);
-    //   transform: rotate(65deg);
-    // }
-    // button.next_step:after {
-    //   bottom: 9px;
-    //   -webkit-transform: rotate(-65deg);
-    //   -ms-transform: rotate(-65deg);
-    //   transform: rotate(-65deg);
-    // }
-
     .category {
         margin: 0;
         display: block;
@@ -1134,6 +1200,9 @@ h1 a, h2 a, h3 a {
             top: -14px;
             width: 17px;
             z-index: 3;
+        }
+        a.next_step {
+            @include next_step(10px 23px 10px 20px, 50px auto 10px, 18px, 1, null);
         }
     }
 
@@ -1505,28 +1574,7 @@ h1 a, h2 a, h3 a {
 
             }
             .next_step {
-                @include button(10px 23px 10px 20px, 50px auto 10px, 18px);
-                background-color: #000000;
-                border-radius: 10px 0 0 10px;
-                width: auto;
-                white-space: nowrap;
-                display: inline-block;
-                position: relative;
-                opacity: 0.5;
-
-
-
-            }
-            .next_step:after {
-                background-color: #000000;
-                border-radius: 20%;
-                content: "";
-                padding: 18px;
-                position: absolute;
-                right: -17px;
-                top: 5px;
-                transform: translateY(0%) rotate(46deg);
-
+                @include next_step(10px 23px 10px 20px, 50px auto 10px, 18px, .5, #000);
             }
         }
     }
