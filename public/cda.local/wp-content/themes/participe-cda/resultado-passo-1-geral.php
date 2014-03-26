@@ -82,6 +82,4 @@ foreach ($votes as $x => $post) {
 $context['votes'] = $votes;
 $context['votes_first'] = $votes_first;
 
-print_r($context['votes_first']);
-
 Timber::render('resultado-passo-1-geral.twig', $context);

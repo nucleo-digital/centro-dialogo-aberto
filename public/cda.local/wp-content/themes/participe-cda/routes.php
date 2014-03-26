@@ -136,6 +136,11 @@ Timber::add_route('projetos/:name/votar', function($params){
 });
 
 Timber::add_route('projetos/:name/resultados', function($params){
+
+    if (!is_user_logged_in()) {
+        wp_redirect( get_bloginfo('url') . '/entrar/?redirect_to='.get_bloginfo('url').'/projetos/'.$params['name'].'/resultados' ); exit;
+    }
+
     $query = 'category_name='.$params['name'] . '&posts_per_page=12&post_type=avaliacao';
     Timber::load_template('resultado-passo-1.php', $query);
 });

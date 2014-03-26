@@ -14,8 +14,6 @@
 
 <div class="steps results all_results content-row">
     <div class="content-cell">
-
-    
         <div class="steps_wrapper">
             {% if mensagem %}
             <div class="alert alert-warning">{{mensagem}}</div>
@@ -109,15 +107,6 @@
 
             <p class="category">&nbsp;</p>
             <div class="step_footer">
-                {% if username %}
-                    <!--a href="" class="next start">Venha participar você também!</a-->
-                {% else %}
-                    <!-- <a href="https://www.facebook.com/sharer/sharer.php?u={{compartilhar_link}}" target="_blank">
-                        <img src="{{theme.uri}}/assets/images/fb_result.png">
-                    </a> -->
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{compartilhar_link}}" target="_blank" class="button fb_button"> <em></em></a>
-                {% endif %}
-
                 <a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}/propostas/" class="button next_step">Ir para o próximo passo</a>
             </div>
 
@@ -126,7 +115,6 @@
             <div class="results_tabs">
                 <a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}/resultados/" class="minha "><span></span>Minha avaliação</a>
                 <a href="{{bloginfo('home')}}/projetos/{{slug_projeto}}/resultado-geral/" class="geral selected"><span></span>Avaliação geral</a>
-                
             </div>
 
 
