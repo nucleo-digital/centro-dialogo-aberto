@@ -1,10 +1,43 @@
-Vagrant LAMP
-============
+# Centro Diálogo Aberto - Participe
 
-My default LAMP development stack configuration for Vagrant.
 
-Installation:
--------------
+![Lista de projetos disponíveis para participação](./public/cda.local/wp-content/themes/participe-cda/screenshot.png "Home")
+
+![](./public/cda.local/wp-content/themes/participe-cda/screenshots/screenshot-0.png "Fase 1 - Votação")
+
+![](./public/cda.local/wp-content/themes/participe-cda/screenshots/screenshot-1.png "Fase 1 - Resultados")
+
+![](./public/cda.local/wp-content/themes/participe-cda/screenshots/screenshot-2.png "Fase 2")
+
+![](./public/cda.local/wp-content/themes/participe-cda/screenshots/screenshot-3.png "Fase 3")
+
+## O que é?
+
+Um diálogo aberto a favor da requalificação do centro está inaugurado. Esse diálogo se expressará em projeto, e o projeto será testado por intervenções concretas nesse território singular da cidade.
+
+## Por que?
+
+Ferramenta criada para ajudar a avaliar os espaços como são hoje, conhecer as propostas de projetos e cada uma das suas camadas, além de sugerir que tipo de atividade terá em cada local do projeto.
+
+## Licença
+
+Participe Centro Diálogo Aberto
+Copyright (C) 2015 Núcleo Digital <https://nucleodigital.cc/>
+
+Este programa é software livre: você pode redistribuí-lo e / ou modificá-
+-lo sob os termos da GNU General Public License conforme publicada pela
+Free Software Foundation, tanto a versão 3 da licença, ou
+(a seu critério) qualquer versão posterior.
+
+Este programa é distribuído na esperança de que ele vai ser útil,
+mas SEM QUALQUER GARANTIA; inclusive, sem a garantia implícita de
+COMERCIALIZAÇÃO ou de ADEQUAÇÃO A UM DETERMINADO FIM. veja a
+GNU General Public License para mais detalhes.
+
+Você deve ter recebido uma cópia da Licença Pública Geral GNU
+junto com este programa. Se não, veja <http://www.gnu.org/licenses/>.
+
+## Instalação
 
 Download and install [VirtualBox](http://www.virtualbox.org/)
 
@@ -21,41 +54,7 @@ Go to the repository folder and launch the box
     $ cd [repo]
     $ vagrant up
 
-What's inside:
---------------
-
-Installed software:
-
-* Apache
-* MySQL
-* php
-* phpMyAdmin
-* Xdebug with Webgrind
-* zsh with [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
-* git, subversion
-* mc, vim, screen, tmux, curl
-* [MailCatcher](http://mailcatcher.me/)
-* [Composer](http://getcomposer.org/)
-* Phing
-* Drupal utils:
-    * [Drush](http://drupal.org/project/drush)
-* Wordpress utils:
-    * [WP-Cli](http://wp-cli.org/)
-    * [wp2github.py](http://github.com/r8/wp2github.py)
-* Magento utils:
-    * [n98-magerun](https://github.com/netz98/n98-magerun)
-    * [modman](https://github.com/colinmollenhour/modman)
-    * [modgit](https://github.com/jreinke/modgit)
-* Node.js with following packages:
-    * [CoffeeScript](http://coffeescript.org)
-    * [Grunt](http://gruntjs.com/)
-    * [Bower](http://bower.io)
-    * [Yeoman](http://yeoman.io)
-    * [LESS](http://lesscss.org)
-    * [CSS Lint](http://csslint.net)
-
-Notes
------
+## Configuração do Servidor
 
 ### Apache virtual hosts
 
@@ -73,36 +72,6 @@ The guests local 3306 port is available on the host at port 33066. It is also av
 phpMyAdmin is available on every domain. For example:
 
     http://local.dev/phpmyadmin
-
-### XDebug and webgrind
-
-XDebug is configured to connect back to your host machine on port 9000 when 
-starting a debug session from a browser running on your host. A debug session is 
-started by appending GET variable XDEBUG_SESSION_START to the URL (if you use an 
-integrated debugger like Eclipse PDT, it will do this for you).
-
-XDebug is also configured to generate cachegrind profile output on demand by 
-adding GET variable XDEBUG_PROFILE to your URL. For example:
-
-    http://local.dev/index.php?XDEBUG_PROFILE
-
-Webgrind is available on each domain. For example:
-
-    http://local.dev/webgrind
-
-It looks for cachegrind files in the `/tmp` directory, where xdebug leaves them.
-
-**Note:** xdebug uses the default value for xdebug.profiler_output_name, which 
-means the output filename only includes the process ID as a unique part. This 
-was done to prevent a real need to clean out cachgrind files. If you wish to 
-configure xdebug to always generate profiler output 
-(`xdebug.profiler_enable = 1`), you *will* need to change this setting to 
-something like
- 
-    xdebug.profiler_output_name = cachegrind.out.%t.%p
-    
-so your call to webgrind will not overwrite the file for the process that 
-happens to serve webgrind. 
 
 ### Mailcatcher
 
