@@ -22,7 +22,7 @@ Ferramenta criada para ajudar a avaliar os espaços como são hoje, conhecer as 
 ## Licença
 
 Participe Centro Diálogo Aberto
-Copyright (C) 2015 Núcleo Digital <https://nucleodigital.cc/>
+Copyright (C) 2014 Núcleo Digital <https://nucleodigital.cc/>
 
 Este programa é software livre: você pode redistribuí-lo e / ou modificá-
 -lo sob os termos da GNU General Public License conforme publicada pela
